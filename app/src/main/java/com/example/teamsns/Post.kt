@@ -5,4 +5,6 @@ data class Post(
     var postImage: Int,
     val comment: String?,
     var like: Int = 0,
+    var postContent: String? = null,
+    var commentIcon: Int = 0,
 )
