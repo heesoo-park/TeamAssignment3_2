@@ -80,6 +80,8 @@ class DetailPageActivity : AppCompatActivity() {
 
     lateinit var likeCount: TextView
 
+    lateinit var showMore: TextView
+
     private val layoutInflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
     }
@@ -141,6 +143,7 @@ class DetailPageActivity : AppCompatActivity() {
             detailComment = postView.findViewById(R.id.detail_activity_comment)
             likeButton = postView.findViewById(R.id.like_button)
             likeCount = postView.findViewById(R.id.like_count)
+            showMore = postView.findViewById(R.id.show_more)
 
             detailContent.text = post.postContent
 
@@ -152,23 +155,24 @@ class DetailPageActivity : AppCompatActivity() {
 
             postLayout.addView(postView)
 
-            if (post.likeSelectedUser?.any { it == myId } == true){
+            if (post.likeSelectedUser?.any { it == myId } == true) {
                 likeButton.setImageResource(heart)
             }
 
             likeCount.text = post.like.toString()
 
             setLikeButton(post)
+            setShowMoreVisible(post)
         }
     }
 
-    private fun  setLikeButton(post: Post){
+    private fun setLikeButton(post: Post) {
         likeButton.setOnClickListener {
-            if (post.likeSelectedUser?.any { it == myId } == true){
+            if (post.likeSelectedUser?.any { it == myId } == true) {
                 post.like -= 1
                 likeButton.setImageResource(empty_heart)
                 post.likeSelectedUser!!.remove(myId)
-            }else{
+            } else {
                 post.like += 1
                 likeButton.setImageResource(heart)
                 post.likeSelectedUser?.add(myId!!)
@@ -176,17 +180,40 @@ class DetailPageActivity : AppCompatActivity() {
             likeCount.text = post.like.toString()
         }
     }
-    private fun setLogOutButton(){
+
+    private fun setShowMoreVisible(post: Post) {
+        detailContent.text = post.postContent
+
+        if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
+        else showMore.visibility = View.INVISIBLE
+
+        setShowMoreButton(post)
+    }
+
+    private fun setShowMoreButton(post: Post) {
+        detailContent.text = post.postContent
+        showMore.setOnClickListener {
+            if (detailContent.maxLines == Integer.MAX_VALUE) {
+                detailContent.maxLines = 2
+                showMore.setText(R.string.show_more)
+            } else {
+                detailContent.maxLines = Integer.MAX_VALUE
+                showMore.setText(R.string.show_close)
+            }
+        }
+    }
+
+    private fun setLogOutButton() {
         val intent = Intent(this, SignInActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         overridePendingTransition(R.anim.none, R.anim.fade_out)
     }
 
-    private fun setEditButton(){
+    private fun setEditButton() {
         edit.setOnClickListener {
-            val intent = Intent(this,SignUpActivity::class.java)
-            intent.putExtra("editId",myId)
+            val intent = Intent(this, SignUpActivity::class.java)
+            intent.putExtra("editId", myId)
             profileRefresh.launch(intent)
             overridePendingTransition(R.anim.none, R.anim.fade_in)
         }
