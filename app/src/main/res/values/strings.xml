@@ -6,4 +6,5 @@
     <string name="edit_name_empty">이름을 입력하세요</string>
     <string name="edit_status">상태</string>
     <string name="edit_status_message">상태메세지를 입력하세요</string>
+    <string name="detail_activity_detail">Detail</string>
 </resources>
