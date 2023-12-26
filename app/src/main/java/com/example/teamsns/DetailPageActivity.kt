@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isVisible
+import com.example.teamsns.R.drawable.empty_heart
+import com.example.teamsns.R.drawable.heart
 
 class DetailPageActivity : AppCompatActivity() {
     private val profileRefresh =
@@ -68,6 +71,10 @@ class DetailPageActivity : AppCompatActivity() {
     lateinit var detailCommentIcon: ImageView
 
     lateinit var detailComment: TextView
+
+    lateinit var likeButton: ImageView
+
+    lateinit var likeCount: TextView
 
     private val layoutInflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
@@ -127,6 +134,8 @@ class DetailPageActivity : AppCompatActivity() {
             detailContent = postView.findViewById(R.id.detail_activity_list_contents)
             detailCommentIcon = postView.findViewById(R.id.detail_activity_comment_icon)
             detailComment = postView.findViewById(R.id.detail_activity_comment)
+            likeButton = postView.findViewById(R.id.like_button)
+            likeCount = postView.findViewById(R.id.like_count)
 
             detailContent.text = post.postContent
 
@@ -137,9 +146,31 @@ class DetailPageActivity : AppCompatActivity() {
             detailComment.text = post.comment
 
             postLayout.addView(postView)
+
+            if (post.likeSelectedUser?.any { it == myId } == true){
+                likeButton.setImageResource(heart)
+            }
+
+            likeCount.text = post.like.toString()
+
+            setLikeButton(post)
         }
     }
 
+    private fun  setLikeButton(post: Post){
+        likeButton.setOnClickListener {
+            if (post.likeSelectedUser?.any { it == myId } == true){
+                post.like -= 1
+                likeButton.setImageResource(empty_heart)
+                post.likeSelectedUser!!.remove(myId)
+            }else{
+                post.like += 1
+                likeButton.setImageResource(heart)
+                post.likeSelectedUser?.add(myId!!)
+            }
+            likeCount.text = post.like.toString()
+        }
+    }
     private fun setLogOutButton(){
         val intent = Intent(this, SignInActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -148,8 +179,8 @@ class DetailPageActivity : AppCompatActivity() {
 
     private fun setEditButton(){
         edit.setOnClickListener {
-            val intent = Intent(this,ProfileEditActivity::class.java)
-            intent.putExtra("editId",id)
+            val intent = Intent(this,SignUpActivity::class.java)
+            intent.putExtra("editId",myId)
             profileRefresh.launch(intent)
         }
     }
