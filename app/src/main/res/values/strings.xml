@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">teamSns</string>
+<!--    <string name=""></string>-->
+    <string name="app_name">별개냥</string>
+    <string name="hello_word">안녕하세요 </string>
+    <string name="user_name">사용자1</string>
+    <string name="user_title">님</string>
 </resources>
