@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">teamSns</string>
-    <string name="detail_activity_edit">Edit</string>
-    <string name="detail_activity_logout">logout</string>
-    <string name="edit_name">Name</string>
-    <string name="edit_name_empty">Please enter your name</string>
-    <string name="edit_status">status</string>
-    <string name="edit_status_message">Please enter a status message</string>
+    <string name="detail_activity_edit">편집</string>
+    <string name="detail_activity_logout">로그아웃</string>
+    <string name="edit_name">이름</string>
+    <string name="edit_name_empty">이름을 적어주세요</string>
+    <string name="edit_status">상태</string>
+    <string name="edit_status_message">상태메세지를 적어주세요</string>
     <string name="detail_activity_detail">Detail</string>
     <string name="detail_activity_my_page">My Page</string>
+    <string name="show_more">..더보기</string>
 </resources>
