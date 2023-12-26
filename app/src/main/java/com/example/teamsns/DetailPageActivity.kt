@@ -127,6 +127,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setBackButton() {
         back.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.none, R.anim.horizon_enter)
         }
     }
 
@@ -179,6 +180,7 @@ class DetailPageActivity : AppCompatActivity() {
         val intent = Intent(this, SignInActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+        overridePendingTransition(R.anim.none, R.anim.fade_out)
     }
 
     private fun setEditButton(){
@@ -186,6 +188,7 @@ class DetailPageActivity : AppCompatActivity() {
             val intent = Intent(this,SignUpActivity::class.java)
             intent.putExtra("editId",myId)
             profileRefresh.launch(intent)
+            overridePendingTransition(R.anim.none, R.anim.fade_in)
         }
     }
 }
