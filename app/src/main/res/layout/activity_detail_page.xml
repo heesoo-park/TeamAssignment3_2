@@ -27,6 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
+            android:id="@+id/my_page_or_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/detail_activity_detail"

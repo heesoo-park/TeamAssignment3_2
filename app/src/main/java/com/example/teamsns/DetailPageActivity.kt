@@ -64,6 +64,10 @@ class DetailPageActivity : AppCompatActivity() {
         findViewById(R.id.profile_img)
     }
 
+    private val myPageDetail: TextView by lazy {
+        findViewById(R.id.my_page_or_detail)
+    }
+
     lateinit var detailImage: ImageView
 
     lateinit var detailContent: TextView
@@ -100,9 +104,9 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setProfile() {
+        if (myId == id) myPageDetail.setText(getString(R.string.detail_activity_my_page))
         name = userDate.name
         statusMessage = userDate.statusMessage.toString()
-
         profileImageView.setImageResource(userDate.profileImage)
         idTextView.setText(id)
         nameTextView.setText(name)
