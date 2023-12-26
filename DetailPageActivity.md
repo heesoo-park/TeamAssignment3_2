@@ -166,6 +166,38 @@ private fun  setLikeButton(post: Post){
 
 피드에 좋아요를 한 사람의 리스트에 올라가게 된다
 
+### setShowMoreVisible
+```kotlin
+private fun setShowMoreVisible(post: Post) {
+        detailContent.text = post.postContent
+
+        if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
+        else showMore.visibility = View.INVISIBLE
+
+        setShowMoreButton(post)
+    }
+```
+lineCount를 이용해 maxLines과 비교하고 더크면 ..더보기 버튼을 보여주고
+
+그렇지 않으면 숨기게 했다
+
+### setSHowMoreButton
+```kotlin
+    private fun setShowMoreButton(post: Post) {
+        detailContent.text = post.postContent
+        showMore.setOnClickListener {
+            if (detailContent.maxLines == Integer.MAX_VALUE) {
+                detailContent.maxLines = 2
+                showMore.setText(R.string.show_more)
+            } else {
+                detailContent.maxLines = Integer.MAX_VALUE
+                showMore.setText(R.string.show_close)
+            }
+        }
+    }
+```
+더보기 버튼을 누르면 maxLine의 제한이 해제되며 접기로 변하게 했다
+
 ## setPersonalButton
 
 ```kotlin
@@ -213,3 +245,14 @@ SignInActivity가 새 작업의 기초가 된다
 회원가입 페이지로 넘어가고 Extra파일을 보내 회원가입 페이지를 프로필 수정 페이지로 재사용 한다
 
 registerForActivityResult를 이용해 이때 수정된값을 회원가입 창이 닫혔을때 바로 갱신받는다
+
+# resorce
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/e3ad3b13-3fa5-4d88-be09-ca0e44b961cd)
+string파일을 언어에 맞춰 추가
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/f00e6be9-0c38-4d36-9060-5f9a2e6c5daf)
+다크모드도 색을 변환시켜 추가했다
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/69c2c37c-1425-4b25-9815-e0f1f167fe72)
+가로모드 추가
