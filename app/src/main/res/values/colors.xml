@@ -5,4 +5,5 @@
     <color name="background_color">#FFFFF38B</color>
     <color name="component_color">#FFFFE715</color>
     <color name="text_color">#FF1B212D</color>
+    <color name="red">#FF0000</color>
 </resources>
