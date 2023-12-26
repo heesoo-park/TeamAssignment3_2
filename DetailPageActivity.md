@@ -1,6 +1,7 @@
 DetailPageActivity
 =
 레이아웃 구성
+
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/f0ad9d78-554f-4a69-b686-904dde3b1baf)
 
 리니어를 기본으로 그 안에
