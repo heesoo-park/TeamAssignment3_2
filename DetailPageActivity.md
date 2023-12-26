@@ -45,3 +45,84 @@ ScrollView{
         </androidx.cardview.widget.CardView>
 ```
 Cardview를 둥글게 만들고 그 안에 이미지를 넣어 만들었다.
+
+# Activity
+
+```kotlin
+private val myId: String? by lazy {
+        intent.getStringExtra("myId")
+    }
+
+    private val id: String? by lazy {
+        intent.getStringExtra("id")
+    }
+
+private val userDate = UserDatabase.getUser(id!!)
+```
+프로필을 눌렀을때 ID와 로그인한 본인의 ID를 Extra로 받고
+
+id를 기준으로 유저 데이터를 받는다
+
+```kotlin
+    private fun init() {
+        setProfile()
+
+        setPersonalButton()
+
+        setBackButton()
+    }
+```
+init은 프로필 세팅, 개인 버튼 세팅, 뒤로가기 세팅으로 구성했다
+
+## setProfile
+
+```kotlin
+    private fun setProfile() {
+        name = userDate.name
+        statusMessage = userDate.statusMessage.toString()
+
+        profileImageView.setImageResource(userDate.profileImage)
+        idTextView.setText(id)
+        nameTextView.setText(name)
+        statusMessageTextView.setText(statusMessage)
+
+        setPostList()
+    }
+```
+유저의 데이터를 기반으로 프로필이미지 아이디 이름 상태 메시지를 출력하고
+
+하단의 PostList를 만든다
+
+### setPostList
+```kotlin
+    private fun setPostList() {
+        for (post in userDate.userPosts.reversed()) {
+            val postView: View = layoutInflater.inflate(R.layout.post_item, postLayout, false)
+
+            detailImage = postView.findViewById(R.id.detail_activity_list_img)
+            detailContent = postView.findViewById(R.id.detail_activity_list_contents)
+            detailCommentIcon = postView.findViewById(R.id.detail_activity_comment_icon)
+            detailComment = postView.findViewById(R.id.detail_activity_comment)
+            likeButton = postView.findViewById(R.id.like_button)
+            likeCount = postView.findViewById(R.id.like_count)
+
+            detailContent.text = post.postContent
+
+            detailImage.setImageResource(post.postImage)
+
+            detailCommentIcon.setImageResource(post.commentIcon)
+
+            detailComment.text = post.comment
+
+            postLayout.addView(postView)
+
+            if (post.likeSelectedUser?.any { it == myId } == true){
+                likeButton.setImageResource(heart)
+            }
+
+            likeCount.text = post.like.toString()
+
+            setLikeButton(post)
+        }
+    }
+```
