@@ -113,7 +113,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setProfile() {
         if (myId == id) myPageDetail.setText(DetailPageMessage.MYPAGE.message)
         else myPageDetail.setText(DetailPageMessage.DETAIL.message)
-        name = userDate.name
+        name = userDate!!.name
         statusMessage = userDate.statusMessage.toString()
         profileImageView.setImageResource(userDate.profileImage)
         idTextView.setText(id)
@@ -141,7 +141,7 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setPostList() {
-        for (post in userDate.userPosts.reversed()) {
+        for (post in userDate!!.userPosts.reversed()) {
             val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
 
             detailImage = postView.findViewById(R.id.detail_activity_list_img)

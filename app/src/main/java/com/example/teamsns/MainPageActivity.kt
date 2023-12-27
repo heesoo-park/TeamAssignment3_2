@@ -71,7 +71,7 @@ class MainPageActivity : AppCompatActivity() {
         loginUserID = "dk"
         val loginUser = UserDatabase.getUser(loginUserID)
 
-        tvMainHelloWord.text = getString(R.string.hello_word, loginUser.name)
+        tvMainHelloWord.text = getString(R.string.hello_word, loginUser!!.name)
 
         setOnProflieClickListener()
 

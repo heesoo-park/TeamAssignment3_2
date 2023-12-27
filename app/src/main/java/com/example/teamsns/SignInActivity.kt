@@ -70,7 +70,6 @@ class SignInActivity : AppCompatActivity() {
 
             intent.putExtra("id", etId.text.toString())
 
-            intent.putExtra("id", et_id.text.toString())
 
             startActivity(intent)
         }
