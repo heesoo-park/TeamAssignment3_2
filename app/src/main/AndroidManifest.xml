@@ -27,6 +27,7 @@
             android:name=".ChooseProfileActivity"
             android:exported="false" />
         <activity
+
             android:name=".MainPageActivity"
             android:exported="false">
         </activity>

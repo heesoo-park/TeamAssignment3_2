@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textView2" type="id" />
+    <item name="ib_profile1" type="id" />
+    <item name="ib_profile2" type="id" />
+    <item name="ib_profile3" type="id" />
+    <item name="ib_profile4" type="id" />
+    <item name="ib_profile5" type="id" />
+    <item name="ib_profile6" type="id" />
+    <item name="ib_profile7" type="id" />
+    <item name="ib_profile8" type="id" />
+    <item name="ib_profile9" type="id" />
+    <item name="ib_profile10" type="id" />
+    <item name="ib_profile11" type="id" />
+    <item name="ib_profile12" type="id" />
+    <item name="iv_selected_image" type="id" />
+    <item name="btn_next" type="id" />
+</resources>
