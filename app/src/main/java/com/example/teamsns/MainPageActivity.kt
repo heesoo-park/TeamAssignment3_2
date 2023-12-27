@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 
 class MainPageActivity : AppCompatActivity() {
 
@@ -103,7 +104,7 @@ class MainPageActivity : AppCompatActivity() {
                 val postView: View =
                     inflater.inflate(R.layout.main_post_item, mainPostLayout, false)
 
-                detailImage = postView.findViewById(R.id.main_activity_list_img)
+                detailImage = postView.findViewById(R.id.main_activity_list_img) //detailImage = postView.findViewById(R.id.main_activity_list_img)
                 detailContent = postView.findViewById(R.id.main_activity_list_contents)
                 detailUserProfileIcon = postView.findViewById(R.id.main_activity_user_profile)
                 detailPostName = postView.findViewById(R.id.main_activity_user_name)
@@ -127,7 +128,7 @@ class MainPageActivity : AppCompatActivity() {
 
                 tempLikeCount.text = post.like.toString()
 
-                setLikeButton(post, tempLikeButton, tempLikeCount)
+                setLikeButton(post, tempLikeButton, tempLikeCount, detailImage)
                 setShowMoreVisible(post)
                 setOnNameLayoutClickListener(user)
             }
@@ -143,20 +144,26 @@ class MainPageActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun setLikeButton(post: Post, templikeButton: ImageView, templikeCount: TextView) {
+    private fun setLikeButton(post: Post, templikeButton: ImageView, templikeCount: TextView, detailImage:ImageView) {
         templikeButton.setOnClickListener {
-            if (post.likeSelectedUser.any { it == loginUserID }) {
-                post.like -= 1
-                templikeButton.setImageResource(R.drawable.empty_heart)
-                post.likeSelectedUser.remove(loginUserID)
-            } else {
-                post.like += 1
-                templikeButton.setImageResource(R.drawable.heart)
-                post.likeSelectedUser.add(loginUserID)
-            }
-            templikeCount.text = post.like.toString()
+            likeShow(post, templikeButton, templikeCount)
         }
+        detailImage.setOnLongClickListener {
+            likeShow(post,templikeButton, templikeCount)
+            true
+        }
+    }
+    private fun likeShow(post: Post, click: ImageView, templikeCount: TextView){
+        if (post.likeSelectedUser.any { it == loginUserID }) {
+            post.like -= 1
+            click.setImageResource(R.drawable.empty_heart)
+            post.likeSelectedUser.remove(loginUserID)
+        } else {
+            post.like += 1
+            click.setImageResource(R.drawable.heart)
+            post.likeSelectedUser.add(loginUserID)
+        }
+        templikeCount.text = post.like.toString()
     }
 
     private fun setShowMoreVisible(post: Post) {
