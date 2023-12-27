@@ -120,7 +120,6 @@
                 app:layout_constraintStart_toEndOf="@+id/iv_main_user3"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </HorizontalScrollView>
     <!-- 사용자 목록 끝 -->
 
@@ -173,6 +172,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
+                    android:id="@+id/iv_post1"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"
@@ -191,16 +191,20 @@
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="10dp"
+                        />
 
                     <TextView
+                        android:id="@+id/like1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginRight="10dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
             <!-- 게시물1 끝 -->
@@ -240,6 +244,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
+                    android:id="@+id/iv_post2"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"
@@ -261,6 +266,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/like2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -307,6 +313,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
+                    android:id="@+id/iv_post3"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"
@@ -328,6 +335,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/like3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -374,6 +382,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
+                    android:id="@+id/iv_post4"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"
@@ -395,6 +404,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/like4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
