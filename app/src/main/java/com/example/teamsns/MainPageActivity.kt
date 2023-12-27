@@ -3,7 +3,6 @@ package com.example.teamsns
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -108,8 +107,8 @@ class MainPageActivity : AppCompatActivity() {
                 detailContent = postView.findViewById(R.id.main_activity_list_contents)
                 detailUserProfileIcon = postView.findViewById(R.id.main_activity_user_profile)
                 detailPostName = postView.findViewById(R.id.main_activity_user_name)
-                likeButton = postView.findViewById(R.id.main_like_button)
-                likeCount = postView.findViewById(R.id.main_like_count)
+                val tempLikeButton: ImageView = postView.findViewById(R.id.main_like_button)
+                val tempLikeCount: TextView = postView.findViewById(R.id.main_like_count)
                 showMore = postView.findViewById(R.id.main_show_more)
 
                 detailContent.text = post.postContent
@@ -126,9 +125,9 @@ class MainPageActivity : AppCompatActivity() {
                     likeButton.setImageResource(R.drawable.heart)
                 }
 
-                likeCount.text = post.like.toString()
+                tempLikeCount.text = post.like.toString()
 
-                setLikeButton(post)
+                setLikeButton(post, tempLikeButton, tempLikeCount)
                 setShowMoreVisible(post)
                 setOnNameLayoutClickListener(user)
             }
@@ -145,20 +144,18 @@ class MainPageActivity : AppCompatActivity() {
     }
 
 
-    private fun setLikeButton(post: Post) {
-        likeButton.setOnClickListener {
+    private fun setLikeButton(post: Post, templikeButton: ImageView, templikeCount: TextView) {
+        templikeButton.setOnClickListener {
             if (post.likeSelectedUser.any { it == loginUserID }) {
                 post.like -= 1
-                likeButton.setImageResource(R.drawable.empty_heart)
+                templikeButton.setImageResource(R.drawable.empty_heart)
                 post.likeSelectedUser.remove(loginUserID)
             } else {
                 post.like += 1
-                likeButton.setImageResource(R.drawable.heart)
+                templikeButton.setImageResource(R.drawable.heart)
                 post.likeSelectedUser.add(loginUserID)
             }
-            Log.e("user", post.likeSelectedUser.toString())
-            Log.e("user", post.like.toString())
-            likeCount.text = post.like.toString()
+            templikeCount.text = post.like.toString()
         }
     }
 
