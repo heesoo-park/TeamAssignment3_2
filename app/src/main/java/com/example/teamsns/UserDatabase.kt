@@ -1,7 +1,7 @@
 package com.example.teamsns
 
 object UserDatabase {
-    private val user1 = User(
+    var user1 = User(
         "사용자1",
         "test1",
         "abcdABCD1!",
@@ -10,7 +10,7 @@ object UserDatabase {
         arrayListOf(Post(1, 1, "아주 즐거워요", 0))
     )
 
-    private val user2 = User(
+    var user2 = User(
         "사용자2",
         "test2",
         "abcdABCD1!",
@@ -19,7 +19,16 @@ object UserDatabase {
         arrayListOf(Post(2, 2, "아주 즐거워요", 0))
     )
 
-    private val user3 = User(
+    var user3 = User(
+        "사용자3",
+        "test3",
+        "abcdABCD1!",
+        3,
+        "오늘 하루는 행복하네요",
+        arrayListOf(Post(3, 3, "아주 즐거워요", 0))
+    )
+
+    var user4 = User(
         "사용자3",
         "test3",
         "abcdABCD1!",

@@ -1,9 +1,13 @@
 package com.example.teamsns
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 
 class ChooseProfileActivity : AppCompatActivity() {
 
@@ -21,6 +25,9 @@ class ChooseProfileActivity : AppCompatActivity() {
     private val ibProfile12: ImageButton by lazy { findViewById(R.id.ib_profile12) }
 
     private val ivSelectedImage: ImageView by lazy { findViewById(R.id.iv_selected_image) }
+    private var selectedImage: Int = 0
+
+    private val btnNext: Button by lazy { findViewById(R.id.btn_next) }
 
     private val profileImageButtonList: List<ImageButton> by lazy { listOf(
         ibProfile1,
@@ -52,18 +59,37 @@ class ChooseProfileActivity : AppCompatActivity() {
         R.drawable.img_cat6,
     )
 
+    private lateinit var name: String
+    private lateinit var id: String
+    private lateinit var password: String
+    private val statusMessage: String = ""
+    private val userPosts: ArrayList<Post> = arrayListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_profile)
 
+        name = intent.getStringExtra("name") ?: ""
+        id = intent.getStringExtra("id") ?: ""
+        password = intent.getStringExtra("password") ?: ""
+
         setOnClickListener()
+
+
     }
 
     private fun setOnClickListener() {
         profileImageButtonList.forEachIndexed { idx, ib ->
             ib.setOnClickListener {
+                selectedImage = idx
                 ivSelectedImage.setImageResource(profileImageList[idx])
             }
+        }
+
+        btnNext.setOnClickListener {
+            UserDatabase.addUser(User(name, id, password, selectedImage, statusMessage, userPosts))
+            setResult(RESULT_OK, intent)
+            finish()
         }
     }
 }

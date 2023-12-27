@@ -41,18 +41,19 @@
             app:layout_constraintTop_toTopOf="@+id/iv_main_logo" />
 
         <TextView
+            android:id="@+id/tv_main_hello_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:text="안녕하세요 사용자1 님"
+            android:text="안녕하세요"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_main_profilebtn"
-            app:layout_constraintEnd_toStartOf="@+id/iv_main_profilebtn"
-            app:layout_constraintTop_toTopOf="@+id/iv_main_profilebtn" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_main_profile_btn"
+            app:layout_constraintEnd_toStartOf="@+id/iv_main_profile_btn"
+            app:layout_constraintTop_toTopOf="@+id/iv_main_profile_btn" />
 
         <ImageView
-            android:id="@+id/iv_main_profilebtn"
+            android:id="@+id/iv_main_profile_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitXY"
@@ -195,6 +196,17 @@
                         android:layout_marginLeft="10dp"
                         />
 
+                    <ImageView
+                        android:id="@+id/like_button1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like1"
+                        app:layout_constraintEnd_toStartOf="@+id/like1"
+                        app:layout_constraintTop_toTopOf="@+id/like1" />
+
                     <TextView
                         android:id="@+id/like1"
                         android:layout_width="wrap_content"
@@ -257,6 +269,7 @@
                     android:paddingHorizontal="5dp">
 
                     <TextView
+                        android:id="@+id/tv_main_like_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="코멘트2"
@@ -264,6 +277,17 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/like_button2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like2"
+                        app:layout_constraintEnd_toStartOf="@+id/like2"
+                        app:layout_constraintTop_toTopOf="@+id/like2" />
 
                     <TextView
                         android:id="@+id/like2"
@@ -334,6 +358,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <ImageView
+                        android:id="@+id/like_button3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like3"
+                        app:layout_constraintEnd_toStartOf="@+id/like3"
+                        app:layout_constraintTop_toTopOf="@+id/like3" />
+
                     <TextView
                         android:id="@+id/like3"
                         android:layout_width="wrap_content"
@@ -402,6 +437,17 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/like_button4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like4"
+                        app:layout_constraintEnd_toStartOf="@+id/like4"
+                        app:layout_constraintTop_toTopOf="@+id/like4" />
 
                     <TextView
                         android:id="@+id/like4"
