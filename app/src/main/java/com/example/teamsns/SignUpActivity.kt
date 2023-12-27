@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import com.example.teamsns.SignUpValidExtension.includeSpecialCharacters
+import com.example.teamsns.SignUpValidExtension.includeUpperCase
+import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -39,7 +38,7 @@ class SignUpActivity : AppCompatActivity() {
     private val error_message_password2: TextView by lazy {
         findViewById(R.id.error_message_password)
     }
-    private val btn_signup: Button by lazy {
+    private val btn_next: Button by lazy {
         findViewById(R.id.btn_sign_up_next)
     }
 
@@ -57,14 +56,14 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    private val regexMap: Map<EditText, String> by lazy {
-        mapOf(
-            et_name to "^[a-zA-Z가-힣]*\$",
-            et_id to "/^[a-z0-9_-]{3,16}\$/",
-            et_password to "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\\\$@\\\$!%*#?&.])[A-Za-z[0-9]\\\$@\\\$!%*#?&.]{8,16}\\\$",
-            et_password_confirmation to "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\\\$@\\\$!%*#?&.])[A-Za-z[0-9]\\\$@\\\$!%*#?&.]{8,16}\\\$"
-        )
-    }
+//    private val regexMap: Map<EditText, String> by lazy {
+//        mapOf(
+//            et_name to "^[a-zA-Z가-힣]*\$",
+//            et_id to "/^[a-z0-9_-]{3,16}\$/",
+//            et_password to "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\\\$@\\\$!%*#?&.])[A-Za-z[0-9]\\\$@\\\$!%*#?&.]{8,16}\\\$",
+//            et_password_confirmation to "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\\\$@\\\$!%*#?&.])[A-Za-z[0-9]\\\$@\\\$!%*#?&.]{8,16}\\\$"
+//        )
+//    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,13 +78,17 @@ class SignUpActivity : AppCompatActivity() {
         btnSignup()
     }
 
-    private fun btnSignup() {
-        btn_signup.setOnClickListener {
 
-            val intent = Intent(this, SignInActivity::class.java).apply {
+    private fun btnSignup() {
+
+        btn_next.setOnClickListener {
+
+            val intent = Intent(this, ChooseProfileActivity::class.java).apply {
                 putExtra("id", et_id.text.toString())
-                putExtra("pw", et_password.text.toString())
+                putExtra("password", et_password.text.toString())
+
             }
+
 
             setResult(RESULT_OK, intent)
 
@@ -120,21 +123,19 @@ class SignUpActivity : AppCompatActivity() {
             et_id -> error = getMessageValidId()
             et_password -> error = getMessageValidPassword()
             et_password_confirmation -> error = getMessageValidPasswordConfirm()
-// TODO 추가 사항 확인
+
             else -> Unit
         }
     }
 
     private fun getMessageValidName(): String? {
         val text = et_name.text.toString()
-        val specialCharacterRegex = Regex(regexMap[et_name]!!)
         if (et_name.isVisible) {
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_NAME
-                !specialCharacterRegex.containsMatchIn(text)
-                    .not() -> SignUpErrorMessage.INVIALID_NAME
+                (text.isNotBlank() && Pattern.matches("^[가-힣]*$",text)) -> null
 
-                else -> null
+                else -> SignUpErrorMessage.INVIALID_NAME
             }
             return errorCode?.let { getString(it.message) }
         } else return null
@@ -142,14 +143,12 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun getMessageValidId(): String? {
         val text = et_id.text.toString()
-        val specialCharacterRegex = Regex(regexMap[et_id]!!)
         if (et_id.isVisible) {
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_ID
-                !specialCharacterRegex.containsMatchIn(text)
-                    .not() -> SignUpErrorMessage.INVALID_ID
+                (text.isNotBlank() && Pattern.matches("^[a-z0-9]*\$",text)) -> null
 
-                else -> null
+                else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }
         } else return null
@@ -158,14 +157,12 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun getMessageValidPassword(): String? {
         val text = et_password.text.toString()
-        val specialCharacterRegex = Regex(regexMap[et_password]!!)
         if (et_password.isVisible) {
             val errorCode = when {
                 text.isBlank() -> getString(R.string.empty_password_message)
-                !specialCharacterRegex.containsMatchIn(text)
-                    .not() -> getString(R.string.password_error_message)
+                (text.isNotBlank() && Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$", text)) -> null
 
-                else -> null
+                else -> getString(R.string.password_error_message)
             }
             return errorCode
         } else return null
@@ -173,17 +170,16 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun getMessageValidPasswordConfirm(): String? {
         val text = et_password_confirmation.text.toString()
-        val specialCharacterRegex = Regex(regexMap[et_password]!!)
         if (et_id.isVisible) {
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_PASSWORD
-                !specialCharacterRegex.containsMatchIn(text)
-                    .not() -> SignUpErrorMessage.INVALID_PASSWORD
+                (text.isNotBlank() && Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$", text)) -> null
+
 
                 (text != et_password.text.toString()) -> SignUpErrorMessage.PASSWORD_MISMATCH
 
 
-                else -> null
+                else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }
         } else return null
@@ -191,7 +187,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun setConfirmButtonEnable() {
-        btn_signup.isEnabled = getMessageValidName() == null
+        btn_next.isEnabled = getMessageValidName() == null
                 && getMessageValidId() == null
                 && getMessageValidPassword() == null
                 && getMessageValidPasswordConfirm() == null
