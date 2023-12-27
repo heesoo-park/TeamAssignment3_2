@@ -26,14 +26,16 @@ class DetailPageActivity : AppCompatActivity() {
         }
 
     private val myId: String? by lazy {
-        intent.getStringExtra("myId").toString()
+        intent.getStringExtra("myId")
     }
 
     private val id: String? by lazy {
-        intent.getStringExtra("id").toString()
+        intent.getStringExtra("id")
     }
 
-    private val userDate = UserDatabase.getUser(id!!)
+    private val userDate: User by lazy {
+        UserDatabase.getUser(id!!)!!
+    }
 
     lateinit var name: String
 
@@ -98,7 +100,6 @@ class DetailPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_page)
 
-
         init()
     }
 
@@ -115,7 +116,7 @@ class DetailPageActivity : AppCompatActivity() {
         else myPageDetail.setText(DetailPageMessage.DETAIL.message)
         name = userDate.name
         statusMessage = userDate.statusMessage.toString()
-        profileImageView.setImageResource(userDate.profileImage)
+        profileImageView.setImageResource(userDate.profileImage!!)
         idTextView.setText(id)
         nameTextView.setText(name)
         statusMessageTextView.setText(statusMessage)
@@ -141,7 +142,7 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setPostList() {
-        for (post in userDate.userPosts.reversed()) {
+        for (post in userDate.userPosts?.reversed()!!) {
             val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
 
             detailImage = postView.findViewById(R.id.detail_activity_list_img)
