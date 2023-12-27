@@ -1,33 +1,30 @@
 package com.example.teamsns
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.Toast
 
 class ChooseProfileActivity : AppCompatActivity() {
 
-    private val ibProfile1: ImageButton by lazy { findViewById(R.id.ib_profile1) }
-    private val ibProfile2: ImageButton by lazy { findViewById(R.id.ib_profile2) }
-    private val ibProfile3: ImageButton by lazy { findViewById(R.id.ib_profile3) }
-    private val ibProfile4: ImageButton by lazy { findViewById(R.id.ib_profile4) }
-    private val ibProfile5: ImageButton by lazy { findViewById(R.id.ib_profile5) }
-    private val ibProfile6: ImageButton by lazy { findViewById(R.id.ib_profile6) }
-    private val ibProfile7: ImageButton by lazy { findViewById(R.id.ib_profile7) }
-    private val ibProfile8: ImageButton by lazy { findViewById(R.id.ib_profile8) }
-    private val ibProfile9: ImageButton by lazy { findViewById(R.id.ib_profile9) }
-    private val ibProfile10: ImageButton by lazy { findViewById(R.id.ib_profile10) }
-    private val ibProfile11: ImageButton by lazy { findViewById(R.id.ib_profile11) }
-    private val ibProfile12: ImageButton by lazy { findViewById(R.id.ib_profile12) }
+    private val ibProfile1: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample1) }
+    private val ibProfile2: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample2) }
+    private val ibProfile3: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample3) }
+    private val ibProfile4: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample4) }
+    private val ibProfile5: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample5) }
+    private val ibProfile6: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample6) }
+    private val ibProfile7: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample7) }
+    private val ibProfile8: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample8) }
+    private val ibProfile9: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample9) }
+    private val ibProfile10: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample10) }
+    private val ibProfile11: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample11) }
+    private val ibProfile12: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample12) }
 
-    private val ivSelectedImage: ImageView by lazy { findViewById(R.id.iv_selected_image) }
+    private val ivSelectedImage: ImageView by lazy { findViewById(R.id.iv_choose_selected_profile) }
     private var selectedImage: Int = 0
 
-    private val btnNext: Button by lazy { findViewById(R.id.btn_next) }
+    private val btnNext: Button by lazy { findViewById(R.id.btn_choose_signup) }
 
     private val profileImageButtonList: List<ImageButton> by lazy {
         listOf(

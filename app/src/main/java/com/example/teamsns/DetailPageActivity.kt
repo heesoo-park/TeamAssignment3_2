@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -42,57 +41,51 @@ class DetailPageActivity : AppCompatActivity() {
     lateinit var statusMessage: String
 
     private val back: ImageView by lazy {
-        findViewById(R.id.back)
+        findViewById(R.id.iv_detail_back_btn)
     }
 
     private val edit: TextView by lazy {
-        findViewById(R.id.edit)
+        findViewById(R.id.tv_detail_edit_btn)
     }
 
     private val idTextView: TextView by lazy {
-        findViewById(R.id.detail_activity_id)
+        findViewById(R.id.tv_detail_id)
     }
 
     private val nameTextView: TextView by lazy {
-        findViewById(R.id.detail_activity_name)
+        findViewById(R.id.tv_detail_name)
     }
 
     private val statusMessageTextView: TextView by lazy {
-        findViewById(R.id.detail_activity_status_message)
+        findViewById(R.id.tv_detail_status_message)
     }
 
     private val logOut: TextView by lazy {
-        findViewById(R.id.logout)
+        findViewById(R.id.tv_detail_logout_btn)
     }
 
     private val profileImageView: AppCompatImageView by lazy {
-        findViewById(R.id.profile_img)
+        findViewById(R.id.iv_detail_profile)
     }
 
     private val myPageDetail: TextView by lazy {
-        findViewById(R.id.my_page_or_detail)
+        findViewById(R.id.tv_detail_my_page_or_detail)
     }
 
-    lateinit var detailImage: ImageView
-
-    lateinit var detailContent: TextView
-
-    lateinit var detailCommentIcon: ImageView
-
-    lateinit var detailComment: TextView
-
-    lateinit var likeButton: ImageView
-
-    lateinit var likeCount: TextView
-
-    lateinit var showMore: TextView
+    private lateinit var detailImage: ImageView
+    private lateinit var detailContent: TextView
+    private lateinit var detailCommentIcon: ImageView
+    private lateinit var detailComment: TextView
+    private lateinit var likeButton: ImageView
+    private lateinit var likeCount: TextView
+    private lateinit var showMore: TextView
 
     private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
     }
 
     private val postLayout: LinearLayout by lazy {
-        findViewById(R.id.post_layout)
+        findViewById(R.id.layout_detail_post_layout)
     }
 
 
@@ -142,16 +135,16 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setPostList() {
-        for (post in userDate.userPosts?.reversed()!!) {
+        for (post in userDate.userPosts.reversed()) {
             val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
 
-            detailImage = postView.findViewById(R.id.detail_activity_list_img)
-            detailContent = postView.findViewById(R.id.detail_activity_list_contents)
-            detailCommentIcon = postView.findViewById(R.id.detail_activity_comment_icon)
-            detailComment = postView.findViewById(R.id.detail_activity_comment)
-            likeButton = postView.findViewById(R.id.like_button)
-            likeCount = postView.findViewById(R.id.like_count)
-            showMore = postView.findViewById(R.id.show_more)
+            detailImage = postView.findViewById(R.id.iv_detail_post_list_img)
+            detailContent = postView.findViewById(R.id.tv_detail_post_list_contents)
+            detailCommentIcon = postView.findViewById(R.id.iv_detail_post_comment_icon)
+            detailComment = postView.findViewById(R.id.tv_detail_post_comment)
+            likeButton = postView.findViewById(R.id.iv_detail_post_like_btn)
+            likeCount = postView.findViewById(R.id.tv_detail_post_like_count)
+            showMore = postView.findViewById(R.id.tv_detail_post_show_more)
 
             detailContent.text = post.postContent
 
@@ -163,7 +156,7 @@ class DetailPageActivity : AppCompatActivity() {
 
             postLayout.addView(postView)
 
-            if (post.likeSelectedUser?.any { it == myId } == true) {
+            if (post.likeSelectedUser.any { it == myId }) {
                 likeButton.setImageResource(heart)
             }
 
@@ -177,7 +170,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setLikeButton(post: Post) {
         likeButton.setOnClickListener {
             Log.e("user", post.likeSelectedUser.toString())
-            if (post.likeSelectedUser.any { it == myId } == true ) {
+            if (post.likeSelectedUser.any { it == myId }) {
                 post.like -= 1
                 likeButton.setImageResource(empty_heart)
                 post.likeSelectedUser.remove(myId)
