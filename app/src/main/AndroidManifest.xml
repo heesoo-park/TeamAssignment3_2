@@ -13,8 +13,11 @@
         android:theme="@style/Theme.TeamSns"
         tools:targetApi="34">
         <activity
-            android:name=".DetailPageActivity"
-            android:exported="true" >
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignInActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
