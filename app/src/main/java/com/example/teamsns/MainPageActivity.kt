@@ -1,31 +1,44 @@
 package com.example.teamsns
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.teamsns.R.id.iv_profile1
 
 class MainPageActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+    private val ivMainMyProfile: ImageView by lazy { findViewById(R.id.iv_main_profile_btn) }
+    private val ivMainUser1: ImageView by lazy { findViewById(R.id.iv_main_user1) }
+    private val ivMainUser2: ImageView by lazy { findViewById(R.id.iv_main_user2) }
+    private val ivMainUser3: ImageView by lazy { findViewById(R.id.iv_main_user3) }
+    private val ivMainUser4: ImageView by lazy { findViewById(R.id.iv_main_user4) }
+    private val tvMainHelloWord: TextView by lazy { findViewById(R.id.tv_main_hello_word) }
+
+    private val profileList
+        get() = listOf(
+            ivMainMyProfile,
+            ivMainUser1,
+            ivMainUser2,
+            ivMainUser3,
+            ivMainUser4
+        )
+
+    private lateinit var loginUserID: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
+
+        loginUserID = intent.getStringExtra("id") ?: ""
+        val loginUser = UserDatabase.getUser(loginUserID)
+
+        tvMainHelloWord.text = getString(R.string.hello_word, loginUser.name)
 
         fun intent(activity:Activity){
             val intent=Intent(this, activity::class.java)
             startActivity(intent)
         }
 
-        val iv_informaiton=findViewById<ImageView>(R.id.imageView2)
-        val iv_profile1=findViewById<ImageView>(R.id.iv_profile1)
-        val iv_profile2=findViewById<ImageView>(R.id.iv_profile2)
-        val iv_profile3=findViewById<ImageView>(R.id.iv_profile3)
-        val iv_profile4=findViewById<ImageView>(R.id.iv_profile4)
         val iv_post1=findViewById<ImageView>(R.id.iv_post1)
         val iv_post2=findViewById<ImageView>(R.id.iv_post2)
         val iv_post3=findViewById<ImageView>(R.id.iv_post3)
@@ -34,22 +47,6 @@ class MainPageActivity : AppCompatActivity() {
         val like_num2=findViewById<TextView>(R.id.like2)
         val like_num3=findViewById<TextView>(R.id.like3)
         val like_num4=findViewById<TextView>(R.id.like4)
-
-        iv_informaiton.setOnClickListener{
-            intent(DetailPageActivity())
-        }
-        iv_profile1.setOnClickListener{
-            intent(DetailPageActivity())
-        }
-        iv_profile2.setOnClickListener{
-            intent(DetailPageActivity())
-        }
-        iv_profile3.setOnClickListener{
-            intent(DetailPageActivity())
-        }
-        iv_profile4.setOnClickListener{
-            intent(DetailPageActivity())
-        }
 
         iv_post1.setOnClickListener {
             val num=like_num1.text.toString().toInt()+1
@@ -68,5 +65,36 @@ class MainPageActivity : AppCompatActivity() {
             like_num4.text=num.toString()
         }
 
+    }
+
+    fun setOnProflieClickListener() {
+        profileList.forEach { iv ->
+            iv.setOnClickListener {
+                val intent = Intent(this@MainPageActivity, DetailPageActivity::class.java)
+                when (iv.id) {
+                    R.id.iv_main_profile_btn -> {
+                        intent.putExtra("myId", loginUserID)
+                        intent.putExtra("Id", loginUserID)
+                    }
+                    R.id.iv_main_user1 -> {
+                        intent.putExtra("myId", loginUserID)
+                        intent.putExtra("Id", UserDatabase.user1.id)
+                    }
+                    R.id.iv_main_user2 -> {
+                        intent.putExtra("myId", loginUserID)
+                        intent.putExtra("Id", UserDatabase.user2.id)
+                    }
+                    R.id.iv_main_user3 -> {
+                        intent.putExtra("myId", loginUserID)
+                        intent.putExtra("Id", UserDatabase.user3.id)
+                    }
+                    R.id.iv_main_user4 -> {
+                        intent.putExtra("myId", loginUserID)
+                        intent.putExtra("Id", UserDatabase.user4.id)
+                    }
+                }
+                startActivity(intent)
+            }
+        }
     }
 }
