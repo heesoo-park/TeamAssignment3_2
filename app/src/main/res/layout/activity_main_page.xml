@@ -7,20 +7,23 @@
     tools:context=".MainPageActivity"
     android:background="@color/background_color">
 
+    <!-- 상단바 영역 시작 -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraintLayout_top"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/component_color"
+        android:paddingHorizontal="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
+            android:id="@+id/iv_main_logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_cat6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,330 +34,438 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="별개냥"
-            app:layout_constraintBottom_toBottomOf="@id/imageView3"
-            app:layout_constraintStart_toEndOf="@id/imageView3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:src="@android:drawable/ic_dialog_info"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_main_logo"
+            app:layout_constraintStart_toEndOf="@+id/iv_main_logo"
+            app:layout_constraintTop_toTopOf="@+id/iv_main_logo" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="님"
-            app:layout_constraintBottom_toBottomOf="@id/imageView2"
-            app:layout_constraintEnd_toStartOf="@id/imageView2"
-            app:layout_constraintTop_toTopOf="@id/imageView2" />
-        <TextView
-            android:id="@+id/textView2_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
-            android:text="사용자1"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
-        <TextView
-            android:id="@+id/textView2_2"
+            android:id="@+id/tv_main_hello_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:text="안녕하세요"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toStartOf="@+id/textView2_1"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_main_profile_btn"
+            app:layout_constraintEnd_toStartOf="@+id/iv_main_profile_btn"
+            app:layout_constraintTop_toTopOf="@+id/iv_main_profile_btn" />
 
-
+        <ImageView
+            android:id="@+id/iv_main_profile_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_cat1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 상단바 영역 끝 -->
 
-
+    <!-- 사용자 목록 시작 -->
     <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
+        android:id="@+id/horizontalScrollView_userlist"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_top">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/iv_profile1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:id="@+id/iv_main_user1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_cat2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_profile2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:id="@+id/iv_main_user2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_cat2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_main_user1"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_profile3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:id="@+id/iv_main_user3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_cat2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_main_user2"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_profile4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
-        </LinearLayout>
+                android:id="@+id/iv_main_user4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_cat2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_main_user3"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>
+    <!-- 사용자 목록 끝 -->
 
-
-
+    <!-- 게시물 목록 시작 -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
-
-
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView_userlist"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
+            <!-- 게시물1 시작 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post1_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:background="@color/component_color"
+                    android:paddingHorizontal="5dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher" />
+                        android:id="@+id/iv_main_post1_profile"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_cat6"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_main_post1_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="사용자1"/>
-                </LinearLayout>
-
+                        android:layout_marginStart="5dp"
+                        android:text="사용자1"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_main_post1_profile"
+                        app:layout_constraintStart_toEndOf="@+id/iv_main_post1_profile"
+                        app:layout_constraintTop_toTopOf="@+id/iv_main_post1_profile" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:id="@+id/iv_post1"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
+                    android:layout_height="300dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_dog3" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="5dp"
+                    android:paddingHorizontal="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="코멘트1"
+                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginLeft="10dp"
                         />
 
+                    <ImageView
+                        android:id="@+id/like_button1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like1"
+                        app:layout_constraintEnd_toStartOf="@+id/like1"
+                        app:layout_constraintTop_toTopOf="@+id/like1" />
+
                     <TextView
                         android:id="@+id/like1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginRight="10dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
+            <!-- 게시물1 끝 -->
 
+            <!-- 게시물2 시작 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post2_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:background="@color/component_color"
+                    android:paddingHorizontal="5dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher" />
+                        android:id="@+id/iv_main_post2_profile"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_cat6"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_main_post2_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="사용자1"/>
-                </LinearLayout>
+                        android:layout_marginStart="5dp"
+                        android:text="별개냥"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_main_post2_profile"
+                        app:layout_constraintStart_toEndOf="@+id/iv_main_post2_profile"
+                        app:layout_constraintTop_toTopOf="@+id/iv_main_post2_profile" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:id="@+id/iv_post2"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
+                    android:layout_height="300dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_dog3" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="5dp"
+                    android:paddingHorizontal="5dp">
 
                     <TextView
+                        android:id="@+id/tv_main_like_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="코멘트1"
+                        android:text="코멘트2"
+                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/like_button2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like2"
+                        app:layout_constraintEnd_toStartOf="@+id/like2"
+                        app:layout_constraintTop_toTopOf="@+id/like2" />
 
                     <TextView
                         android:id="@+id/like2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
+            <!-- 게시물2 끝 -->
 
-
-
-
-
+            <!-- 게시물3 시작 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post3_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:background="@color/component_color"
+                    android:paddingHorizontal="5dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher" />
+                        android:id="@+id/iv_main_post3_profile"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_cat6"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_main_post3_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="사용자1"/>
-                </LinearLayout>
+                        android:layout_marginStart="5dp"
+                        android:text="별개냥"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_main_post3_profile"
+                        app:layout_constraintStart_toEndOf="@+id/iv_main_post3_profile"
+                        app:layout_constraintTop_toTopOf="@+id/iv_main_post3_profile" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:id="@+id/iv_post3"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
+                    android:layout_height="300dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_dog3" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="5dp"
+                    android:paddingHorizontal="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="코멘트1"
+                        android:text="코멘트3"
+                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/like_button3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like3"
+                        app:layout_constraintEnd_toStartOf="@+id/like3"
+                        app:layout_constraintTop_toTopOf="@+id/like3" />
 
                     <TextView
                         android:id="@+id/like3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
+            <!-- 게시물3 끝 -->
 
+            <!-- 게시물4 시작 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post4_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:background="@color/component_color"
+                    android:paddingHorizontal="5dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher" />
+                        android:id="@+id/iv_main_post4_profile"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_cat6"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_main_post4_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="사용자1"/>
-                </LinearLayout>
+                        android:layout_marginStart="5dp"
+                        android:text="별개냥"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_main_post4_profile"
+                        app:layout_constraintStart_toEndOf="@+id/iv_main_post4_profile"
+                        app:layout_constraintTop_toTopOf="@+id/iv_main_post4_profile" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
                     android:id="@+id/iv_post4"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"/>
+                    android:layout_height="300dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_dog3" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="5dp"
+                    android:paddingHorizontal="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="코멘트1"
+                        android:text="코멘트4"
+                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/like_button4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like4"
+                        app:layout_constraintEnd_toStartOf="@+id/like4"
+                        app:layout_constraintTop_toTopOf="@+id/like4" />
 
                     <TextView
                         android:id="@+id/like4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
+                        android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-
-
-
-
-
+            <!-- 게시물4 끝 -->
         </LinearLayout>
     </ScrollView>
-
-
-
-
-
-
-
-
+    <!-- 게시물 목록 끝 -->
 </androidx.constraintlayout.widget.ConstraintLayout>
