@@ -16,19 +16,19 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     private val etName: EditText by lazy {
-        findViewById(R.id.et_name)
+        findViewById(R.id.et_signup_name)
     }
     private val etId: EditText by lazy {
-        findViewById(R.id.et_sign_up_id)
+        findViewById(R.id.et_signup_id)
     }
     private val etPassword: EditText by lazy {
-        findViewById(R.id.et_sign_up_password)
+        findViewById(R.id.et_signup_password)
     }
     private val etPasswordConfirmation: EditText by lazy {
-        findViewById(R.id.et_password2)
+        findViewById(R.id.et_signup_password2)
     }
     private val btnNext: Button by lazy {
-        findViewById(R.id.btn_sign_up_next)
+        findViewById(R.id.btn_signup_next)
     }
     // arrays
     private val editTextArray: Array<EditText> by lazy {

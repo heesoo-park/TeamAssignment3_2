@@ -15,16 +15,16 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
     private val etId: EditText by lazy {
-        findViewById(R.id.et_sign_in_id)
+        findViewById(R.id.et_signin_id)
     }
     private val etPw: EditText by lazy {
-        findViewById(R.id.et_sign_in_password)
+        findViewById(R.id.et_signin_password)
     }
     private val btnLogin: Button by lazy {
-        findViewById(R.id.btn_signin)
+        findViewById(R.id.btn_signin_login)
     }
     private val btnSignup: Button by lazy {
-        findViewById(R.id.btn_signup)
+        findViewById(R.id.btn_signin_signup)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
