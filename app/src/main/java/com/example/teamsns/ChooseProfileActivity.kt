@@ -74,8 +74,6 @@ class ChooseProfileActivity : AppCompatActivity() {
         password = intent.getStringExtra("password") ?: ""
 
         setOnClickListener()
-
-
     }
 
     private fun setOnClickListener() {
@@ -87,7 +85,7 @@ class ChooseProfileActivity : AppCompatActivity() {
         }
 
         btnNext.setOnClickListener {
-            UserDatabase.addUser(User(name, id, password, selectedImage, statusMessage, userPosts))
+            UserDatabase.addUser(User(name, id, password, profileImageList[selectedImage], statusMessage, userPosts))
             setResult(RESULT_OK, intent)
             finish()
         }

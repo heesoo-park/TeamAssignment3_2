@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import java.util.regex.Pattern
@@ -15,6 +17,8 @@ import com.example.teamsns.SignUpValidExtension.includeSpecialCharacters
 import com.example.teamsns.SignUpValidExtension.includeUpperCase
 
 class SignUpActivity : AppCompatActivity() {
+
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
     private val etName: EditText by lazy {
         findViewById(R.id.et_name)
@@ -66,15 +70,24 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
         initView()
     }
-
     private fun initView() {
-        setEditCheck()
         setTextChangedListener()
         setOnFocusChangedListener()
         btnSignup()
     }
-
     private fun btnSignup() {
+        // registerForActivityResult 세팅
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            // ChooseProfileActivity에서 RESULT_OK가 반환되면 현재 액티비티 종료
+            // ChooseProfileActivity에서 바로 SignInActivity로 이동하는 형태가 됨
+            if (result.resultCode == RESULT_OK) {
+                // 먼저 SignInActivity로 아이디와 패스워드를 보냄
+                intent.putExtra("id", etId.text.toString())
+                intent.putExtra("password", etPassword.text.toString())
+                setResult(RESULT_OK, intent)
+                finish()
+            }
+        }
 
         btnNext.setOnClickListener {
             if (intent.getStringExtra("editId") != null) {
@@ -100,6 +113,13 @@ class SignUpActivity : AppCompatActivity() {
             }
             setResult(RESULT_OK, intent)
 
+        btnNext.setOnClickListener {
+            // 유저등록에 필요한 데이터와 함께 ChooseProfileActivity로 이동
+            var intent = Intent(this@SignUpActivity, ChooseProfileActivity::class.java)
+            intent.putExtra("name", etName.text.toString())
+            intent.putExtra("id", etId.text.toString())
+            intent.putExtra("password", etPassword.text.toString())
+            resultLauncher.launch(intent)
         }
     }
 
