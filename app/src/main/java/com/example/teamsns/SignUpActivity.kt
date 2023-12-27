@@ -99,7 +99,6 @@ class SignUpActivity : AppCompatActivity() {
                 putExtra("password", user.password)
             }
             setResult(RESULT_OK, intent)
-            if (!isFinishing) finish()
 
         }
     }
