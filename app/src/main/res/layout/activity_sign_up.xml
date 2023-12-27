@@ -24,12 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:hint="이름을 입력하세요."/>
         <TextView
-            android:id="@+id/type_name"
+            android:id="@+id/error_message_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/empty_name_message"
+            android:text=""
             android:textColor="@color/red"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -53,12 +54,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:hint="아이디를 입력하세요."/>
         <TextView
-            android:id="@+id/type_id"
+            android:id="@+id/error_message_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/empty_name_message"
+            android:text=""
             android:textColor="@color/red"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -82,12 +84,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:hint="비밀번호를 입력하세요."/>
         <TextView
-            android:id="@+id/type_password"
+            android:id="@+id/error_message_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/empty_password_message"
+            android:text=""
             android:textColor="@color/red"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -111,12 +114,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="15"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:hint="비밀번호를 다시 입력하세요."/>
         <TextView
-            android:id="@+id/type_password2"
+            android:id="@+id/error_message_password2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/password_check_error_message"
+            android:text=""
             android:textColor="@color/red"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
