@@ -7,7 +7,7 @@ object UserDatabase {
     private val user1 = User(
         "사용자1",
         "test1",
-        "abcdABCD1!",
+        "a",
         (R.drawable.img_cat1),
         "오늘 하루는 피곤하네요",
         arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
@@ -18,29 +18,28 @@ object UserDatabase {
         "사용자2",
         "test2",
         "abcdABCD1!",
-        2,
+        (R.drawable.img_cat2),
         "오늘 하루 힘내세요",
-        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat2),postImage = (R.drawable.img_cat6),comment = "아주 즐거워요", like =  0))
     )
 
     private val user3 = User(
         "사용자3",
         "test3",
         "abcdABCD1!",
-        3,
+        (R.drawable.img_cat3),
         "오늘 하루는 행복하네요",
-        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat3),postImage = (R.drawable.img_dog3),comment = "아주 즐거워요", like =  0))
     )
 
     private val user4 = User(
         "사용자4",
         "test4",
         "abcdABCD1!",
-        4,
+        (R.drawable.img_cat4),
         "오늘 하루는 행복하네요",
-        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat4),postImage = (R.drawable.img_dog4),comment = "아주 즐거워요", like =  0))
     )
-
 
     
 
@@ -64,8 +63,8 @@ object UserDatabase {
 
     // 사용자 정보 수정 용도
     fun editUserData(user: User) {
-        totalUserData.find {it.id == user.id}.let {
-            it!!.name = user.name
+        totalUserData.find {it.id == user.id}?.let {
+            it.name = user.name
             it.statusMessage = user.statusMessage
             it.password = user.password
         }

@@ -3,6 +3,7 @@ package com.example.teamsns
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -49,15 +50,20 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var name: String
     lateinit var status: String
     lateinit var user: User
+    var myBoolean: Boolean? = false
+
     private fun setEditCheck() {
         if (intent.getStringExtra("editId") != null) {
             tvId.setText(R.string.edit_status)
             etId.setHint(R.string.edit_status_message)
             id = intent.getStringExtra("editId")!!
 
+            myBoolean = true
             setEditUserData()
         }
     }
+
+
 
     private fun setEditUserData() {
         userData = UserDatabase.getUser(id)!!
@@ -70,34 +76,43 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
         initView()
     }
+
     private fun initView() {
+        setEditCheck()
         setTextChangedListener()
         setOnFocusChangedListener()
         btnSignup()
     }
+
     private fun btnSignup() {
         // registerForActivityResult 세팅
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            // ChooseProfileActivity에서 RESULT_OK가 반환되면 현재 액티비티 종료
-            // ChooseProfileActivity에서 바로 SignInActivity로 이동하는 형태가 됨
-            if (result.resultCode == RESULT_OK) {
-                // 먼저 SignInActivity로 아이디와 패스워드를 보냄
-                intent.putExtra("id", etId.text.toString())
-                intent.putExtra("password", etPassword.text.toString())
-                setResult(RESULT_OK, intent)
-                finish()
+        resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                // ChooseProfileActivity에서 RESULT_OK가 반환되면 현재 액티비티 종료
+                // ChooseProfileActivity에서 바로 SignInActivity로 이동하는 형태가 됨
+                if (result.resultCode == RESULT_OK) {
+                    // 먼저 SignInActivity로 아이디와 패스워드를 보냄
+                    intent.putExtra("id", etId.text.toString())
+                    intent.putExtra("password", etPassword.text.toString())
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }
             }
-        }
 
         btnNext.setOnClickListener {
-            if (intent.getStringExtra("editId") != null) {
+            Log.e("MYBOOLEAN VALUE", "Value: $myBoolean")
+            if (myBoolean == true) {
                 user = User(
-                    name = name,
+                    name = etName.toString(),
                     id = id,
-                    statusMessage = status,
+                    statusMessage = etId.toString(),
                     password = etPassword.toString()
                 )
+
+                Log.e("USER DATA BEFORE", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
                 UserDatabase.editUserData(user)
+                Log.e("USER DATA AFTER", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
+
             } else {
                 user = User(
                     name = etName.toString(),
@@ -110,15 +125,9 @@ class SignUpActivity : AppCompatActivity() {
             val intent = Intent(this, ChooseProfileActivity::class.java).apply {
                 putExtra("id", user.id)
                 putExtra("password", user.password)
+                if (myBoolean == true) putExtra("editId", id)
             }
             setResult(RESULT_OK, intent)
-
-        btnNext.setOnClickListener {
-            // 유저등록에 필요한 데이터와 함께 ChooseProfileActivity로 이동
-            var intent = Intent(this@SignUpActivity, ChooseProfileActivity::class.java)
-            intent.putExtra("name", etName.text.toString())
-            intent.putExtra("id", etId.text.toString())
-            intent.putExtra("password", etPassword.text.toString())
             resultLauncher.launch(intent)
         }
     }
@@ -179,7 +188,9 @@ class SignUpActivity : AppCompatActivity() {
                 }
                 return errorCode?.let { getString(it.message) }
             } else return null
-        } else return null
+        } else {
+            return null
+        }
     }
 
 
@@ -198,7 +209,6 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun getMessageValidPasswordConfirm(): String? {
         val text = etPasswordConfirmation.text.toString()
-        if (etId.isVisible) {
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_PASSWORD
                 (text.isNotBlank() && Pattern.matches(
@@ -211,7 +221,6 @@ class SignUpActivity : AppCompatActivity() {
                 else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }
-        } else return null
 
     }
 

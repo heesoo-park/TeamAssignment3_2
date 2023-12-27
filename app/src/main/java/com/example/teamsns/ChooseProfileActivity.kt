@@ -29,20 +29,22 @@ class ChooseProfileActivity : AppCompatActivity() {
 
     private val btnNext: Button by lazy { findViewById(R.id.btn_next) }
 
-    private val profileImageButtonList: List<ImageButton> by lazy { listOf(
-        ibProfile1,
-        ibProfile2,
-        ibProfile3,
-        ibProfile4,
-        ibProfile5,
-        ibProfile6,
-        ibProfile7,
-        ibProfile8,
-        ibProfile9,
-        ibProfile10,
-        ibProfile11,
-        ibProfile12
-    ) }
+    private val profileImageButtonList: List<ImageButton> by lazy {
+        listOf(
+            ibProfile1,
+            ibProfile2,
+            ibProfile3,
+            ibProfile4,
+            ibProfile5,
+            ibProfile6,
+            ibProfile7,
+            ibProfile8,
+            ibProfile9,
+            ibProfile10,
+            ibProfile11,
+            ibProfile12
+        )
+    }
 
     private val profileImageList = listOf(
         R.drawable.img_dog1,
@@ -65,6 +67,17 @@ class ChooseProfileActivity : AppCompatActivity() {
     private val statusMessage: String = ""
     private val userPosts: ArrayList<Post> = arrayListOf()
 
+    lateinit var editId: String
+    lateinit var userData: User
+    private fun setEditCheck() {
+        if (intent.getStringExtra("editId") != null) {
+            editId = intent.getStringExtra("editId")!!
+            userData = UserDatabase.getUser(editId)!!
+            btnNext.setText(R.string.edit_do)
+            ivSelectedImage.setImageResource(userData.profileImage)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_profile)
@@ -73,6 +86,7 @@ class ChooseProfileActivity : AppCompatActivity() {
         id = intent.getStringExtra("id") ?: ""
         password = intent.getStringExtra("password") ?: ""
 
+        setEditCheck()
         setOnClickListener()
     }
 
@@ -85,7 +99,21 @@ class ChooseProfileActivity : AppCompatActivity() {
         }
 
         btnNext.setOnClickListener {
-            UserDatabase.addUser(User(name, id, password, profileImageList[selectedImage], statusMessage, userPosts))
+            if (intent.getStringExtra("editId") != null) {
+                UserDatabase.totalUserData.find { it.id == editId }
+                    .let { it!!.profileImage = profileImageList[selectedImage] }
+            }else {
+                UserDatabase.addUser(
+                    User(
+                        name,
+                        id,
+                        password,
+                        profileImageList[selectedImage],
+                        statusMessage,
+                        userPosts
+                    )
+                )
+            }
             setResult(RESULT_OK, intent)
             finish()
         }

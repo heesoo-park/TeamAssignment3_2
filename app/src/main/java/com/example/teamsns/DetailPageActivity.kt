@@ -33,7 +33,9 @@ class DetailPageActivity : AppCompatActivity() {
         intent.getStringExtra("id")
     }
 
-    private val userDate = UserDatabase.getUser(id!!)
+    private val userDate: User by lazy {
+        UserDatabase.getUser(id!!)!!
+    }
 
     lateinit var name: String
 
@@ -98,7 +100,6 @@ class DetailPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_page)
 
-
         init()
     }
 
@@ -113,7 +114,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setProfile() {
         if (myId == id) myPageDetail.setText(DetailPageMessage.MYPAGE.message)
         else myPageDetail.setText(DetailPageMessage.DETAIL.message)
-        name = userDate!!.name
+        name = userDate.name
         statusMessage = userDate.statusMessage.toString()
         profileImageView.setImageResource(userDate.profileImage)
         idTextView.setText(id)
@@ -141,7 +142,7 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setPostList() {
-        for (post in userDate!!.userPosts.reversed()) {
+        for (post in userDate.userPosts?.reversed()!!) {
             val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
 
             detailImage = postView.findViewById(R.id.detail_activity_list_img)
@@ -175,7 +176,8 @@ class DetailPageActivity : AppCompatActivity() {
 
     private fun setLikeButton(post: Post) {
         likeButton.setOnClickListener {
-            if (post.likeSelectedUser.any { it == myId }) {
+            Log.e("user", post.likeSelectedUser.toString())
+            if (post.likeSelectedUser.any { it == myId } == true ) {
                 post.like -= 1
                 likeButton.setImageResource(empty_heart)
                 post.likeSelectedUser.remove(myId)
@@ -216,10 +218,9 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setLogOutButton() {
         logOut.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
-            intent.putExtra("editId", myId)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-        overridePendingTransition(R.anim.none, R.anim.fade_out)
+            overridePendingTransition(R.anim.none, R.anim.fade_out)
         }
     }
 
