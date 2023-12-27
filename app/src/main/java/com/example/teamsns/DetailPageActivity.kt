@@ -170,8 +170,7 @@ class DetailPageActivity : AppCompatActivity() {
 
     private fun setLikeButton(post: Post) {
         likeButton.setOnClickListener {
-              Log.e("user", post.likeSelectedUser.toString())
-            if (post.likeSelectedUser.any { it == myId } == true ) {
+            if (post.likeSelectedUser.any { it == myId }) {
                 post.like -= 1
                 likeButton.setImageResource(empty_heart)
                 post.likeSelectedUser.remove(myId)
@@ -212,6 +211,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setLogOutButton() {
         logOut.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
+            intent.putExtra("editId", myId)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         overridePendingTransition(R.anim.none, R.anim.fade_out)

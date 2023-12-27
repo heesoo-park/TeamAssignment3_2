@@ -42,18 +42,13 @@ class SignUpActivity : AppCompatActivity() {
     private val btn_signup: Button by lazy {
         findViewById(R.id.btn_sign_up_next)
     }
+    private val tvId: TextView by lazy {
+        findViewById(R.id.tv_id)
+    }
 
     // arrays
     private val editTextArray: Array<EditText> by lazy {
         arrayOf(et_name, et_id, et_password, et_password_confirmation)
-    }
-    private val errorMessageArray: Array<TextView> by lazy {
-        arrayOf(
-            error_message_name,
-            error_message_id,
-            error_message_password,
-            error_message_password2
-        )
     }
 
 
@@ -66,6 +61,23 @@ class SignUpActivity : AppCompatActivity() {
         )
     }
 
+    lateinit var id: String
+    lateinit var userData: User
+    private fun setEditCheck(){
+        if (intent.getStringExtra("editId") != null){
+            tvId.isVisible = false
+            et_id.isVisible = false
+            et_id.setText(id)
+            id = intent.getStringExtra("editId")!!
+
+            setUserData()
+        }
+    }
+
+    private fun setUserData(){
+        userData = UserDatabase.totalUserData.find { it.id == id }!!
+        et_name.setText(userData.name)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +86,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        setEditCheck()
+
         setTextChangedListener()
         setOnFocusChangedListener()
         btnSignup()
@@ -161,9 +175,9 @@ class SignUpActivity : AppCompatActivity() {
         val specialCharacterRegex = Regex(regexMap[et_password]!!)
         if (et_password.isVisible) {
             val errorCode = when {
-                text.isBlank() -> getString(R.string.empty_password_message)
+                text.isBlank() -> getString(SignUpErrorMessage.EMPTY_PASSWORD.message)
                 !specialCharacterRegex.containsMatchIn(text)
-                    .not() -> getString(R.string.password_error_message)
+                    .not() -> getString(SignUpErrorMessage.INVALID_PASSWORD.message)
 
                 else -> null
             }
