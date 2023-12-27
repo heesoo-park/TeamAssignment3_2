@@ -13,7 +13,6 @@ object UserDatabase {
         arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
     )
 
-
     private val user2 = User(
         "사용자2",
         "test2",
@@ -49,22 +48,22 @@ object UserDatabase {
 
     // 로그인한 사용자 저장 용도
     fun addUser(user: User) {
-        userList.add(user)
+        totalUserData.add(user)
     }
 
     // 사용자 리스트와 게시물 출력 용도
     fun getTotalUser(): ArrayList<User> {
-        return userList
+        return totalUserData
     }
 
     // 로그인한 사용자 정보 가져오는 용도
     fun getUser(id: String): User? {
-        return userList.find { it.id == id }
+        return totalUserData.find { it.id == id }
     }
 
     // 사용자 정보 수정 용도
     fun editUserData(user: User) {
-        userList.forEach {
+        totalUserData.forEach {
             it.name = user.name
             it.id = user.id
             it.statusMessage = user.statusMessage
@@ -73,7 +72,7 @@ object UserDatabase {
 
     // 회원가입 아이디 중복체크 용도
     fun checkUserId(id: String): Boolean {
-        userList.forEach {
+        totalUserData.forEach {
             if (it.id == id) return false
         }
         return true
@@ -81,7 +80,7 @@ object UserDatabase {
 
     // 로그인 아이디, 비밀번호 체크 용도
     fun matchUser(id: String, password: String): Boolean {
-        userList.forEach {
+        totalUserData.forEach {
             if (it.id == id && it.password == password) return true
         }
         return false
