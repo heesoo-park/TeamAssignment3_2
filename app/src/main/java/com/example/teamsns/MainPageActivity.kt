@@ -53,7 +53,7 @@ class MainPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
 
-        loginUserID = intent.getStringExtra("id") ?: "test3"
+        loginUserID = intent.getStringExtra("id") ?: "test1"
         userData = UserDatabase.getUser(loginUserID)!!
 
         tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
@@ -72,18 +72,22 @@ class MainPageActivity : AppCompatActivity() {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", loginUserID)
                     }
+
                     R.id.iv_main_user1 -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[0].id)
                     }
+
                     R.id.iv_main_user2 -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[1].id)
                     }
+
                     R.id.iv_main_user3 -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[2].id)
                     }
+
                     R.id.iv_main_user4 -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[3].id)
@@ -96,8 +100,9 @@ class MainPageActivity : AppCompatActivity() {
 
     private fun setPostList() {
         for (user in UserDatabase.getTotalUser()) {
-            for (post in user.userPosts?.reversed()!!) {
-                val postView: View = inflater.inflate(R.layout.main_post_item, mainPostLayout, false)
+            for (post in user.userPosts.reversed()) {
+                val postView: View =
+                    inflater.inflate(R.layout.main_post_item, mainPostLayout, false)
 
                 detailImage = postView.findViewById(R.id.main_activity_list_img)
                 detailContent = postView.findViewById(R.id.main_activity_list_contents)
@@ -142,7 +147,6 @@ class MainPageActivity : AppCompatActivity() {
 
     private fun setLikeButton(post: Post) {
         likeButton.setOnClickListener {
-            Log.e("user", post.likeSelectedUser.toString())
             if (post.likeSelectedUser.any { it == loginUserID }) {
                 post.like -= 1
                 likeButton.setImageResource(R.drawable.empty_heart)
@@ -150,8 +154,10 @@ class MainPageActivity : AppCompatActivity() {
             } else {
                 post.like += 1
                 likeButton.setImageResource(R.drawable.heart)
-                post.likeSelectedUser.add(loginUserID!!)
+                post.likeSelectedUser.add(loginUserID)
             }
+            Log.e("user", post.likeSelectedUser.toString())
+            Log.e("user", post.like.toString())
             likeCount.text = post.like.toString()
         }
     }

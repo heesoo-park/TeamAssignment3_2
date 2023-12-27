@@ -73,19 +73,13 @@ class DetailPageActivity : AppCompatActivity() {
         findViewById(R.id.my_page_or_detail)
     }
 
-    lateinit var detailImage: ImageView
-
-    lateinit var detailContent: TextView
-
-    lateinit var detailCommentIcon: ImageView
-
-    lateinit var detailComment: TextView
-
-    lateinit var likeButton: ImageView
-
-    lateinit var likeCount: TextView
-
-    lateinit var showMore: TextView
+    private lateinit var detailImage: ImageView
+    private lateinit var detailContent: TextView
+    private lateinit var detailCommentIcon: ImageView
+    private lateinit var detailComment: TextView
+    private lateinit var likeButton: ImageView
+    private lateinit var likeCount: TextView
+    private lateinit var showMore: TextView
 
     private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
@@ -142,7 +136,7 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setPostList() {
-        for (post in userDate.userPosts?.reversed()!!) {
+        for (post in userDate.userPosts.reversed()) {
             val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
 
             detailImage = postView.findViewById(R.id.detail_activity_list_img)
@@ -163,7 +157,7 @@ class DetailPageActivity : AppCompatActivity() {
 
             postLayout.addView(postView)
 
-            if (post.likeSelectedUser?.any { it == myId } == true) {
+            if (post.likeSelectedUser.any { it == myId }) {
                 likeButton.setImageResource(heart)
             }
 
@@ -177,7 +171,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setLikeButton(post: Post) {
         likeButton.setOnClickListener {
             Log.e("user", post.likeSelectedUser.toString())
-            if (post.likeSelectedUser.any { it == myId } == true ) {
+            if (post.likeSelectedUser.any { it == myId }) {
                 post.like -= 1
                 likeButton.setImageResource(empty_heart)
                 post.likeSelectedUser.remove(myId)
