@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/error_message_name" />
 
     <EditText
-        android:id="@+id/et_id"
+        android:id="@+id/et_sign_up_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
@@ -67,9 +67,9 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="@+id/et_id"
-        app:layout_constraintStart_toStartOf="@+id/et_id"
-        app:layout_constraintTop_toBottomOf="@+id/et_id" />
+        app:layout_constraintEnd_toEndOf="@+id/et_sign_up_id"
+        app:layout_constraintStart_toStartOf="@+id/et_sign_up_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_sign_up_id" />
 
     <TextView
         android:id="@+id/tv_password"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/error_message_id"  />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_sign_up_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
@@ -98,9 +98,9 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="@+id/et_password"
-        app:layout_constraintStart_toStartOf="@+id/et_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_password"  />
+        app:layout_constraintEnd_toEndOf="@+id/et_sign_up_password"
+        app:layout_constraintStart_toStartOf="@+id/et_sign_up_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_sign_up_password"  />
     <TextView
         android:id="@+id/tv_password2"
         android:layout_width="match_parent"

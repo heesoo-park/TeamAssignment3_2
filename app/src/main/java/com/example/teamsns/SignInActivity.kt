@@ -8,21 +8,22 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.teamsns.UserDatabase.getUser
 
 class SignInActivity : AppCompatActivity() {
 
-    lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
-    val et_id: EditText by lazy {
-        findViewById(R.id.et_id)
+    private val etId: EditText by lazy {
+        findViewById(R.id.et_sign_in_id)
     }
-    val et_pw: EditText by lazy {
-        findViewById(R.id.et_password)
+    private val etPw: EditText by lazy {
+        findViewById(R.id.et_sign_in_password)
     }
-    val btn_login: Button by lazy {
-        findViewById(R.id.btn_login)
+    private val btnLogin: Button by lazy {
+        findViewById(R.id.btn_signin)
     }
-    val btn_signup: Button by lazy {
+    private val btnSignup: Button by lazy {
         findViewById(R.id.btn_signup)
     }
 
@@ -43,31 +44,36 @@ class SignInActivity : AppCompatActivity() {
         activityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 if (it.resultCode == RESULT_OK) {
-                    val user_id = it.data?.getStringExtra("id") ?: ""
-                    val user_pw = it.data?.getStringExtra("pw") ?: ""
-                    et_id.setText(user_id)
-                    et_pw.setText(user_pw)
+                    val userId = it.data?.getStringExtra("id") ?: ""
+                    val userPw = it.data?.getStringExtra("pw") ?: ""
+                    etId.setText(userId)
+                    etPw.setText(userPw)
                 }
             }
     }
 
     private fun btnLogin() {
-        btn_login.setOnClickListener{
+        btnLogin.setOnClickListener{
+            val userData = getUser(etId.text.toString())
             when {
-                et_id.text.toString().trim().isEmpty() -> {Toast.makeText(this, getString(R.string.empty_id_message), Toast.LENGTH_SHORT).show()
+                etId.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_ID.toString(), Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
-                et_pw.text.toString().trim().isEmpty() -> {Toast.makeText(this, getString(R.string.empty_password_message), Toast.LENGTH_SHORT).show()
+                etPw.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_PASSWORD.toString(), Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener}
+                (userData == null) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.toString(), Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener}
+                (userData.password != etPw.text.toString()) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.toString(), Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
             }
 
-            val intent = Intent(this, ChooseProfileActivity::class.java)
-            intent.putExtra("id", et_id.text.toString())
+            val intent = Intent(this, MainPageActivity::class.java)
+            intent.putExtra("id", etId.text.toString())
             startActivity(intent)
         }
     }
 
     private fun btnSignup() {
-        btn_signup.setOnClickListener{
+        btnSignup.setOnClickListener{
             val intent = Intent(this, SignUpActivity::class.java)
             activityResultLauncher.launch(intent)
         }

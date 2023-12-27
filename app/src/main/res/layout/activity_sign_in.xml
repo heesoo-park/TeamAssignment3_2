@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/et_id"
+        android:id="@+id/et_sign_in_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -56,8 +56,8 @@
         android:layout_marginEnd="40dp"
         android:text="@string/empty_id_message"
         android:textColor="@color/red"
-        app:layout_constraintStart_toStartOf="@+id/et_id"
-        app:layout_constraintTop_toBottomOf="@+id/et_id"
+        app:layout_constraintStart_toStartOf="@+id/et_sign_in_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_sign_in_id"
         android:visibility="invisible"/>
 
     <TextView
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/error_text_id" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/et_sign_in_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
@@ -90,12 +90,12 @@
         android:textColor="@color/red"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        app:layout_constraintStart_toStartOf="@+id/et_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        app:layout_constraintStart_toStartOf="@+id/et_sign_in_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_sign_in_password"
         android:visibility="invisible"/>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
@@ -124,7 +124,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin"
         android:layout_marginTop="40dp" />
 
 
