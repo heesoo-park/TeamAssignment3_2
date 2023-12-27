@@ -11,20 +11,31 @@ import android.widget.TextView
 
 class MainPageActivity : AppCompatActivity() {
 
-    private val tvMainHelloWord: TextView by lazy { findViewById(R.id.tv_main_hello_word) }
+    private val tvMainHelloWord: TextView by lazy {
+        findViewById(R.id.tv_main_hello_word)
+    }
 
-    private val ivMainMyProfile: ImageView by lazy { findViewById(R.id.iv_main_profile_btn) }
-    private val ivMainUser1: ImageView by lazy { findViewById(R.id.iv_main_user1) }
-    private val ivMainUser2: ImageView by lazy { findViewById(R.id.iv_main_user2) }
-    private val ivMainUser3: ImageView by lazy { findViewById(R.id.iv_main_user3) }
-    private val ivMainUser4: ImageView by lazy { findViewById(R.id.iv_main_user4) }
+    private val ivMainMyProfile: ImageView by lazy {
+        findViewById(R.id.iv_main_profile_btn)
+    }
+
+    private val ivMainUser1: ImageView by lazy {
+        findViewById(R.id.iv_main_user1_btn)
+    }
+    private val ivMainUser2: ImageView by lazy {
+        findViewById(R.id.iv_main_user2_btn)
+    }
+    private val ivMainUser3: ImageView by lazy {
+        findViewById(R.id.iv_main_user3_btn)
+    }
+    private val ivMainUser4: ImageView by lazy {
+        findViewById(R.id.iv_main_user4_btn)
+    }
 
     lateinit var detailImage: ImageView
     lateinit var detailContent: TextView
     lateinit var detailUserProfileIcon: ImageView
     lateinit var detailPostName: TextView
-    lateinit var likeButton: ImageView
-    lateinit var likeCount: TextView
     lateinit var showMore: TextView
 
     private val profileList
@@ -45,7 +56,7 @@ class MainPageActivity : AppCompatActivity() {
     private lateinit var userData: User
 
     private val mainPostLayout: LinearLayout by lazy {
-        findViewById(R.id.main_post_layout)
+        findViewById(R.id.layout_main_postlist)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,22 +83,22 @@ class MainPageActivity : AppCompatActivity() {
                         intent.putExtra("id", loginUserID)
                     }
 
-                    R.id.iv_main_user1 -> {
+                    R.id.iv_main_user1_btn -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[0].id)
                     }
 
-                    R.id.iv_main_user2 -> {
+                    R.id.iv_main_user2_btn -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[1].id)
                     }
 
-                    R.id.iv_main_user3 -> {
+                    R.id.iv_main_user3_btn -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[2].id)
                     }
 
-                    R.id.iv_main_user4 -> {
+                    R.id.iv_main_user4_btn -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[3].id)
                     }
@@ -103,13 +114,13 @@ class MainPageActivity : AppCompatActivity() {
                 val postView: View =
                     inflater.inflate(R.layout.main_post_item, mainPostLayout, false)
 
-                detailImage = postView.findViewById(R.id.main_activity_list_img)
-                detailContent = postView.findViewById(R.id.main_activity_list_contents)
-                detailUserProfileIcon = postView.findViewById(R.id.main_activity_user_profile)
-                detailPostName = postView.findViewById(R.id.main_activity_user_name)
-                val tempLikeButton: ImageView = postView.findViewById(R.id.main_like_button)
-                val tempLikeCount: TextView = postView.findViewById(R.id.main_like_count)
-                showMore = postView.findViewById(R.id.main_show_more)
+                detailImage = postView.findViewById(R.id.iv_main_post)
+                detailContent = postView.findViewById(R.id.tv_main_post_content)
+                detailUserProfileIcon = postView.findViewById(R.id.iv_main_post_userprofile)
+                detailPostName = postView.findViewById(R.id.tv_main_post_username)
+                val tempLikeButton: ImageView = postView.findViewById(R.id.btn_main_post_like)
+                val tempLikeCount: TextView = postView.findViewById(R.id.tv_main_post_like_count)
+                showMore = postView.findViewById(R.id.tv_main_post_show_more)
 
                 detailContent.text = post.postContent
 
@@ -122,7 +133,7 @@ class MainPageActivity : AppCompatActivity() {
                 mainPostLayout.addView(postView)
 
                 if (post.likeSelectedUser.any { it == loginUserID }) {
-                    likeButton.setImageResource(R.drawable.heart)
+                    tempLikeButton.setImageResource(R.drawable.heart)
                 }
 
                 tempLikeCount.text = post.like.toString()
