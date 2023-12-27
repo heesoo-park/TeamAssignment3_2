@@ -69,4 +69,9 @@ object UserDatabase {
         }
         return false
     }
+
+    fun addPost(userId: String, post: Post) {
+        val user = getUser(userId)
+        user.userPosts.add(post)
+    }
 }
