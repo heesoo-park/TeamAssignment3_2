@@ -9,7 +9,7 @@
     android:background="@color/background_color">
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_signup_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/name"
@@ -19,119 +19,118 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_name"
+        android:id="@+id/et_signup_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
         android:hint="이름을 입력하세요."
         android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/tv_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_signup_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_name" />
 
     <TextView
-        android:id="@+id/error_message_name"
+        android:id="@+id/tv_siginup_name_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
-
         android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="@+id/et_name"
-        app:layout_constraintStart_toStartOf="@+id/et_name"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+        app:layout_constraintEnd_toEndOf="@+id/et_signup_name"
+        app:layout_constraintStart_toStartOf="@+id/et_signup_name"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_name" />
 
     <TextView
-        android:id="@+id/tv_id"
+        android:id="@+id/tv_sigup_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/id"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/error_message_name"
-        app:layout_constraintStart_toStartOf="@+id/error_message_name"
-        app:layout_constraintTop_toBottomOf="@+id/error_message_name" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_siginup_name_error"
+        app:layout_constraintStart_toStartOf="@+id/tv_siginup_name_error"
+        app:layout_constraintTop_toBottomOf="@+id/tv_siginup_name_error" />
 
     <EditText
-        android:id="@+id/et_sign_up_id"
+        android:id="@+id/et_signup_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
         android:inputType="text"
         android:hint="아이디를 입력하세요."
-        app:layout_constraintEnd_toEndOf="@+id/tv_id"
-        app:layout_constraintStart_toStartOf="@+id/tv_id"
-        app:layout_constraintTop_toBottomOf="@+id/tv_id" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_sigup_id"
+        app:layout_constraintStart_toStartOf="@+id/tv_sigup_id"
+        app:layout_constraintTop_toBottomOf="@+id/tv_sigup_id" />
 
     <TextView
-        android:id="@+id/error_message_id"
+        android:id="@+id/tv_signup_id_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="@+id/et_sign_up_id"
-        app:layout_constraintStart_toStartOf="@+id/et_sign_up_id"
-        app:layout_constraintTop_toBottomOf="@+id/et_sign_up_id" />
+        app:layout_constraintEnd_toEndOf="@+id/et_signup_id"
+        app:layout_constraintStart_toStartOf="@+id/et_signup_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_id" />
 
     <TextView
-        android:id="@+id/tv_password"
+        android:id="@+id/tv_signup_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/password"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/error_message_id"
-        app:layout_constraintStart_toStartOf="@+id/error_message_id"
-        app:layout_constraintTop_toBottomOf="@+id/error_message_id"  />
+        app:layout_constraintEnd_toEndOf="@+id/tv_signup_id_error"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_id_error"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_id_error"  />
 
     <EditText
-        android:id="@+id/et_sign_up_password"
+        android:id="@+id/et_signup_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
         android:hint="비밀번호를 입력하세요."
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/tv_password"
-        app:layout_constraintStart_toStartOf="@+id/tv_password"
-        app:layout_constraintTop_toBottomOf="@+id/tv_password"  />
+        app:layout_constraintEnd_toEndOf="@+id/tv_signup_password"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_password"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_password"  />
 
     <TextView
-        android:id="@+id/error_message_password"
+        android:id="@+id/tv_signup_password_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="@+id/et_sign_up_password"
-        app:layout_constraintStart_toStartOf="@+id/et_sign_up_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_sign_up_password"  />
+        app:layout_constraintEnd_toEndOf="@+id/et_signup_password"
+        app:layout_constraintStart_toStartOf="@+id/et_signup_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_password"  />
     <TextView
-        android:id="@+id/tv_password2"
+        android:id="@+id/tv_signup_password2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/check_password"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/error_message_password"
-        app:layout_constraintStart_toStartOf="@+id/error_message_password"
-        app:layout_constraintTop_toBottomOf="@+id/error_message_password" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_signup_password_error"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_password_error"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_password_error" />
     <EditText
-        android:id="@+id/et_password2"
+        android:id="@+id/et_signup_password2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
         android:inputType="textPassword"
         android:hint="비밀번호를 다시 입력하세요."
-        app:layout_constraintEnd_toEndOf="@+id/tv_password2"
-        app:layout_constraintStart_toStartOf="@+id/tv_password2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_password2"/>
+        app:layout_constraintEnd_toEndOf="@+id/tv_signup_password2"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_password2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_password2"/>
     <TextView
-        android:id="@+id/error_message_password2"
+        android:id="@+id/tv_signup_password2_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:textColor="@color/red"
-        app:layout_constraintEnd_toEndOf="@+id/et_password2"
-        app:layout_constraintStart_toStartOf="@+id/et_password2"
-        app:layout_constraintTop_toBottomOf="@+id/et_password2"/>
+        app:layout_constraintEnd_toEndOf="@+id/et_signup_password2"
+        app:layout_constraintStart_toStartOf="@+id/et_signup_password2"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_password2"/>
 
     <Button
-        android:id="@+id/btn_sign_up_next"
+        android:id="@+id/btn_signup_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next"
@@ -139,8 +138,8 @@
         android:backgroundTint="@color/component_color"
         android:enabled="false"
         android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="@+id/error_message_password2"
-        app:layout_constraintStart_toStartOf="@+id/error_message_password2"
-        app:layout_constraintTop_toBottomOf="@+id/error_message_password2"
+        app:layout_constraintEnd_toEndOf="@+id/tv_signup_password2_error"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_password2_error"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_password2_error"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
