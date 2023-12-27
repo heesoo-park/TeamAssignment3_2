@@ -17,6 +17,17 @@
             android:exported="false" />
         <activity
             android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainPageActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ChooseProfileActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".DetailPageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
