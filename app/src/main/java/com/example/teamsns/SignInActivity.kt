@@ -67,7 +67,11 @@ class SignInActivity : AppCompatActivity() {
             }
 
             val intent = Intent(this, MainPageActivity::class.java)
+
             intent.putExtra("id", etId.text.toString())
+
+            intent.putExtra("id", et_id.text.toString())
+
             startActivity(intent)
         }
     }

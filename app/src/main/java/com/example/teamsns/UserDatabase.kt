@@ -8,10 +8,11 @@ object UserDatabase {
         "사용자1",
         "test1",
         "abcdABCD1!",
-        1,
+        (R.drawable.img_cat1),
         "오늘 하루는 피곤하네요",
-        arrayListOf(Post(1, 1, "아주 즐거워요", 0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
     )
+
 
     private val user2 = User(
         "사용자2",
@@ -19,7 +20,7 @@ object UserDatabase {
         "abcdABCD1!",
         2,
         "오늘 하루 힘내세요",
-        arrayListOf(Post(2, 2, "아주 즐거워요", 0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
     )
 
     private val user3 = User(
@@ -28,10 +29,23 @@ object UserDatabase {
         "abcdABCD1!",
         3,
         "오늘 하루는 행복하네요",
-        arrayListOf(Post(3, 3, "아주 즐거워요", 0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
     )
 
-    var userList: ArrayList<User> = arrayListOf(user1, user2, user3)
+    private val user4 = User(
+        "사용자4",
+        "test4",
+        "abcdABCD1!",
+        4,
+        "오늘 하루는 행복하네요",
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
+    )
+
+
+    
+
+    var totalUserData: ArrayList<User> = arrayListOf(user1, user2, user3, user4)
+
 
     // 로그인한 사용자 저장 용도
     fun addUser(user: User) {
@@ -79,4 +93,5 @@ object UserDatabase {
             user.userPosts?.add(post)
         }
     }
+
 }

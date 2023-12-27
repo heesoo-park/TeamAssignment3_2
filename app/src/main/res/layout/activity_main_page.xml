@@ -41,18 +41,19 @@
             app:layout_constraintTop_toTopOf="@+id/iv_main_logo" />
 
         <TextView
+            android:id="@+id/tv_main_hello_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:text="안녕하세요 사용자1 님"
+            android:text="안녕하세요"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_main_profilebtn"
-            app:layout_constraintEnd_toStartOf="@+id/iv_main_profilebtn"
-            app:layout_constraintTop_toTopOf="@+id/iv_main_profilebtn" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_main_profile_btn"
+            app:layout_constraintEnd_toStartOf="@+id/iv_main_profile_btn"
+            app:layout_constraintTop_toTopOf="@+id/iv_main_profile_btn" />
 
         <ImageView
-            android:id="@+id/iv_main_profilebtn"
+            android:id="@+id/iv_main_profile_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitXY"
@@ -120,7 +121,6 @@
                 app:layout_constraintStart_toEndOf="@+id/iv_main_user3"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </HorizontalScrollView>
     <!-- 사용자 목록 끝 -->
 
@@ -145,6 +145,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post1_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/component_color"
@@ -165,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="별개냥"
+                        android:text="사용자1"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_main_post1_profile"
                         app:layout_constraintStart_toEndOf="@+id/iv_main_post1_profile"
@@ -173,6 +174,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
+                    android:id="@+id/iv_post1"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"
@@ -191,16 +193,31 @@
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/like_button1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like1"
+                        app:layout_constraintEnd_toStartOf="@+id/like1"
+                        app:layout_constraintTop_toTopOf="@+id/like1" />
 
                     <TextView
+                        android:id="@+id/like1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginRight="10dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
             <!-- 게시물1 끝 -->
@@ -212,6 +229,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post2_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/component_color"
@@ -240,6 +258,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
+                    android:id="@+id/iv_post2"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"
@@ -252,6 +271,7 @@
                     android:paddingHorizontal="5dp">
 
                     <TextView
+                        android:id="@+id/tv_main_like_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="코멘트2"
@@ -260,7 +280,19 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <ImageView
+                        android:id="@+id/like_button2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like2"
+                        app:layout_constraintEnd_toStartOf="@+id/like2"
+                        app:layout_constraintTop_toTopOf="@+id/like2" />
+
                     <TextView
+                        android:id="@+id/like2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -279,6 +311,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post3_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/component_color"
@@ -307,6 +340,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
+                    android:id="@+id/iv_post3"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"
@@ -327,7 +361,19 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <ImageView
+                        android:id="@+id/like_button3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like3"
+                        app:layout_constraintEnd_toStartOf="@+id/like3"
+                        app:layout_constraintTop_toTopOf="@+id/like3" />
+
                     <TextView
+                        android:id="@+id/like3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
@@ -346,6 +392,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post4_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/component_color"
@@ -374,6 +421,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ImageView
+                    android:id="@+id/iv_post4"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:scaleType="fitXY"
@@ -394,7 +442,19 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <ImageView
+                        android:id="@+id/like_button4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/selector_heart_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/like4"
+                        app:layout_constraintEnd_toStartOf="@+id/like4"
+                        app:layout_constraintTop_toTopOf="@+id/like4" />
+
                     <TextView
+                        android:id="@+id/like4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
