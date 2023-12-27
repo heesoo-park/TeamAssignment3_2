@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -17,6 +18,8 @@ import com.example.teamsns.R.drawable.empty_heart
 import com.example.teamsns.R.drawable.heart
 
 class DetailPageActivity : AppCompatActivity() {
+
+
     private val profileRefresh =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) init()
@@ -90,9 +93,11 @@ class DetailPageActivity : AppCompatActivity() {
         findViewById(R.id.post_layout)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_page)
+
 
         init()
     }
@@ -226,4 +231,5 @@ class DetailPageActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.none, R.anim.fade_in)
         }
     }
+
 }
