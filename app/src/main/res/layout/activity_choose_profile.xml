@@ -4,6 +4,219 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".ChooseProfileActivity">
 
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="프로필을 골라주세요!!"
+        android:textColor="@color/text_color"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 첫번째 단 시작 -->
+    <ImageButton
+        android:id="@+id/ib_profile1"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_dog1"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <ImageButton
+        android:id="@+id/ib_profile2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_dog2"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile1"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile1"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile1" />
+
+    <ImageButton
+        android:id="@+id/ib_profile3"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_dog3"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile2"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile2"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile2" />
+
+    <ImageButton
+        android:id="@+id/ib_profile4"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_dog4"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile3"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile3" />
+    <!-- 첫번째 단 끝 -->
+
+    <!-- 두번째 단 시작 -->
+    <ImageButton
+        android:id="@+id/ib_profile5"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_dog5"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib_profile1" />
+
+    <ImageButton
+        android:id="@+id/ib_profile6"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_dog6"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile5"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile7"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile5"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile5" />
+
+    <ImageButton
+        android:id="@+id/ib_profile7"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_cat1"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile6"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile6"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile6" />
+
+    <ImageButton
+        android:id="@+id/ib_profile8"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_cat2"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile7"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile7" />
+    <!-- 두번째 단 끝 -->
+
+    <!-- 세번째 단 시작 -->
+    <ImageButton
+        android:id="@+id/ib_profile9"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_cat3"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib_profile5" />
+
+    <ImageButton
+        android:id="@+id/ib_profile10"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_cat4"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile9"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile11"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile9"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile9" />
+
+    <ImageButton
+        android:id="@+id/ib_profile11"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_cat5"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile10"
+        app:layout_constraintEnd_toStartOf="@+id/ib_profile12"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile10"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile10" />
+
+    <ImageButton
+        android:id="@+id/ib_profile12"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_proflie_image_background"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_cat6"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_profile11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ib_profile11"
+        app:layout_constraintTop_toTopOf="@+id/ib_profile11" />
+    <!-- 세번째 단 끝 -->
+
+    <ImageView
+        android:id="@+id/iv_selected_image"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_next"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_dog1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib_profile9" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@color/component_color"
+        android:text="다음"
+        android:textColor="@color/text_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
