@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -106,7 +105,8 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setProfile() {
-        if (myId == id) myPageDetail.setText(getString(R.string.detail_activity_my_page))
+        if (myId == id) myPageDetail.setText(DetailPageMessage.MYPAGE.message)
+        else myPageDetail.setText(DetailPageMessage.DETAIL.message)
         name = userDate.name
         statusMessage = userDate.statusMessage.toString()
         profileImageView.setImageResource(userDate.profileImage)
@@ -195,10 +195,10 @@ class DetailPageActivity : AppCompatActivity() {
         showMore.setOnClickListener {
             if (detailContent.maxLines == Integer.MAX_VALUE) {
                 detailContent.maxLines = 2
-                showMore.setText(R.string.show_more)
+                showMore.setText(DetailPageMessage.SHOWMORE.message)
             } else {
                 detailContent.maxLines = Integer.MAX_VALUE
-                showMore.setText(R.string.show_close)
+                showMore.setText(DetailPageMessage.SHOWCLOSE.message)
             }
         }
     }
