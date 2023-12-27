@@ -145,6 +145,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post1_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/component_color"
@@ -165,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="별개냥"
+                        android:text="사용자1"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_main_post1_profile"
                         app:layout_constraintStart_toEndOf="@+id/iv_main_post1_profile"
@@ -228,6 +229,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post2_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/component_color"
@@ -309,6 +311,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post3_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/component_color"
@@ -389,6 +392,7 @@
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_main_post4_upper"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/component_color"
