@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -22,11 +23,11 @@ class DetailPageActivity : AppCompatActivity() {
         }
 
     private val myId: String? by lazy {
-        intent.getStringExtra("myId")
+        intent.getStringExtra("myId").toString()
     }
 
     private val id: String? by lazy {
-        intent.getStringExtra("id")
+        intent.getStringExtra("id").toString()
     }
 
     private val userDate = UserDatabase.getUser(id!!)
@@ -81,7 +82,7 @@ class DetailPageActivity : AppCompatActivity() {
 
     lateinit var showMore: TextView
 
-    private val layoutInflater: LayoutInflater by lazy {
+    private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
     }
 
@@ -114,6 +115,7 @@ class DetailPageActivity : AppCompatActivity() {
         nameTextView.setText(name)
         statusMessageTextView.setText(statusMessage)
 
+        postLayout.removeAllViews()
         setPostList()
     }
 
@@ -135,7 +137,7 @@ class DetailPageActivity : AppCompatActivity() {
 
     private fun setPostList() {
         for (post in userDate.userPosts.reversed()) {
-            val postView: View = layoutInflater.inflate(R.layout.post_item, postLayout, false)
+            val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
 
             detailImage = postView.findViewById(R.id.detail_activity_list_img)
             detailContent = postView.findViewById(R.id.detail_activity_list_contents)
@@ -168,16 +170,20 @@ class DetailPageActivity : AppCompatActivity() {
 
     private fun setLikeButton(post: Post) {
         likeButton.setOnClickListener {
-            if (post.likeSelectedUser?.any { it == myId } == true) {
+            Log.e("user", post.likeSelectedUser.toString())
+            if (post.likeSelectedUser.any { it == myId } == true ) {
                 post.like -= 1
                 likeButton.setImageResource(empty_heart)
-                post.likeSelectedUser!!.remove(myId)
+                post.likeSelectedUser.remove(myId)
             } else {
                 post.like += 1
                 likeButton.setImageResource(heart)
-                post.likeSelectedUser?.add(myId!!)
+                post.likeSelectedUser.add(myId!!)
             }
+
             likeCount.text = post.like.toString()
+
+            setPersonalButton()
         }
     }
 
@@ -204,10 +210,12 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setLogOutButton() {
-        val intent = Intent(this, SignInActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        overridePendingTransition(R.anim.none, R.anim.fade_out)
+        logOut.setOnClickListener {
+            val intent = Intent(this, SignInActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            overridePendingTransition(R.anim.none, R.anim.fade_out)
+        }
     }
 
     private fun setEditButton() {

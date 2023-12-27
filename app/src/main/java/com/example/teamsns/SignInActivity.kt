@@ -60,7 +60,7 @@ class SignInActivity : AppCompatActivity() {
                     return@setOnClickListener}
             }
 
-            val intent = Intent(this, ChooseProfileActivity::class.java)
+            val intent = Intent(this, MainPageActivity::class.java)
             intent.putExtra("id", et_id.text.toString())
             startActivity(intent)
         }
