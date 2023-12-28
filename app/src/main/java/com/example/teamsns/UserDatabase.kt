@@ -8,7 +8,7 @@ object UserDatabase {
         "a",
         (R.drawable.img_cat1),
         "오늘 하루는 피곤하네요",
-        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = arrayListOf(R.drawable.img_cat1,R.drawable.img_cat2,R.drawable.img_cat3,R.drawable.img_cat4), postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", comment = "아주 즐거워요", like =  0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = arrayListOf(R.drawable.img_cat1,R.drawable.img_cat2,R.drawable.img_cat3,R.drawable.img_cat4), postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", commentUser = arrayListOf(CommentUser("사용자3","아주 즐거워요",(R.drawable.img_cat2))), like =  0))
     )
     private val user2 = User(
         "사용자2",
@@ -16,7 +16,7 @@ object UserDatabase {
         "abcdABCD1!",
         (R.drawable.img_cat2),
         "오늘 하루 힘내세요",
-        arrayListOf(Post(userProfileImage = (R.drawable.img_cat2), postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요",postImage = arrayListOf(R.drawable.img_cat6),comment = "아주 즐거워요", like =  0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat2), postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요",postImage = arrayListOf(R.drawable.img_cat6), commentUser = arrayListOf(CommentUser("사용자3","아주 즐거워요",(R.drawable.img_cat2))), like =  0))
     )
     private val user3 = User(
         "사용자3",
@@ -24,7 +24,7 @@ object UserDatabase {
         "abcdABCD1!",
         (R.drawable.img_cat3),
         "오늘 하루는 행복하네요",
-        arrayListOf(Post(userProfileImage = (R.drawable.img_cat3), postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요",postImage = arrayListOf(R.drawable.img_dog3),comment = "아주 즐거워요", like =  0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat3), postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요",postImage = arrayListOf(R.drawable.img_dog3),commentUser = arrayListOf(CommentUser("사용자3","아주 즐거워요",(R.drawable.img_cat2))), like =  0))
     )
     private val user4 = User(
         "사용자4",
@@ -32,7 +32,7 @@ object UserDatabase {
         "abcdABCD1!",
         (R.drawable.img_cat4),
         "오늘 하루는 행복하네요",
-        arrayListOf(Post(userProfileImage = (R.drawable.img_cat4), postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요",postImage = arrayListOf(R.drawable.img_dog4),comment = "아주 즐거워요", like =  0))
+        arrayListOf(Post(userProfileImage = (R.drawable.img_cat4), postContent = "안녕하세요",postImage = arrayListOf(R.drawable.img_dog4),commentUser = arrayListOf(CommentUser("사용자3","아주 즐거워요",(R.drawable.img_cat2))), like =  0))
     )
 
     var totalUserData: ArrayList<User> = arrayListOf(user1, user2, user3, user4)

@@ -153,6 +153,7 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
+
     // 좋아요 버튼 기능 세팅하는 함수
     private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
         likeButton.setOnClickListener {
