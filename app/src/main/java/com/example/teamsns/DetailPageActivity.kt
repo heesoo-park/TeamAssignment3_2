@@ -113,6 +113,7 @@ class DetailPageActivity : AppCompatActivity() {
     // 뒤로가기 버튼 동작 함수
     private fun setBackButton() {
         ivDetailBackBtn.setOnClickListener {
+            setResult(RESULT_OK, intent)
             finish()
             overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right)
         }

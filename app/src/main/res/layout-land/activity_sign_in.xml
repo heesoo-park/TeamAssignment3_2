@@ -138,14 +138,15 @@
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="80dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="80dp"
                 android:backgroundTint="@color/component_color"
                 android:focusable="false"
                 android:text="@string/signin_activity_signin"
                 android:textColor="@color/text_color"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/btn_signin_login" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_signin_login"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
