@@ -13,7 +13,6 @@ object UserDatabase {
         arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
     )
 
-
     private val user2 = User(
         "사용자2",
         "test2",
