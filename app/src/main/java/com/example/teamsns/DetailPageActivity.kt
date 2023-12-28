@@ -69,6 +69,7 @@ class DetailPageActivity : AppCompatActivity() {
         findViewById(R.id.tv_detail_my_page_or_detail)
     }
 
+
     private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
     }
@@ -120,7 +121,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setBackButton() {
         ivDetailBackBtn.setOnClickListener {
             finish()
-            overridePendingTransition(R.anim.none, R.anim.horizon_out)
+            overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right)
         }
     }
 
@@ -211,7 +212,7 @@ class DetailPageActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpActivity::class.java)
             intent.putExtra("editId", myId)
             profileRefresh.launch(intent)
-            overridePendingTransition(R.anim.none, R.anim.fade_in)
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.fade_out)
         }
     }
 
