@@ -49,7 +49,8 @@ Cardview를 둥글게 만들고 그 안에 이미지를 넣어 만들었다.
 
 
 
-## post_item.xml
+## 게시물 레이아웃
+post_item.xml
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/fb719b03-6041-4ab5-b933-fb3e4a18b6de)
 
 리니어 레이아웃 안의 포스트를 지우고
@@ -132,7 +133,7 @@ land에선 editText의 길이를 늘려 더 길게 출력가능하게 만들었�
 ```
 init은 프로필 세팅, 개인 버튼 세팅, 뒤로가기 세팅으로 구성했다
 
-## setProfile 프로필 세팅
+## 프로필 세팅
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/ce1ad4ea-c914-451d-9026-5134f5fdf58d)
 
 ```kotlin
@@ -157,7 +158,7 @@ init은 프로필 세팅, 개인 버튼 세팅, 뒤로가기 세팅으로 구성
 
 이름 상태메시지 프로필 사진들을 받고 화면에 설정하고 setPostList를 갱신한다
 
-### setPostList 유저가 작성한 포스트 출력
+### 유저가 작성한 포스트 출력
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/a2a3c4a8-6d30-48af-b2f7-b35570426302)
 
 ```kotlin
@@ -212,7 +213,7 @@ false로 attachToRoot를 설정해 호출자가 나중에 View를 추가할 수 
 
 사용자가 자신이 좋아요을 누른 포스트인지 구별하기 좋게 빈하트가 아닌 채워진하트로 나오게 했다
 
-#### setLikeButton 좋아요 버튼 구현
+#### 좋아요 버튼 구현
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/7c87fe7e-91da-47c8-8b40-f5079a253dab)
 
 ```kotlin
@@ -247,7 +248,7 @@ private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView
 
 피드에 좋아요를 한 사람의 리스트에 올라가게 된다
 
-### setShowMoreVisible 더보기 버튼 구현
+### 더보기 버튼 구현
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/166ced5c-9154-45b5-8fac-45d8fc3dffe8)
 
 ```kotlin
@@ -282,7 +283,7 @@ visibility가 visible이 된다면 버튼을 활성화한다.
 ```
 더보기 버튼을 누르면 maxLine의 제한이 해제되며 접기로 변하게 했다
 
-## setPersonalButton 본인 프로필일시 보이는 버튼 구현
+## 본인 프로필일시 보이는 버튼 구현
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/a1bed87b-3a95-4255-8f52-90bc2a3d9803)
 
 ```kotlin
@@ -299,7 +300,7 @@ visivleBoolean이 myId와 id가 같다면 true 아니면 false가 나오게 하�
 
 personal버튼들의 visible을 정해준다
 
-### setLogOutButton 로그아웃 버튼
+### 로그아웃 버튼
 ![Honeycam 2023-12-28 20-18-26](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/2fc21cbb-979f-4ced-a5e1-f6125cefe892)
 ```kotlin
     private fun setLogOutButton(){
@@ -315,7 +316,7 @@ flags를 이용해 모든 액티비티를 종료되고
 
 fade_out애니메이션이 실행되며 SignInActivity를 실행한다
 
-### setEditButton 프로필 편집 버튼
+### 프로필 편집 버튼
 ```kotlin
     private val profileRefresh =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -336,7 +337,7 @@ fade_out애니메이션이 실행되며 SignInActivity를 실행한다
 
 registerForActivityResult를 이용해 이때 수정된값을 회원가입 창이 닫혔을때 바로 갱신받는다
 
-## setBackButton 메인페이지로 돌아가기
+## 메인페이지로 돌아가기
 ![Honeycam 2023-12-28 20-28-08](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/13f7898c-1062-47ab-bc57-e1094ecf7e1b)
 
 ```kotlin
