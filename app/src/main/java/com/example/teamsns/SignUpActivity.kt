@@ -114,11 +114,12 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun getMessageValidId(): String? {
         val text = etId.text.toString()
+        val userData = UserDatabase.getUser(etId.text.toString())
         if (etId.isVisible) {
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_ID
-                (text.isNotBlank() && Pattern.matches("^[a-z0-9]*\$",text)) -> null
-
+                (userData == null && text.isNotBlank() && Pattern.matches("^[a-z0-9]*\$",text)) -> null
+                (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
                 else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }

@@ -23,6 +23,7 @@
     <string name="id_error_message">"아이디는 영문과 숫자로 구성됩니다."</string>
     <string name="password_error_message">"비밀번호는 영대소문자/숫자/특수문자 포함해야 하고 최소 8글자여야합니다."</string>
     <string name="password_check_error_message">"비밀번호가 일치하지 않습니다."</string>
+    <string name="overlapping_id">이미 존재하는 아이디 입니다.</string>
 
 
     <!-- textView strings -->
