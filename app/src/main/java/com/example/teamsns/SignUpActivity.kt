@@ -100,7 +100,6 @@ class SignUpActivity : AppCompatActivity() {
             }
 
         btnNext.setOnClickListener {
-            Log.e("MYBOOLEAN VALUE", "Value: $myBoolean")
             if (myBoolean == true) {
                 user = User(
                     name = etName.toString(),

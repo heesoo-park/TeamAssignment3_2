@@ -32,9 +32,7 @@ class DetailPageActivity : AppCompatActivity() {
         intent.getStringExtra("id")
     }
 
-    private val userDate: User by lazy {
-        UserDatabase.getUser(id!!)!!
-    }
+    lateinit var userDate:User
 
     lateinit var name: String
 
@@ -105,6 +103,7 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setProfile() {
+        userDate = UserDatabase.getUser(id!!)!!
         if (myId == id) myPageDetail.setText(DetailPageMessage.MYPAGE.message)
         else myPageDetail.setText(DetailPageMessage.DETAIL.message)
         name = userDate.name
@@ -130,7 +129,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setBackButton() {
         back.setOnClickListener {
             finish()
-            overridePendingTransition(R.anim.none, R.anim.horizon_enter)
+            overridePendingTransition(R.anim.none, R.anim.horizon_out)
         }
     }
 

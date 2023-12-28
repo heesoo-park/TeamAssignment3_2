@@ -104,6 +104,7 @@ class MainPageActivity : AppCompatActivity() {
                     }
                 }
                 startActivity(intent)
+                overridePendingTransition(R.anim.none, R.anim.horizon_enter)
             }
         }
     }
