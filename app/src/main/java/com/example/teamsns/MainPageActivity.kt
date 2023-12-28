@@ -114,7 +114,7 @@ class MainPageActivity : AppCompatActivity() {
                     postView.findViewById(R.id.tv_main_post_show_more)
 
                 tvMainPostContent.text = post.postContent
-                ivMainPost.setImageResource(post.postImage)
+                ivMainPost.setImageResource(post.postImage[0])
                 ivMainPostUserProfile.setImageResource(post.userProfileImage)
                 tvMainPostUserName.text = user.name
                 tvMainPostLikeCount.text = post.like.toString()
