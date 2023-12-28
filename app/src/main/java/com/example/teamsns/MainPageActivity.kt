@@ -1,5 +1,6 @@
 package com.example.teamsns
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,8 +9,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 
 class MainPageActivity : AppCompatActivity() {
+
+    private val profileRefresh =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) init()
+        }
 
     private val tvMainHelloWord: TextView by lazy {
         findViewById(R.id.tv_main_hello_word)
@@ -40,13 +47,13 @@ class MainPageActivity : AppCompatActivity() {
         loginUserId = intent.getStringExtra("id")!!
         userData = UserDatabase.getUser(loginUserId)!!
 
-        tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
-        ivMainMyProfile.setImageResource(userData.profileImage!!)
 
         init()
     }
 
     private fun init(){
+        tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
+        ivMainMyProfile.setImageResource(userData.profileImage!!)
         setUserProfileList()
         setTopbar()
         setPostList()
@@ -81,7 +88,7 @@ class MainPageActivity : AppCompatActivity() {
             val intent = Intent(this@MainPageActivity, DetailPageActivity::class.java)
             intent.putExtra("myId", loginUserId)
             intent.putExtra("id", user.id)
-            startActivity(intent)
+            profileRefresh.launch(intent)
             overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
     }
