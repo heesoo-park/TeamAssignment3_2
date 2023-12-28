@@ -47,7 +47,7 @@ myBoolean 값이 이 페이지가 편집 페이지인지 회원가입페이지�
 
 ### 메소드
 
-#### initView()
+> initView()
 ````
     private fun initView() {
         setEditCheck()
@@ -60,7 +60,7 @@ myBoolean 값이 이 페이지가 편집 페이지인지 회원가입페이지�
 
 
 
-#### setEditCheck()
+> setEditCheck()
 ````
 private fun setEditCheck() {
         if (intent.getStringExtra("editId") != null) {
@@ -82,7 +82,7 @@ private fun setEditCheck() {
 
 
 
-#### setEditUserData()
+> setEditUserData()
 ````
     private fun setEditUserData() {
         userData = UserDatabase.getUser(id)!!
@@ -96,7 +96,7 @@ private fun setEditCheck() {
 
 
 
-#### btnNext() 
+> btnNext() 
 ````
 private fun btnNext() {
         resultLauncher =
@@ -143,7 +143,7 @@ registerForActivityResult를 사용해줌으로써 putExtra한 값들을 넘겨�
 
 
 
-#### setTextChangedListener()
+> setTextChangedListener()
 ````
     private fun setTextChangedListener() {
         editTextArray.forEach { editText ->
@@ -156,7 +156,7 @@ registerForActivityResult를 사용해줌으로써 putExtra한 값들을 넘겨�
 ````
 EditText의 값 변경 리스너 함수: EditText의 값이 변경될때마다 실행되는 함수입니다.
 
-#### setOnFocusChangedListener()
+> setOnFocusChangedListener()
 ````
     private fun setOnFocusChangedListener() {
         editTextArray.forEach { editText ->
@@ -179,7 +179,7 @@ EditText가 수정이 될 떄마다 EditText에 입력된 값이 유효한지 �
 
 
 
-#### EditText.setErrorMessage()
+> EditText.setErrorMessage()
 
  ````
 private fun EditText.setErrorMessage() {
@@ -250,7 +250,7 @@ enum class SignUpErrorMessage(
 ````
 
 
-#### setConfirmButtonEnable()
+> setConfirmButtonEnable()
 
     private fun setConfirmButtonEnable() {
         btnSignUpNext.isEnabled = getMessageValidName() == null
