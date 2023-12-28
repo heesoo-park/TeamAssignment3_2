@@ -15,34 +15,33 @@ import java.util.regex.Pattern
 import com.example.teamsns.SignUpValidExtension.includeAlphabetAndNumber
 import com.example.teamsns.SignUpValidExtension.includeKorean
 import com.example.teamsns.SignUpValidExtension.includeSpecialCharacters
-import com.example.teamsns.SignUpValidExtension.includeUpperCase
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
-    private val etName: EditText by lazy {
+    private val etSignUpName: EditText by lazy {
         findViewById(R.id.et_signup_name)
     }
-    private val etId: EditText by lazy {
+    private val etSignUpId: EditText by lazy {
         findViewById(R.id.et_signup_id)
     }
-    private val etPassword: EditText by lazy {
+    private val etSignUpPassword: EditText by lazy {
         findViewById(R.id.et_signup_password)
     }
-    private val etPasswordConfirmation: EditText by lazy {
+    private val etSignUpPassword2: EditText by lazy {
         findViewById(R.id.et_signup_password2)
     }
-    private val btnNext: Button by lazy {
+    private val btnSignUpNext: Button by lazy {
         findViewById(R.id.btn_signup_next)
     }
-    private val tvId: TextView by lazy {
-        findViewById(R.id.tv_sigup_id)
+    private val tvSignUpId: TextView by lazy {
+        findViewById(R.id.tv_signup_id)
     }
 
     // arrays
     private val editTextArray: Array<EditText> by lazy {
-        arrayOf(etName, etId, etPassword, etPasswordConfirmation)
+        arrayOf(etSignUpName, etSignUpId, etSignUpPassword, etSignUpPassword2)
     }
 
     lateinit var userData: User
@@ -54,16 +53,14 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun setEditCheck() {
         if (intent.getStringExtra("editId") != null) {
-            tvId.setText(R.string.edit_status)
-            etId.setHint(R.string.edit_status_message)
+            tvSignUpId.setText(R.string.edit_status)
+            etSignUpId.setHint(R.string.edit_status_message)
             id = intent.getStringExtra("editId")!!
 
             myBoolean = true
             setEditUserData()
         }
     }
-
-
 
     private fun setEditUserData() {
         userData = UserDatabase.getUser(id)!!
@@ -85,45 +82,34 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun btnSignup() {
-        // registerForActivityResult 세팅
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                // ChooseProfileActivity에서 RESULT_OK가 반환되면 현재 액티비티 종료
-                // ChooseProfileActivity에서 바로 SignInActivity로 이동하는 형태가 됨
                 if (result.resultCode == RESULT_OK) {
-                    // 먼저 SignInActivity로 아이디와 패스워드를 보냄
-                    intent.putExtra("id", etId.text.toString())
-                    intent.putExtra("password", etPassword.text.toString())
+                    intent.putExtra("id", etSignUpId.text.toString())
+                    intent.putExtra("password", etSignUpPassword.text.toString())
                     setResult(RESULT_OK, intent)
                     finish()
                 }
             }
 
-        btnNext.setOnClickListener {
+        btnSignUpNext.setOnClickListener {
             if (myBoolean == true) {
                 user = User(
-                    name = etName.toString(),
+                    name = etSignUpName.text.toString(),
                     id = id,
-                    statusMessage = etId.toString(),
-                    password = etPassword.toString()
+                    statusMessage = etSignUpId.text.toString(),
+                    password = etSignUpPassword.text.toString()
                 )
 
                 Log.e("USER DATA BEFORE", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
                 UserDatabase.editUserData(user)
                 Log.e("USER DATA AFTER", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
 
-            } else {
-                user = User(
-                    name = etName.toString(),
-                    id = etId.toString(),
-                    password = etPassword.toString(),
-                    statusMessage = ""
-                )
-                UserDatabase.addUser(user)
             }
             val intent = Intent(this, ChooseProfileActivity::class.java).apply {
-                putExtra("id", user.id)
-                putExtra("password", user.password)
+                putExtra("name", etSignUpName.text.toString())
+                putExtra("id", etSignUpId.text.toString())
+                putExtra("password", etSignUpPassword.text.toString())
                 if (myBoolean == true) putExtra("editId", id)
             }
             setResult(RESULT_OK, intent)
@@ -153,18 +139,18 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun EditText.setErrorMessage() {
         when (this) {
-            etName -> error = getMessageValidName()
-            etId -> error = getMessageValidId()
-            etPassword -> error = getMessageValidPassword()
-            etPasswordConfirmation -> error = getMessageValidPasswordConfirm()
+            etSignUpName -> error = getMessageValidName()
+            etSignUpId -> error = getMessageValidId()
+            etSignUpPassword -> error = getMessageValidPassword()
+            etSignUpPassword2 -> error = getMessageValidPasswordConfirm()
 
             else -> Unit
         }
     }
 
     private fun getMessageValidName(): String? {
-        val text = etName.text.toString()
-        if (etName.isVisible) {
+        val text = etSignUpName.text.toString()
+        if (etSignUpName.isVisible) {
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_NAME
                 text.includeKorean() -> null
@@ -176,7 +162,6 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun getMessageValidId(): String? {
-
         val text = etId.text.toString()
         val userData = UserDatabase.getUser(etId.text.toString())
         if (etId.isVisible) {
@@ -188,13 +173,12 @@ class SignUpActivity : AppCompatActivity() {
             }
             return errorCode?.let { getString(it.message) }
         } else return null
-
     }
 
 
     private fun getMessageValidPassword(): String? {
-        val text = etPassword.text.toString()
-        if (etPassword.isVisible) {
+        val text = etSignUpPassword.text.toString()
+        if (etSignUpPassword.isVisible) {
             val errorCode = when {
                 text.isBlank() -> getString(R.string.empty_password_message)
                 text.includeSpecialCharacters() -> null
@@ -206,7 +190,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun getMessageValidPasswordConfirm(): String? {
-        val text = etPasswordConfirmation.text.toString()
+        val text = etSignUpPassword2.text.toString()
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_PASSWORD
                 (text.isNotBlank() && Pattern.matches(
@@ -214,7 +198,7 @@ class SignUpActivity : AppCompatActivity() {
                     text
                 )) -> null
 
-                (text != etPassword.text.toString()) -> SignUpErrorMessage.PASSWORD_MISMATCH
+                (text != etSignUpPassword.text.toString()) -> SignUpErrorMessage.PASSWORD_MISMATCH
 
                 else -> SignUpErrorMessage.INVALID_PASSWORD
             }
@@ -223,7 +207,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun setConfirmButtonEnable() {
-        btnNext.isEnabled = getMessageValidName() == null
+        btnSignUpNext.isEnabled = getMessageValidName() == null
                 && getMessageValidId() == null
                 && getMessageValidPassword() == null
                 && getMessageValidPasswordConfirm() == null
