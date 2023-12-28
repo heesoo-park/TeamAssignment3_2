@@ -8,42 +8,20 @@ import android.widget.ImageView
 
 class ChooseProfileActivity : AppCompatActivity() {
 
-    private val ibProfileSample1: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample1)
-    }
-    private val ibProfileSample2: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample2)
-    }
-    private val ibProfileSample3: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample3)
-    }
-    private val ibProfileSample4: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample4)
-    }
-    private val ibProfileSample5: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample5)
-    }
-    private val ibProfileSample6: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample6)
-    }
-    private val ibProfileSample7: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample7)
-    }
-    private val ibProfileSample8: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample8)
-    }
-    private val ibProfileSample9: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample9)
-    }
-    private val ibProfileSample10: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample10)
-    }
-    private val ibProfileSample11: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample11)
-    }
-    private val ibProfileSample12: ImageButton by lazy {
-        findViewById(R.id.ib_choose_profile_sample12)
-    }
+    private val profileSampleIds = listOf(
+        R.id.ib_choose_profile_sample1,
+        R.id.ib_choose_profile_sample2,
+        R.id.ib_choose_profile_sample3,
+        R.id.ib_choose_profile_sample4,
+        R.id.ib_choose_profile_sample5,
+        R.id.ib_choose_profile_sample6,
+        R.id.ib_choose_profile_sample7,
+        R.id.ib_choose_profile_sample8,
+        R.id.ib_choose_profile_sample9,
+        R.id.ib_choose_profile_sample10,
+        R.id.ib_choose_profile_sample11,
+        R.id.ib_choose_profile_sample12,
+    )
 
     private val ivSelectedProfile: ImageView by lazy {
         findViewById(R.id.iv_choose_selected_profile)
@@ -56,20 +34,7 @@ class ChooseProfileActivity : AppCompatActivity() {
     }
 
     private val profileSampleButtonList: List<ImageButton> by lazy {
-        listOf(
-            ibProfileSample1,
-            ibProfileSample2,
-            ibProfileSample3,
-            ibProfileSample4,
-            ibProfileSample5,
-            ibProfileSample6,
-            ibProfileSample7,
-            ibProfileSample8,
-            ibProfileSample9,
-            ibProfileSample10,
-            ibProfileSample11,
-            ibProfileSample12
-        )
+        profileSampleIds.map { findViewById(it) }
     }
 
     private val profileImageList = listOf(
@@ -113,6 +78,7 @@ class ChooseProfileActivity : AppCompatActivity() {
         name = intent.getStringExtra("name") ?: ""
         id = intent.getStringExtra("id") ?: ""
         password = intent.getStringExtra("password") ?: ""
+
 
         setEditCheck()
         setOnClickListener()
