@@ -8,38 +8,67 @@ import android.widget.ImageView
 
 class ChooseProfileActivity : AppCompatActivity() {
 
-    private val ibProfile1: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample1) }
-    private val ibProfile2: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample2) }
-    private val ibProfile3: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample3) }
-    private val ibProfile4: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample4) }
-    private val ibProfile5: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample5) }
-    private val ibProfile6: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample6) }
-    private val ibProfile7: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample7) }
-    private val ibProfile8: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample8) }
-    private val ibProfile9: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample9) }
-    private val ibProfile10: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample10) }
-    private val ibProfile11: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample11) }
-    private val ibProfile12: ImageButton by lazy { findViewById(R.id.ib_choose_profile_sample12) }
+    private val ibProfileSample1: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample1)
+    }
+    private val ibProfileSample2: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample2)
+    }
+    private val ibProfileSample3: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample3)
+    }
+    private val ibProfileSample4: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample4)
+    }
+    private val ibProfileSample5: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample5)
+    }
+    private val ibProfileSample6: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample6)
+    }
+    private val ibProfileSample7: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample7)
+    }
+    private val ibProfileSample8: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample8)
+    }
+    private val ibProfileSample9: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample9)
+    }
+    private val ibProfileSample10: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample10)
+    }
+    private val ibProfileSample11: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample11)
+    }
+    private val ibProfileSample12: ImageButton by lazy {
+        findViewById(R.id.ib_choose_profile_sample12)
+    }
 
-    private val ivSelectedImage: ImageView by lazy { findViewById(R.id.iv_choose_selected_profile) }
-    private var selectedImage: Int = 0
+    private val ivSelectedProfile: ImageView by lazy {
+        findViewById(R.id.iv_choose_selected_profile)
+    }
 
-    private val btnNext: Button by lazy { findViewById(R.id.btn_choose_signup) }
+    private var selectedImageIdx: Int = 0
 
-    private val profileImageButtonList: List<ImageButton> by lazy {
+    private val btnSignUp: Button by lazy {
+        findViewById(R.id.btn_choose_signup)
+    }
+
+    private val profileSampleButtonList: List<ImageButton> by lazy {
         listOf(
-            ibProfile1,
-            ibProfile2,
-            ibProfile3,
-            ibProfile4,
-            ibProfile5,
-            ibProfile6,
-            ibProfile7,
-            ibProfile8,
-            ibProfile9,
-            ibProfile10,
-            ibProfile11,
-            ibProfile12
+            ibProfileSample1,
+            ibProfileSample2,
+            ibProfileSample3,
+            ibProfileSample4,
+            ibProfileSample5,
+            ibProfileSample6,
+            ibProfileSample7,
+            ibProfileSample8,
+            ibProfileSample9,
+            ibProfileSample10,
+            ibProfileSample11,
+            ibProfileSample12
         )
     }
 
@@ -64,14 +93,16 @@ class ChooseProfileActivity : AppCompatActivity() {
     private val statusMessage: String = ""
     private val userPosts: ArrayList<Post> = arrayListOf()
 
-    lateinit var editId: String
-    lateinit var userData: User
+    private lateinit var editId: String
+    private lateinit var userData: User
+
+    // 편집페이지로 사용하는지 체크하는 함수
     private fun setEditCheck() {
         if (intent.getStringExtra("editId") != null) {
             editId = intent.getStringExtra("editId")!!
             userData = UserDatabase.getUser(editId)!!
-            btnNext.setText(R.string.edit_do)
-            ivSelectedImage.setImageResource(userData.profileImage)
+            btnSignUp.setText(R.string.edit_do)
+            ivSelectedProfile.setImageResource(userData.profileImage)
         }
     }
 
@@ -87,25 +118,26 @@ class ChooseProfileActivity : AppCompatActivity() {
         setOnClickListener()
     }
 
+    // 클릭 리스너를 모아둔 함수
     private fun setOnClickListener() {
-        profileImageButtonList.forEachIndexed { idx, ib ->
+        profileSampleButtonList.forEachIndexed { idx, ib ->
             ib.setOnClickListener {
-                selectedImage = idx
-                ivSelectedImage.setImageResource(profileImageList[idx])
+                selectedImageIdx = idx
+                ivSelectedProfile.setImageResource(profileImageList[idx])
             }
         }
 
-        btnNext.setOnClickListener {
+        btnSignUp.setOnClickListener {
             if (intent.getStringExtra("editId") != null) {
                 UserDatabase.totalUserData.find { it.id == editId }
-                    .let { it!!.profileImage = profileImageList[selectedImage] }
+                    .let { it!!.profileImage = profileImageList[selectedImageIdx] }
             }else {
                 UserDatabase.addUser(
                     User(
                         name,
                         id,
                         password,
-                        profileImageList[selectedImage],
+                        profileImageList[selectedImageIdx],
                         statusMessage,
                         userPosts
                     )

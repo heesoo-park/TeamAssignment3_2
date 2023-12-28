@@ -14,16 +14,16 @@ class SignInActivity : AppCompatActivity() {
 
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
-    private val etId: EditText by lazy {
+    private val etSignInId: EditText by lazy {
         findViewById(R.id.et_signin_id)
     }
-    private val etPw: EditText by lazy {
+    private val etSignInPw: EditText by lazy {
         findViewById(R.id.et_signin_password)
     }
-    private val btnLogin: Button by lazy {
+    private val btnSignInLogIn: Button by lazy {
         findViewById(R.id.btn_signin_login)
     }
-    private val btnSignup: Button by lazy {
+    private val btnSignInSignUp: Button by lazy {
         findViewById(R.id.btn_signin_signup)
     }
 
@@ -46,31 +46,30 @@ class SignInActivity : AppCompatActivity() {
                 if (it.resultCode == RESULT_OK) {
                     val userId = it.data?.getStringExtra("id") ?: ""
                     val userPw = it.data?.getStringExtra("pw") ?: ""
-                    etId.setText(userId)
-                    etPw.setText(userPw)
+                    etSignInId.setText(userId)
+                    etSignInPw.setText(userPw)
                 }
             }
     }
 
     private fun btnLogin() {
-        btnLogin.setOnClickListener{
-            val userData = getUser(etId.text.toString())
+        btnSignInLogIn.setOnClickListener{
+            val userData = getUser(etSignInId.text.toString())
             when {
-                etId.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_ID.toString(), Toast.LENGTH_SHORT).show()
+                etSignInId.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_ID.toString(), Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
-                etPw.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_PASSWORD.toString(), Toast.LENGTH_SHORT).show()
+                etSignInPw.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_PASSWORD.toString(), Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
                 (userData == null) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.toString(), Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
-                (userData.password != etPw.text.toString()) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.toString(), Toast.LENGTH_SHORT).show()
+                (userData.password != etSignInPw.text.toString()) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.toString(), Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
             }
 
             val intent = Intent(this, MainPageActivity::class.java)
 
-            intent.putExtra("id", etId.text.toString())
-
-            intent.putExtra("pw", etPw.text.toString())
+            intent.putExtra("id", etSignInId.text.toString())
+            intent.putExtra("pw", etSignInPw.text.toString())
 
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_top)
@@ -79,7 +78,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun btnSignup() {
-        btnSignup.setOnClickListener{
+        btnSignInSignUp.setOnClickListener{
             val intent = Intent(this, SignUpActivity::class.java)
             activityResultLauncher.launch(intent)
             overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_top)

@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    android:paddingLeft="40dp"
-    android:paddingTop="80dp"
-    android:paddingRight="40dp">
+    android:paddingLeft="80dp"
+    android:paddingTop="20dp"
+    android:paddingRight="80dp">
 
     <TextView
         android:id="@+id/tv_signup_name"
@@ -22,7 +22,6 @@
         android:id="@+id/et_signup_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="15"
         android:hint="@string/empty_name_message"
         android:textColorHint="@color/gray"
         android:inputType="text"
@@ -54,7 +53,6 @@
         android:id="@+id/et_signup_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="15"
         android:inputType="text"
         android:textColorHint="@color/gray"
         android:hint="@string/empty_id_message"
@@ -86,7 +84,6 @@
         android:id="@+id/et_signup_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="15"
         android:hint="@string/empty_password_message"
         android:textColorHint="@color/gray"
         android:inputType="textPassword"
@@ -118,7 +115,6 @@
         android:id="@+id/et_signup_password2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="15"
         android:inputType="textPassword"
         android:hint="@string/empty_password_message"
         android:textColorHint="@color/gray"
@@ -140,7 +136,7 @@
         android:id="@+id/btn_signup_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="0dp"
         android:backgroundTint="@color/component_color"
         android:enabled="false"
         android:text="@string/next"
