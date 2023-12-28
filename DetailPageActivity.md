@@ -283,6 +283,50 @@ visibility가 visible이 된다면 버튼을 활성화한다.
 ```
 더보기 버튼을 누르면 maxLine의 제한이 해제되며 접기로 변하게 했다
 
+### 게시물 이미지가 복수일때 화살표 표시
+![Honeycam 2023-12-29 03-41-06](https://github.com/Guri999/codekata/assets/116724657/27e59378-8442-42cf-b638-5077f2945564)
+
+```kotlin
+// 포스트 이미지가 여러개일시 화살표 표시
+    private fun setShowPostArrow(post: Post, leftArrow: ImageView, rightArrow: ImageView, imageView: ImageView,currentImageIndex: Int) {
+        val postSize = post.postImage.size
+        when {
+            postSize == 1 -> {
+                leftArrow.visibility = View.INVISIBLE
+                rightArrow.visibility = View.INVISIBLE
+            }
+            currentImageIndex == postSize - 1 -> rightArrow.visibility = View.INVISIBLE
+            currentImageIndex == 0 -> leftArrow.visibility = View.INVISIBLE
+            else -> {
+                leftArrow.visibility = View.VISIBLE
+                rightArrow.visibility = View.VISIBLE
+            }
+        }
+        setSideArrowButton(post, leftArrow, rightArrow, imageView, currentImageIndex)
+    }
+
+    // side화살표 버튼 클릭시 이미지 변화
+    private fun setSideArrowButton(post: Post,leftArrow: ImageView,rightArrow: ImageView,imageView: ImageView,currentImageIndex: Int){
+        var index = currentImageIndex
+        leftArrow.setOnClickListener {
+            if(index > 0) {
+                index -= 1
+                imageView.setImageResource(post.postImage[index])
+                setShowPostArrow(post,leftArrow,rightArrow,imageView,index)
+            }
+        }
+        rightArrow.setOnClickListener {
+            if(index < post.postImage.size - 1) {
+                index += 1
+                imageView.setImageResource(post.postImage[index])
+                setShowPostArrow(post,leftArrow,rightArrow,imageView,index)
+            }
+        }
+        imageView.setImageResource(post.postImage[index])
+    }
+```
+사용자가 게시물에 이미지를 여러개 올렸을때 화살표를 표시해서 이미지를 넘겨 볼 수 있게 구현했다.
+
 ## 본인 프로필일시 보이는 버튼 구현
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/a1bed87b-3a95-4255-8f52-90bc2a3d9803)
 
