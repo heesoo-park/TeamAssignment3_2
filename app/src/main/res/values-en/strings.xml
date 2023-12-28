@@ -13,6 +13,7 @@
     <string name="detail_activity_my_page">My Page</string>
     <string name="show_more">..for more</string>
     <string name="show_close">fold</string>
+    <string name="edit_do">edit</string>
 
     <!-- empty edit text 유효성 처리 -->
     <string name="empty_name_message">Enter the name</string>
