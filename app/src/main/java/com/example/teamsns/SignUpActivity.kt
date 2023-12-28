@@ -162,31 +162,27 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun getMessageValidId(): String? {
-        val text = etId.text.toString()
-        val userData = UserDatabase.getUser(etId.text.toString())
-        if (etId.isVisible) {
-            val errorCode = when {
+        val text = etSignUpId.text.toString()
+        val userData = UserDatabase.getUser(etSignUpId.text.toString())
+        val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_ID
-                (userData == null && text.isNotBlank() && Pattern.matches("^[a-z0-9]*\$",text)) -> null
+                text.includeAlphabetAndNumber() -> null
                 (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
                 else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }
-        } else return null
     }
 
 
     private fun getMessageValidPassword(): String? {
         val text = etSignUpPassword.text.toString()
-        if (etSignUpPassword.isVisible) {
-            val errorCode = when {
-                text.isBlank() -> getString(R.string.empty_password_message)
-                text.includeSpecialCharacters() -> null
+        val errorCode = when {
+            text.isBlank() -> getString(R.string.empty_password_message)
+            text.includeSpecialCharacters() -> null
 
-                else -> getString(R.string.password_error_message)
-            }
-            return errorCode
-        } else return null
+            else -> getString(R.string.password_error_message)
+        }
+        return errorCode
     }
 
     private fun getMessageValidPasswordConfirm(): String? {
@@ -203,7 +199,6 @@ class SignUpActivity : AppCompatActivity() {
                 else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }
-
     }
 
     private fun setConfirmButtonEnable() {
