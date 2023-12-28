@@ -58,13 +58,13 @@ class SignInActivity : AppCompatActivity() {
         btnSignInLogIn.setOnClickListener{
             val userData = getUser(etSignInId.text.toString())
             when {
-                etSignInId.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_ID.toString(), Toast.LENGTH_SHORT).show()
+                etSignInId.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_ID.message, Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
-                etSignInPw.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_PASSWORD.toString(), Toast.LENGTH_SHORT).show()
+                etSignInPw.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_PASSWORD.message, Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
-                (userData == null) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.toString(), Toast.LENGTH_SHORT).show()
+                (userData == null) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.message, Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
-                (userData.password != etSignInPw.text.toString()) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.toString(), Toast.LENGTH_SHORT).show()
+                (userData.password != etSignInPw.text.toString()) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.message, Toast.LENGTH_SHORT).show()
                     return@setOnClickListener}
             }
 
