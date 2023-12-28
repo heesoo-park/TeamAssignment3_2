@@ -68,7 +68,7 @@
     <HorizontalScrollView
         android:id="@+id/scrollview_main_userlist"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_main_top">
@@ -76,50 +76,60 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_main_user1_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginHorizontal="5dp"
-                android:scaleType="fitXY"
                 android:src="@drawable/img_cat1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/sky_blue"
+                app:civ_border_overlay="false"
+                />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_main_user2_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:clipToOutline="true"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginHorizontal="5dp"
-                android:scaleType="fitXY"
                 android:src="@drawable/img_cat2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_main_user1_btn"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/sky_blue"
+                app:civ_border_overlay="false"/>
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_main_user3_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginHorizontal="5dp"
-                android:scaleType="fitXY"
                 android:src="@drawable/img_cat3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_main_user2_btn"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/sky_blue"
+                app:civ_border_overlay="false"/>
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_main_user4_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:clipToOutline="true"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginHorizontal="5dp"
-                android:scaleType="fitXY"
                 android:src="@drawable/img_cat4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_main_user3_btn"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/sky_blue"
+                app:civ_border_overlay="false"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>
     <!-- 사용자 목록 끝 -->
