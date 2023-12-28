@@ -3,6 +3,7 @@ package com.example.teamsns
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -18,27 +19,6 @@ class MainPageActivity : AppCompatActivity() {
     private val ivMainMyProfile: ImageView by lazy {
         findViewById(R.id.iv_main_profile_btn)
     }
-    private val ivMainUser1: ImageView by lazy {
-        findViewById(R.id.iv_main_user1_btn)
-    }
-    private val ivMainUser2: ImageView by lazy {
-        findViewById(R.id.iv_main_user2_btn)
-    }
-    private val ivMainUser3: ImageView by lazy {
-        findViewById(R.id.iv_main_user3_btn)
-    }
-    private val ivMainUser4: ImageView by lazy {
-        findViewById(R.id.iv_main_user4_btn)
-    }
-
-    private val profileList
-        get() = listOf(
-            ivMainMyProfile,
-            ivMainUser1,
-            ivMainUser2,
-            ivMainUser3,
-            ivMainUser4,
-        )
 
     private lateinit var loginUserId: String
 
@@ -51,6 +31,9 @@ class MainPageActivity : AppCompatActivity() {
     private val mainPostList: LinearLayout by lazy {
         findViewById(R.id.layout_main_postlist)
     }
+    private val mainUserProfileList: LinearLayout by lazy {
+        findViewById(R.id.main_user_profile_list)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,44 +45,36 @@ class MainPageActivity : AppCompatActivity() {
         tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
         ivMainMyProfile.setImageResource(userData.profileImage!!)
 
-        setOnProflieClickListener()
+        setUserProfileList()
         setPostList()
     }
 
-    // 사용자 프로필 이미지 클릭 리스너 함수
-    private fun setOnProflieClickListener() {
-        profileList.forEach { iv ->
-            iv.setOnClickListener {
-                val intent = Intent(this@MainPageActivity, DetailPageActivity::class.java)
-                when (iv.id) {
-                    R.id.iv_main_profile_btn -> {
-                        intent.putExtra("myId", loginUserId)
-                        intent.putExtra("id", loginUserId)
-                    }
-
-                    R.id.iv_main_user1_btn -> {
-                        intent.putExtra("myId", loginUserId)
-                        intent.putExtra("id", UserDatabase.totalUserData[0].id)
-                    }
-
-                    R.id.iv_main_user2_btn -> {
-                        intent.putExtra("myId", loginUserId)
-                        intent.putExtra("id", UserDatabase.totalUserData[1].id)
-                    }
-
-                    R.id.iv_main_user3_btn -> {
-                        intent.putExtra("myId", loginUserId)
-                        intent.putExtra("id", UserDatabase.totalUserData[2].id)
-                    }
-
-                    R.id.iv_main_user4_btn -> {
-                        intent.putExtra("myId", loginUserId)
-                        intent.putExtra("id", UserDatabase.totalUserData[3].id)
-                    }
-                }
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+    // 사용자 프로필 세팅
+    private fun setUserProfileList() {
+        for (user in UserDatabase.totalUserData) {
+            val profileView: View =
+                inflater.inflate(R.layout.profile_item, mainUserProfileList, false)
+            val profileImg: ImageView = profileView.findViewById(R.id.iv_main_user_profile)
+            val profileStroke: ImageView = profileView.findViewById(R.id.iv_user_stroke)
+            profileImg.setImageResource(user.profileImage)
+            if (loginUserId != user.id) {
+                profileStroke.setImageResource(R.drawable.selector_profile_image_background2)
+            }else {
+                profileStroke.setImageResource(R.drawable.selector_profile_image_background)
             }
+            mainUserProfileList.addView(profileView)
+            setOnProflieClickListener(user, profileImg)
+        }
+    }
+
+    // 사용자 프로필 이미지 클릭 리스너 함수
+    private fun setOnProflieClickListener(user: User, button: ImageView) {
+        button.setOnClickListener {
+            val intent = Intent(this@MainPageActivity, DetailPageActivity::class.java)
+            intent.putExtra("myId", loginUserId)
+            intent.putExtra("id", user.id)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
     }
 
@@ -112,11 +87,14 @@ class MainPageActivity : AppCompatActivity() {
 
                 val ivMainPost: ImageView = postView.findViewById(R.id.iv_main_post)
                 val tvMainPostContent: TextView = postView.findViewById(R.id.tv_main_post_content)
-                val ivMainPostUserProfile: ImageView = postView.findViewById(R.id.iv_main_post_userprofile)
+                val ivMainPostUserProfile: ImageView =
+                    postView.findViewById(R.id.iv_main_post_userprofile)
                 val tvMainPostUserName: TextView = postView.findViewById(R.id.tv_main_post_username)
                 val ivMainPostLikeBtn: ImageView = postView.findViewById(R.id.iv_main_post_like_btn)
-                val tvMainPostLikeCount: TextView = postView.findViewById(R.id.tv_main_post_like_count)
-                val tvMainPostShowMore: TextView = postView.findViewById(R.id.tv_main_post_show_more)
+                val tvMainPostLikeCount: TextView =
+                    postView.findViewById(R.id.tv_main_post_like_count)
+                val tvMainPostShowMore: TextView =
+                    postView.findViewById(R.id.tv_main_post_show_more)
 
                 tvMainPostContent.text = post.postContent
 

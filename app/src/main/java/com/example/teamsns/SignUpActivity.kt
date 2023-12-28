@@ -171,15 +171,17 @@ class SignUpActivity : AppCompatActivity() {
 
     // 아이디에 대한 에러 메세지 반환하는 함수
     private fun getMessageValidId(): String? {
-        val text = etSignUpId.text.toString()
-        val userData = UserDatabase.getUser(etSignUpId.text.toString())
-        val errorCode = when {
+        if (myBoolean == false) {
+            val text = etSignUpId.text.toString()
+            val userData = UserDatabase.getUser(etSignUpId.text.toString())
+            val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_ID
                 text.includeAlphabetAndNumber() -> null
                 (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
                 else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }
+        }else return null
     }
 
     // 비밀번호에 대한 에러 메세지 반환하는 함수
