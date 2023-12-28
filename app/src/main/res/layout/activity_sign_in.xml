@@ -7,7 +7,6 @@
     android:background="@color/background_color"
     tools:context=".SignInActivity">
 
-
     <TextView
         android:id="@+id/tv_signin_app_name"
         android:layout_width="wrap_content"
@@ -22,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_sigup_id"
+        android:id="@+id/tv_signin_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -47,7 +46,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sigup_id" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_id" />
 
     <TextView
         android:id="@+id/tv_signin_id_error"
@@ -62,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_signin_id" />
 
     <TextView
-        android:id="@+id/tv_signup_password"
+        android:id="@+id/tv_signin_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -83,7 +82,7 @@
         android:textColorHint="@color/gray"
         android:backgroundTint="@color/component_color"
         android:hint="@string/empty_password_message"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_password" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_password" />
 
     <TextView
         android:id="@+id/tv_signin_password_error"
@@ -128,6 +127,4 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/btn_signin_login" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

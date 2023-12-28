@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     android:paddingLeft="40dp"
     android:paddingTop="80dp"
     android:paddingRight="40dp">
@@ -40,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_signup_name" />
 
     <TextView
-        android:id="@+id/tv_sigup_id"
+        android:id="@+id/tv_signup_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/id"
@@ -57,9 +58,9 @@
         android:inputType="text"
         android:textColorHint="@color/gray"
         android:hint="@string/empty_id_message"
-        app:layout_constraintEnd_toEndOf="@+id/tv_sigup_id"
-        app:layout_constraintStart_toStartOf="@+id/tv_sigup_id"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sigup_id" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_signup_id"
+        app:layout_constraintStart_toStartOf="@+id/tv_signup_id"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_id" />
 
     <TextView
         android:id="@+id/tv_signup_id_error"

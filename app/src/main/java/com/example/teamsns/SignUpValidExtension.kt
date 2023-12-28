@@ -2,7 +2,7 @@ package com.example.teamsns
 
 object SignUpValidExtension {
     /*
-    * 한글 이름
+    * 소문자 & 숫자 포함
     */
     fun String.includeAlphabetAndNumber() =
         Regex("^[a-z0-9]*$").containsMatchIn(this)
@@ -12,6 +12,7 @@ object SignUpValidExtension {
     */
     fun String.includeKorean() =
         Regex("^[가-힣]*$").containsMatchIn(this)
+
     /*
     * 특문 포함
     */
