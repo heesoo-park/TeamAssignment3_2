@@ -88,12 +88,11 @@ class DetailPageActivity : AppCompatActivity() {
 
     private fun init() {
         setProfile()
-
         setPersonalButton()
-
         setBackButton()
     }
 
+    // 사용자 프로필 세팅하는 함수
     private fun setProfile() {
         userData = UserDatabase.getUser(id!!)!!
         if (myId == id) tvDetailMyPageOrDetail.setText(DetailPageMessage.MYPAGE.message)
@@ -109,6 +108,7 @@ class DetailPageActivity : AppCompatActivity() {
         setPostList()
     }
 
+    // 편집, 로그아웃 버튼 활성화 함수
     private fun setPersonalButton() {
         val visibleBoolean = (myId == id)
         tvDetailEditBtn.isVisible = visibleBoolean
@@ -118,6 +118,7 @@ class DetailPageActivity : AppCompatActivity() {
         setEditButton()
     }
 
+    // 뒤로가기 버튼 동작 함수
     private fun setBackButton() {
         ivDetailBackBtn.setOnClickListener {
             finish()
@@ -125,6 +126,7 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
+    // 게시물 리스트 세팅하는 함수
     private fun setPostList() {
         for (post in userData.userPosts.reversed()) {
             val postView: View = inflater.inflate(R.layout.post_item, detailPostLayout, false)
@@ -158,6 +160,7 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
+    // 좋아요 버튼 기능 세팅하는 함수
     private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
         likeButton.setOnClickListener {
             Log.e("user", post.likeSelectedUser.toString())
@@ -177,6 +180,7 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
+    // 더보기 버튼 활성화 함수
     private fun setShowMoreVisible(post: Post, detailContent: TextView, showMore: TextView) {
         detailContent.post {
             if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
@@ -186,6 +190,7 @@ class DetailPageActivity : AppCompatActivity() {
         setShowMoreButton(post, detailContent, showMore)
     }
 
+    // 더보기 버튼 기능 세팅하는 함수
     private fun setShowMoreButton(post: Post, detailContent: TextView, showMore: TextView) {
         showMore.setOnClickListener {
             if (detailContent.maxLines == Integer.MAX_VALUE) {
