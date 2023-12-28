@@ -79,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity= "center_vertical"
                 android:orientation="horizontal">
+
             </LinearLayout>
     </HorizontalScrollView>
     <!-- 사용자 목록 끝 -->
@@ -97,7 +98,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
         </LinearLayout>
     </ScrollView>
     <!-- 게시물 목록 끝 -->

@@ -3,6 +3,7 @@ package com.example.teamsns
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -75,8 +76,13 @@ class MainPageActivity : AppCompatActivity() {
             val profileView: View =
                 inflater.inflate(R.layout.profile_item, mainUserProfileList, false)
             val profileImg: ImageView = profileView.findViewById(R.id.iv_main_user_profile)
-
+            val profileStroke: ImageView = profileView.findViewById(R.id.iv_user_stroke)
             profileImg.setImageResource(user.profileImage)
+            if (loginUserId != user.id) {
+                profileStroke.setImageResource(R.drawable.selector_profile_image_background2)
+            }else {
+                profileStroke.setImageResource(R.drawable.selector_profile_image_background)
+            }
             mainUserProfileList.addView(profileView)
             setOnProflieClickListener(user, profileImg)
         }
