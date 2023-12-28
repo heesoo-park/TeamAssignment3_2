@@ -3,9 +3,8 @@ package com.example.teamsns
 data class Post(
     val userProfileImage: Int,
     var postImage: ArrayList<Int>,
-    val comment: String?,
+    val commentUser: ArrayList<CommentUser>?,
     var like: Int = 0,
     var postContent: String? = null,
-    var commentIcon: Int? = null,
     var likeSelectedUser: ArrayList<String> = ArrayList()
 )
