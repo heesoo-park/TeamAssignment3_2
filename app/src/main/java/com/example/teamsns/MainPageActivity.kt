@@ -15,7 +15,6 @@ class MainPageActivity : AppCompatActivity() {
     private val tvMainHelloWord: TextView by lazy {
         findViewById(R.id.tv_main_hello_word)
     }
-
     private val ivMainMyProfile: ImageView by lazy {
         findViewById(R.id.iv_main_profile_btn)
     }
@@ -97,12 +96,10 @@ class MainPageActivity : AppCompatActivity() {
                     postView.findViewById(R.id.tv_main_post_show_more)
 
                 tvMainPostContent.text = post.postContent
-
                 ivMainPost.setImageResource(post.postImage)
-
                 ivMainPostUserProfile.setImageResource(post.userProfileImage)
-
                 tvMainPostUserName.text = user.name
+                tvMainPostLikeCount.text = post.like.toString()
 
                 mainPostList.addView(postView)
 

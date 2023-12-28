@@ -60,28 +60,4 @@ object UserDatabase {
             it.password = user.password
         }
     }
-
-    // 회원가입 아이디 중복체크 용도
-    fun checkUserId(id: String): Boolean {
-        totalUserData.forEach {
-            if (it.id == id) return false
-        }
-        return true
-    }
-
-    // 로그인 아이디, 비밀번호 체크 용도
-    fun matchUser(id: String, password: String): Boolean {
-        totalUserData.forEach {
-            if (it.id == id && it.password == password) return true
-        }
-        return false
-    }
-
-    fun addPost(userId: String, post: Post) {
-        val user = getUser(userId)
-        if (user != null) {
-            user.userPosts.add(post)
-        }
-    }
-
 }

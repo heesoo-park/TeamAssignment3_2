@@ -58,14 +58,22 @@ class SignInActivity : AppCompatActivity() {
         btnSignInLogIn.setOnClickListener{
             val userData = getUser(etSignInId.text.toString())
             when {
-                etSignInId.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_ID.message, Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener}
-                etSignInPw.text.toString().trim().isEmpty() -> {Toast.makeText(this, SignUpErrorMessage.EMPTY_PASSWORD.message, Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener}
-                (userData == null) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.message, Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener}
-                (userData.password != etSignInPw.text.toString()) -> {Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.message, Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener}
+                etSignInId.text.toString().trim().isEmpty() -> {
+                    Toast.makeText(this, SignUpErrorMessage.EMPTY_ID.message, Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                etSignInPw.text.toString().trim().isEmpty() -> {
+                    Toast.makeText(this, SignUpErrorMessage.EMPTY_PASSWORD.message, Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                (userData == null) -> {
+                    Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.message, Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                (userData.password != etSignInPw.text.toString()) -> {
+                    Toast.makeText(this, SignUpErrorMessage.PASSWORD_MISMATCH.message, Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
             }
 
             val intent = Intent(this, MainPageActivity::class.java)
@@ -75,7 +83,6 @@ class SignInActivity : AppCompatActivity() {
 
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_top)
-
         }
     }
 
@@ -87,5 +94,4 @@ class SignInActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_top)
         }
     }
-
 }
