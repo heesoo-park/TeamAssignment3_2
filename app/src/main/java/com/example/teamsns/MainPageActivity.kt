@@ -11,13 +11,25 @@ import android.widget.TextView
 
 class MainPageActivity : AppCompatActivity() {
 
-    private val tvMainHelloWord: TextView by lazy { findViewById(R.id.tv_main_hello_word) }
+    private val tvMainHelloWord: TextView by lazy {
+        findViewById(R.id.tv_main_hello_word)
+    }
 
-    private val ivMainMyProfile: ImageView by lazy { findViewById(R.id.iv_main_profile_btn) }
-    private val ivMainUser1: ImageView by lazy { findViewById(R.id.iv_main_user1_btn) }
-    private val ivMainUser2: ImageView by lazy { findViewById(R.id.iv_main_user2_btn) }
-    private val ivMainUser3: ImageView by lazy { findViewById(R.id.iv_main_user3_btn) }
-    private val ivMainUser4: ImageView by lazy { findViewById(R.id.iv_main_user4_btn) }
+    private val ivMainMyProfile: ImageView by lazy {
+        findViewById(R.id.iv_main_profile_btn)
+    }
+    private val ivMainUser1: ImageView by lazy {
+        findViewById(R.id.iv_main_user1_btn)
+    }
+    private val ivMainUser2: ImageView by lazy {
+        findViewById(R.id.iv_main_user2_btn)
+    }
+    private val ivMainUser3: ImageView by lazy {
+        findViewById(R.id.iv_main_user3_btn)
+    }
+    private val ivMainUser4: ImageView by lazy {
+        findViewById(R.id.iv_main_user4_btn)
+    }
 
     private val profileList
         get() = listOf(
