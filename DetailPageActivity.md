@@ -1,6 +1,6 @@
 DetailPageActivity
 =
-# 레이아웃 구성
+# 레이아웃 구성 [홈](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/README.md)
 
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/2c965d4c-2b81-40f1-803b-b77f61ca70a2)
 
