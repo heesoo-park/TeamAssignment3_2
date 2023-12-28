@@ -114,12 +114,14 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 비밀번호등 조건에 맞으면 회원의 정보를 저장한다
 
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/84c0cd18-6ce1-48ad-b6e5-0338dbce5fe4)
+
 가로 모드에서 로그인페이지와 같이 양옆 여백을 좀 더 줬고
 
 스크롤 뷰로 스크롤 가능하게 구현했다
 
 ### 프로필 사진 선택 페이지
 ![Honeycam 2023-12-28 21-13-09](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/050885db-2a1c-4a39-b432-95d19e451a74)
+
 [페이지 상세 설명](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/ChooseProfileActivity.md)
 
 계정 생성시 프로필 사진을 생성하는 페이지
