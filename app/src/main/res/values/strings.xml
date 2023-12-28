@@ -11,12 +11,13 @@
     <string name="detail_activity_my_page">My Page</string>
     <string name="show_more">..더보기</string>
     <string name="show_close">접기</string>
+    <string name="edit_do">수정하기</string>
 
     <!-- empty edit text 유효성 처리 -->
-    <string name="empty_name_message">"이름을 입력하세요."</string>
-    <string name="empty_password_message">"비밀번호를 입력하세요."</string>
-    <string name="empty_id_message">"아이디를 입력하세요."</string>
-    <string name="incorrect_login_info">"아이디/비밀번호가 옳지 않습니다.."</string>
+    <string name="empty_name_message">이름을 입력하세요.</string>
+    <string name="empty_password_message">비밀번호를 입력하세요.</string>
+    <string name="empty_id_message">아이디를 입력하세요.</string>
+    <string name="incorrect_login_info">아이디/비밀번호가 옳지 않습니다..</string>
 
     <!-- edit text 입력 값 적절한지 유효성 처리 -->
     <string name="name_error_message">"한국 이름만 가능"</string>

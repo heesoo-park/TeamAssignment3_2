@@ -5,13 +5,13 @@ object SignUpValidExtension {
     * 한글 이름
     */
     fun String.includeAlphabetAndNumber() =
-        Regex("^[a-z0-9]*$")
+        Regex("^[a-z0-9]*$").containsMatchIn(this)
 
     /*
     * 한글 이름
     */
     fun String.includeKorean() =
-        Regex("^[가-힣]*$")
+        Regex("^[가-힣]*$").containsMatchIn(this)
     /*
     * 특문 포함
     */
