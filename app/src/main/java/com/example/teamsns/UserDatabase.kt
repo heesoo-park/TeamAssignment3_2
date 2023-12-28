@@ -1,10 +1,13 @@
 package com.example.teamsns
 
 object UserDatabase {
+
+
+
     private val user1 = User(
         "사용자1",
         "test1",
-        "abcdABCD1!",
+        "a",
         (R.drawable.img_cat1),
         "오늘 하루는 피곤하네요",
         arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1),comment = "아주 즐거워요", like =  0))
@@ -38,6 +41,8 @@ object UserDatabase {
         arrayListOf(Post(userProfileImage = (R.drawable.img_cat4),postImage = (R.drawable.img_dog4),comment = "아주 즐거워요", like =  0))
     )
 
+    
+
     var totalUserData: ArrayList<User> = arrayListOf(user1, user2, user3, user4)
 
 
@@ -58,10 +63,10 @@ object UserDatabase {
 
     // 사용자 정보 수정 용도
     fun editUserData(user: User) {
-        totalUserData.forEach {
+        totalUserData.find {it.id == user.id}?.let {
             it.name = user.name
-            it.id = user.id
             it.statusMessage = user.statusMessage
+            it.password = user.password
         }
     }
 

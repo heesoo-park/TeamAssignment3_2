@@ -109,7 +109,7 @@ class DetailPageActivity : AppCompatActivity() {
         else myPageDetail.setText(DetailPageMessage.DETAIL.message)
         name = userDate.name
         statusMessage = userDate.statusMessage.toString()
-        profileImageView.setImageResource(userDate.profileImage!!)
+        profileImageView.setImageResource(userDate.profileImage)
         idTextView.setText(id)
         nameTextView.setText(name)
         statusMessageTextView.setText(statusMessage)
