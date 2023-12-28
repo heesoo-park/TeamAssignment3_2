@@ -104,14 +104,11 @@ class MainPageActivity : AppCompatActivity() {
 
                 val ivMainPost: ImageView = postView.findViewById(R.id.iv_main_post)
                 val tvMainPostContent: TextView = postView.findViewById(R.id.tv_main_post_content)
-                val ivMainPostUserProfile: ImageView =
-                    postView.findViewById(R.id.iv_main_post_userprofile)
+                val ivMainPostUserProfile: ImageView = postView.findViewById(R.id.iv_main_post_userprofile)
                 val tvMainPostUserName: TextView = postView.findViewById(R.id.tv_main_post_username)
                 val ivMainPostLikeBtn: ImageView = postView.findViewById(R.id.iv_main_post_like_btn)
-                val tvMainPostLikeCount: TextView =
-                    postView.findViewById(R.id.tv_main_post_like_count)
-                val tvMainPostShowMore: TextView =
-                    postView.findViewById(R.id.tv_main_post_show_more)
+                val tvMainPostLikeCount: TextView = postView.findViewById(R.id.tv_main_post_like_count)
+                val tvMainPostShowMore: TextView = postView.findViewById(R.id.tv_main_post_show_more)
                 val ivDetailPostLeftArrow: ImageView = postView.findViewById(R.id.iv_left_arrow_button)
                 val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
                 val currentImageIndex = 0
