@@ -167,11 +167,13 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 
 아래엔 사용자가 게시한 게시물들이 출력된다
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/05131199-6562-4902-9a8c-e27a1cb62a99)
+
 로그인한 사용자가 본인이라면 편집 버튼과 로그아웃 버튼이 나타나게 된다
 
 편집버튼으로 이동하는 편집 페이지는 회원가입할때 사용한 페이지를 재사용해서 만들었다
 
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/23fc9189-94c0-4ecc-8bd4-f62e76332dfd)
+
 가로모드의 구성은 메인페이지와 유사하다
 
 ### 편집 페이지
