@@ -2,7 +2,6 @@
 
 1. 로그인 페이지
 
-![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/148201041/22aae23b-91c4-4e73-9da5-1f26bf47bd95)
 
 ## (1) Layout : [activity_sign_in.xml](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/app/src/main/res/layout/activity_sign_in.xml) & [activity_sign_in.xml-(land)](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/app/src/main/res/layout-land/activity_sign_in.xml)
 
