@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
         findViewById(R.id.btn_signup_next)
     }
     private val tvId: TextView by lazy {
-        findViewById(R.id.tv_id)
+        findViewById(R.id.tv_sigup_id)
     }
 
     // arrays
