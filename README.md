@@ -1,5 +1,6 @@
 별개냥
 =
+
 ## 프로젝트 개요
 
 ### 프로젝트 팀원
@@ -84,3 +85,50 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 [Post](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/Post.md)
 
 [ChooseProfileActivity](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/ChooseProfileActivity.md)
+
+## 로그인 페이지 
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/b6906e7f-3cba-42c7-989f-489c7e59ca54) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/fc333dbe-21de-4f68-a509-18d6a8dbed9c)
+
+사용자의 정보를 DB에서 찾아 가입된 사용자인지 확인 하는 액티비티
+
+가입 되지 않은 사용자는 회원가입 링크로 이동가능하다
+
+로그인 페이지에 대한 상세정보는 [여기](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignUpPageActivity.md)서 확인 가능합니다
+
+![Honeycam 2023-12-28 21-02-03](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/f91dcc1d-bb90-4da1-8d7b-ce66d1bce24c)
+
+가로 모드에선 양옆의 여백을 좀 더 줬고
+
+상하 여백을 줄였습니다
+
+한 화면에 전부 띄우지 못해 스크롤 뷰를 추가해서 사용자가 스크롤 할 수 있게끔 구현했다
+
+## 회원가입 페이지
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/9d7a6710-e9dd-42d2-964a-92cf67e14217) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/cce9bf58-d3cd-4074-9d40-0d34b78ae313)
+
+자세한 내용은 [여기](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignUpPageActivity.md)에서 확인 가능합니다
+데이터베이스에 유저의 정보를 입력하는 페이지
+
+유효성검사로 중복된 아이디를 체크하고
+
+비밀번호등 조건에 맞으면 회원의 정보를 저장한다
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/84c0cd18-6ce1-48ad-b6e5-0338dbce5fe4)
+가로 모드에서 로그인페이지와 같이 양옆 여백을 좀 더 줬고
+
+스크롤 뷰로 스크롤 가능하게 구현했다
+
+### 프로필 사진 선택 페이지
+![Honeycam 2023-12-28 21-13-09](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/050885db-2a1c-4a39-b432-95d19e451a74)
+[페이지 상세 설명](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/ChooseProfileActivity.md)
+
+계정 생성시 프로필 사진을 생성하는 페이지
+
+목록에서 사진을 선택하면 크게 보여주고 수정하기를 선택시 생성되는 계정의 프로필사진으로 저장
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/4ccbc03f-ef97-4bc4-a6a4-63540701fe50)
+
+가로모드에선 사진을 오른쪽에서 보여주게 구현
+
+##
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/9d6b470c-fe88-4b2e-a8c8-3ca419e290b2)
