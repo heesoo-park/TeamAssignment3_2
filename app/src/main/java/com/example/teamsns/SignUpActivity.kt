@@ -162,20 +162,17 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun getMessageValidId(): String? {
-        if (intent.getStringExtra("editId") == null) {
-            val text = etSignUpId.text.toString()
-            if (etSignUpId.isVisible) {
-                val errorCode = when {
-                    text.isBlank() -> SignUpErrorMessage.EMPTY_ID
-                    text.includeAlphabetAndNumber() -> null
-
-                    else -> SignUpErrorMessage.INVALID_PASSWORD
-                }
-                return errorCode?.let { getString(it.message) }
-            } else return null
-        } else {
-            return null
-        }
+        val text = etId.text.toString()
+        val userData = UserDatabase.getUser(etId.text.toString())
+        if (etId.isVisible) {
+            val errorCode = when {
+                text.isBlank() -> SignUpErrorMessage.EMPTY_ID
+                (userData == null && text.isNotBlank() && Pattern.matches("^[a-z0-9]*\$",text)) -> null
+                (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
+                else -> SignUpErrorMessage.INVALID_PASSWORD
+            }
+            return errorCode?.let { getString(it.message) }
+        } else return null
     }
 
 
