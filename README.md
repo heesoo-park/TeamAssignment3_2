@@ -1,4 +1,4 @@
-![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/18a72dd4-3b2c-4a89-9682-1d11b0250a34)별개냥
+별개냥
 =
 
 ## 프로젝트 개요
@@ -166,6 +166,7 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 사용자의 아이디 이름 상태메세지가 화면 상단에 출력되고
 
 아래엔 사용자가 게시한 게시물들이 출력된다
+
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/05131199-6562-4902-9a8c-e27a1cb62a99)
 
 로그인한 사용자가 본인이라면 편집 버튼과 로그아웃 버튼이 나타나게 된다
