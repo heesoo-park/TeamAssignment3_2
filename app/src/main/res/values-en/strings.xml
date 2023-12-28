@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">teamSns</string>
+
+    <string name="app_name">PetTalk</string>
+    <string name="hello_word">Hello, %s  </string>
     <string name="detail_activity_edit">Edit</string>
-    <string name="detail_activity_logout">logout</string>
+    <string name="detail_activity_login">Log In</string>
+    <string name="detail_activity_logout">Log Out</string>
     <string name="edit_name">Name</string>
-    <string name="edit_name_empty">Please enter your name</string>
+    <string name="edit_name_empty">Enter your name</string>
     <string name="edit_status">status</string>
-    <string name="edit_status_message">Please enter a status message</string>
+    <string name="edit_status_message">Enter your status</string>
     <string name="detail_activity_detail">Detail</string>
     <string name="detail_activity_my_page">My Page</string>
-    <string name="show_more">..more</string>
-    <string name="show_close">close</string>
+    <string name="show_more">..for more</string>
+    <string name="show_close">fold</string>
+    <string name="edit_do">Edit</string>
+
+    <!-- empty edit text 유효성 처리 -->
+    <string name="empty_name_message">Enter the name</string>
+    <string name="empty_password_message">Enter the password</string>
+    <string name="empty_id_message">Type your id</string>
+    <string name="incorrect_login_info">Id/Password is incorrect</string>
+
+    <!-- edit text 입력 값 적절한지 유효성 처리 -->
+    <string name="name_error_message">Enter your name</string>
+    <string name="id_error_message">Id consists of characters and numbers</string>
+    <string name="password_error_message">Password must have at least one Upper/Lower case and special character</string>
+    <string name="password_check_error_message">Password does not match the id</string>
+    <string name="overlapping_id">This id already exists</string>
+
+
+    <!-- textView strings -->
+    <string name="name">Name</string>
+    <string name="id">Id</string>
+    <string name="password">Password</string>
+    <string name="check_password">Check Password</string>
+    <string name="next">Next</string>
 </resources>

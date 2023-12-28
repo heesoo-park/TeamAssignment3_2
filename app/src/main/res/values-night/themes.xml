@@ -3,7 +3,10 @@
     <style name="Base.Theme.TeamSns" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:buttonStyle">@style/customButtonFontStyle</item>
+        <item name="android:textViewStyle">@style/customTextViewFontStyle</item>
+        <item name="android:editTextStyle">@style/customEditTextFontStyle</item>
     </style>
 
 </resources>

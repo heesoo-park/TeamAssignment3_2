@@ -18,7 +18,6 @@ import com.example.teamsns.R.drawable.heart
 
 class DetailPageActivity : AppCompatActivity() {
 
-
     private val profileRefresh =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) init()
@@ -32,59 +31,50 @@ class DetailPageActivity : AppCompatActivity() {
         intent.getStringExtra("id")
     }
 
-    private val userDate: User by lazy {
-        UserDatabase.getUser(id!!)!!
-    }
+    private lateinit var userData:User
 
-    lateinit var name: String
+    private lateinit var name: String
 
-    lateinit var statusMessage: String
+    private lateinit var statusMessage: String
 
-    private val back: ImageView by lazy {
+    private val ivDetailBackBtn: ImageView by lazy {
         findViewById(R.id.iv_detail_back_btn)
     }
 
-    private val edit: TextView by lazy {
+    private val tvDetailEditBtn: TextView by lazy {
         findViewById(R.id.tv_detail_edit_btn)
     }
 
-    private val idTextView: TextView by lazy {
+    private val tvDetailId: TextView by lazy {
         findViewById(R.id.tv_detail_id)
     }
 
-    private val nameTextView: TextView by lazy {
+    private val tvDetailName: TextView by lazy {
         findViewById(R.id.tv_detail_name)
     }
 
-    private val statusMessageTextView: TextView by lazy {
+    private val tvDetailStatusMessage: TextView by lazy {
         findViewById(R.id.tv_detail_status_message)
     }
 
-    private val logOut: TextView by lazy {
+    private val tvDetailLogoutBtn: TextView by lazy {
         findViewById(R.id.tv_detail_logout_btn)
     }
 
-    private val profileImageView: AppCompatImageView by lazy {
+    private val ivDetailProfile: AppCompatImageView by lazy {
         findViewById(R.id.iv_detail_profile)
     }
 
-    private val myPageDetail: TextView by lazy {
+    private val tvDetailMyPageOrDetail: TextView by lazy {
         findViewById(R.id.tv_detail_my_page_or_detail)
     }
 
-    private lateinit var detailImage: ImageView
-    private lateinit var detailContent: TextView
-    private lateinit var detailCommentIcon: ImageView
-    private lateinit var detailComment: TextView
-    private lateinit var likeButton: ImageView
-    private lateinit var likeCount: TextView
-    private lateinit var showMore: TextView
 
     private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
     }
 
-    private val postLayout: LinearLayout by lazy {
+    private val detailPostLayout: LinearLayout by lazy {
         findViewById(R.id.layout_detail_post_layout)
     }
 
@@ -98,76 +88,80 @@ class DetailPageActivity : AppCompatActivity() {
 
     private fun init() {
         setProfile()
-
         setPersonalButton()
-
         setBackButton()
     }
 
+    // 사용자 프로필 세팅하는 함수
     private fun setProfile() {
-        if (myId == id) myPageDetail.setText(DetailPageMessage.MYPAGE.message)
-        else myPageDetail.setText(DetailPageMessage.DETAIL.message)
-        name = userDate.name
-        statusMessage = userDate.statusMessage.toString()
-        profileImageView.setImageResource(userDate.profileImage)
-        idTextView.setText(id)
-        nameTextView.setText(name)
-        statusMessageTextView.setText(statusMessage)
+        userData = UserDatabase.getUser(id!!)!!
+        if (myId == id) tvDetailMyPageOrDetail.setText(DetailPageMessage.MYPAGE.message)
+        else tvDetailMyPageOrDetail.setText(DetailPageMessage.DETAIL.message)
+        name = userData.name
+        statusMessage = userData.statusMessage.toString()
+        ivDetailProfile.setImageResource(userData.profileImage)
+        tvDetailId.setText(id)
+        tvDetailName.setText(name)
+        tvDetailStatusMessage.setText(statusMessage)
 
-        postLayout.removeAllViews()
+        detailPostLayout.removeAllViews()
         setPostList()
     }
 
+    // 편집, 로그아웃 버튼 활성화 함수
     private fun setPersonalButton() {
-        val visibleBoolean = myId == id
-        edit.isVisible = visibleBoolean
-        logOut.isVisible = visibleBoolean
+        val visibleBoolean = (myId == id)
+        tvDetailEditBtn.isVisible = visibleBoolean
+        tvDetailLogoutBtn.isVisible = visibleBoolean
 
         setLogOutButton()
         setEditButton()
     }
 
+    // 뒤로가기 버튼 동작 함수
     private fun setBackButton() {
-        back.setOnClickListener {
+        ivDetailBackBtn.setOnClickListener {
             finish()
-            overridePendingTransition(R.anim.none, R.anim.horizon_enter)
+            overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right)
         }
     }
 
+    // 게시물 리스트 세팅하는 함수
     private fun setPostList() {
-        for (post in userDate.userPosts.reversed()) {
-            val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
+        for (post in userData.userPosts.reversed()) {
+            val postView: View = inflater.inflate(R.layout.post_item, detailPostLayout, false)
 
-            detailImage = postView.findViewById(R.id.iv_detail_post_list_img)
-            detailContent = postView.findViewById(R.id.tv_detail_post_list_contents)
-            detailCommentIcon = postView.findViewById(R.id.iv_detail_post_comment_icon)
-            detailComment = postView.findViewById(R.id.tv_detail_post_comment)
-            likeButton = postView.findViewById(R.id.iv_detail_post_like_btn)
-            likeCount = postView.findViewById(R.id.tv_detail_post_like_count)
-            showMore = postView.findViewById(R.id.tv_detail_post_show_more)
+            val ivDetailPostListImg: ImageView = postView.findViewById(R.id.iv_detail_post_list_img)
+            val tvDetailPostListContents: TextView = postView.findViewById(R.id.tv_detail_post_list_contents)
+            val ivDetailPostCommentIcon: ImageView = postView.findViewById(R.id.iv_detail_post_comment_icon)
+            val tvDetailPostComment: TextView = postView.findViewById(R.id.tv_detail_post_comment)
+            val ivDetailPostLikeBtn: ImageView = postView.findViewById(R.id.iv_detail_post_like_btn)
+            val tvDetailPostLikeCount: TextView = postView.findViewById(R.id.tv_detail_post_like_count)
+            val tvDetailPostShowMore: TextView = postView.findViewById(R.id.tv_detail_post_show_more)
 
-            detailContent.text = post.postContent
+            tvDetailPostListContents.text = post.postContent
 
-            detailImage.setImageResource(post.postImage)
+            ivDetailPostListImg.setImageResource(post.postImage)
 
-            detailCommentIcon.setImageResource(post.commentIcon)
+            ivDetailPostCommentIcon.setImageResource(post.commentIcon)
 
-            detailComment.text = post.comment
+            tvDetailPostComment.text = post.comment
 
-            postLayout.addView(postView)
+            detailPostLayout.addView(postView)
 
             if (post.likeSelectedUser.any { it == myId }) {
-                likeButton.setImageResource(heart)
+                ivDetailPostLikeBtn.setImageResource(heart)
             }
 
-            likeCount.text = post.like.toString()
+            tvDetailPostLikeCount.text = post.like.toString()
 
-            setLikeButton(post)
-            setShowMoreVisible(post)
+            setLikeButton(post, ivDetailPostLikeBtn, tvDetailPostLikeCount)
+            setShowMoreVisible(post, tvDetailPostListContents, tvDetailPostShowMore)
         }
     }
 
-    private fun setLikeButton(post: Post) {
+    // 좋아요 버튼 기능 세팅하는 함수
+    private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
         likeButton.setOnClickListener {
             Log.e("user", post.likeSelectedUser.toString())
             if (post.likeSelectedUser.any { it == myId }) {
@@ -186,20 +180,21 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
-    private fun setShowMoreVisible(post: Post) {
-        detailContent.text = post.postContent
+    // 더보기 버튼 활성화 함수
+    private fun setShowMoreVisible(post: Post, detailContent: TextView, showMore: TextView) {
+        detailContent.post {
+            if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
+            else showMore.visibility = View.INVISIBLE
+        }
 
-        if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
-        else showMore.visibility = View.INVISIBLE
-
-        setShowMoreButton(post)
+        setShowMoreButton(post, detailContent, showMore)
     }
 
-    private fun setShowMoreButton(post: Post) {
-        detailContent.text = post.postContent
+    // 더보기 버튼 기능 세팅하는 함수
+    private fun setShowMoreButton(post: Post, detailContent: TextView, showMore: TextView) {
         showMore.setOnClickListener {
             if (detailContent.maxLines == Integer.MAX_VALUE) {
-                detailContent.maxLines = 2
+                detailContent.maxLines = 1
                 showMore.setText(DetailPageMessage.SHOWMORE.message)
             } else {
                 detailContent.maxLines = Integer.MAX_VALUE
@@ -209,7 +204,7 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setLogOutButton() {
-        logOut.setOnClickListener {
+        tvDetailLogoutBtn.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
@@ -218,11 +213,11 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setEditButton() {
-        edit.setOnClickListener {
+        tvDetailEditBtn.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             intent.putExtra("editId", myId)
             profileRefresh.launch(intent)
-            overridePendingTransition(R.anim.none, R.anim.fade_in)
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.fade_out)
         }
     }
 
