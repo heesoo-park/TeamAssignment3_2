@@ -124,16 +124,12 @@ class DetailPageActivity : AppCompatActivity() {
             val postView: View = inflater.inflate(R.layout.post_item, detailPostLayout, false)
 
             val ivDetailPostListImg: ImageView = postView.findViewById(R.id.iv_detail_post_list_img)
-            val tvDetailPostListContents: TextView =
-                postView.findViewById(R.id.tv_detail_post_list_contents)
-            val ivDetailPostCommentIcon: ImageView =
-                postView.findViewById(R.id.iv_detail_post_comment_icon)
+            val tvDetailPostListContents: TextView = postView.findViewById(R.id.tv_detail_post_list_contents)
+            val ivDetailPostCommentIcon: ImageView = postView.findViewById(R.id.iv_detail_post_comment_icon)
             val tvDetailPostComment: TextView = postView.findViewById(R.id.tv_detail_post_comment)
             val ivDetailPostLikeBtn: ImageView = postView.findViewById(R.id.iv_detail_post_like_btn)
-            val tvDetailPostLikeCount: TextView =
-                postView.findViewById(R.id.tv_detail_post_like_count)
-            val tvDetailPostShowMore: TextView =
-                postView.findViewById(R.id.tv_detail_post_show_more)
+            val tvDetailPostLikeCount: TextView = postView.findViewById(R.id.tv_detail_post_like_count)
+            val tvDetailPostShowMore: TextView = postView.findViewById(R.id.tv_detail_post_show_more)
             val ivDetailPostLeftArrow: ImageView = postView.findViewById(R.id.iv_left_arrow_button)
             val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
             val currentImageIndex = 0
