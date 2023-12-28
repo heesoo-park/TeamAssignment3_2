@@ -112,6 +112,9 @@ class MainPageActivity : AppCompatActivity() {
                     postView.findViewById(R.id.tv_main_post_like_count)
                 val tvMainPostShowMore: TextView =
                     postView.findViewById(R.id.tv_main_post_show_more)
+                val ivDetailPostLeftArrow: ImageView = postView.findViewById(R.id.iv_left_arrow_button)
+                val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
+                val currentImageIndex = 0
 
                 tvMainPostContent.text = post.postContent
                 ivMainPost.setImageResource(post.postImage[0])
@@ -130,6 +133,7 @@ class MainPageActivity : AppCompatActivity() {
                 setLikeButton(post, ivMainPostLikeBtn, tvMainPostLikeCount, ivMainPost)
                 setShowMoreVisible(post, tvMainPostContent, tvMainPostShowMore)
                 setOnProfileImageClickListener(user, ivMainPostUserProfile)
+                setShowPostArrow(post, ivDetailPostLeftArrow, ivDetailPostRightArrow,ivMainPost,currentImageIndex)
             }
         }
     }
@@ -191,5 +195,43 @@ class MainPageActivity : AppCompatActivity() {
                 showMore.setText(DetailPageMessage.SHOWCLOSE.message)
             }
         }
+    }
+
+    // 포스트 이미지가 여러개일시 화살표 표시
+    private fun setShowPostArrow(post: Post, leftArrow: ImageView, rightArrow: ImageView, imageView: ImageView,currentImageIndex: Int) {
+        val postSize = post.postImage.size
+        when {
+            postSize == 1 -> {
+                leftArrow.visibility = View.INVISIBLE
+                rightArrow.visibility = View.INVISIBLE
+            }
+            currentImageIndex == postSize - 1 -> rightArrow.visibility = View.INVISIBLE
+            currentImageIndex == 0 -> leftArrow.visibility = View.INVISIBLE
+            else -> {
+                leftArrow.visibility = View.VISIBLE
+                rightArrow.visibility = View.VISIBLE
+            }
+        }
+        setSideArrowButton(post, leftArrow, rightArrow, imageView, currentImageIndex)
+    }
+
+    // side화살표 버튼 클릭시 이미지 변화
+    private fun setSideArrowButton(post: Post,leftArrow: ImageView,rightArrow: ImageView,imageView: ImageView,currentImageIndex: Int){
+        var index = currentImageIndex
+        leftArrow.setOnClickListener {
+            if(index > 0) {
+                index -= 1
+                imageView.setImageResource(post.postImage[index])
+                setShowPostArrow(post,leftArrow,rightArrow,imageView,index)
+            }
+        }
+        rightArrow.setOnClickListener {
+            if(index < post.postImage.size - 1) {
+                index += 1
+                imageView.setImageResource(post.postImage[index])
+                setShowPostArrow(post,leftArrow,rightArrow,imageView,index)
+            }
+        }
+        imageView.setImageResource(post.postImage[index])
     }
 }

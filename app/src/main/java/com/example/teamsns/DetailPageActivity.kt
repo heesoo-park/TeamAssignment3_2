@@ -136,7 +136,7 @@ class DetailPageActivity : AppCompatActivity() {
                 postView.findViewById(R.id.tv_detail_post_show_more)
             val ivDetailPostLeftArrow: ImageView = postView.findViewById(R.id.iv_left_arrow_button)
             val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
-            var currentImageIndex = 0
+            val currentImageIndex = 0
 
             tvDetailPostListContents.text = post.postContent
             ivDetailPostListImg.setImageResource(post.postImage[0])
