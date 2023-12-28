@@ -64,7 +64,6 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-
     private fun setEditUserData() {
         userData = UserDatabase.getUser(id)!!
         name = userData.name
@@ -102,21 +101,27 @@ class SignUpActivity : AppCompatActivity() {
         btnNext.setOnClickListener {
             if (myBoolean == true) {
                 user = User(
-                    name = etName.toString(),
+                    name = etName.text.toString(),
                     id = id,
-                    statusMessage = etId.toString(),
-                    password = etPassword.toString()
+                    statusMessage = etId.text.toString(),
+                    password = etPassword.text.toString()
                 )
 
-                Log.e("USER DATA BEFORE", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
+                Log.e(
+                    "USER DATA BEFORE",
+                    "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}"
+                )
                 UserDatabase.editUserData(user)
-                Log.e("USER DATA AFTER", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
+                Log.e(
+                    "USER DATA AFTER",
+                    "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}"
+                )
 
             } else {
                 user = User(
-                    name = etName.toString(),
-                    id = etId.toString(),
-                    password = etPassword.toString(),
+                    name = etName.text.toString(),
+                    id = etId.text.toString(),
+                    password = etPassword.text.toString(),
                     statusMessage = ""
                 )
                 UserDatabase.addUser(user)
@@ -178,48 +183,42 @@ class SignUpActivity : AppCompatActivity() {
     private fun getMessageValidId(): String? {
         if (intent.getStringExtra("editId") == null) {
             val text = etId.text.toString()
-            if (etId.isVisible) {
-                val errorCode = when {
-                    text.isBlank() -> SignUpErrorMessage.EMPTY_ID
-                    text.includeAlphabetAndNumber() -> null
+            val errorCode = when {
+                text.isBlank() -> SignUpErrorMessage.EMPTY_ID
+                text.includeAlphabetAndNumber() -> null
 
-                    else -> SignUpErrorMessage.INVALID_PASSWORD
-                }
-                return errorCode?.let { getString(it.message) }
-            } else return null
-        } else {
-            return null
-        }
+                else -> SignUpErrorMessage.INVALID_PASSWORD
+            }
+            return errorCode?.let { getString(it.message) }
+        } else return null
     }
 
 
     private fun getMessageValidPassword(): String? {
         val text = etPassword.text.toString()
-        if (etPassword.isVisible) {
-            val errorCode = when {
-                text.isBlank() -> getString(R.string.empty_password_message)
-                text.includeSpecialCharacters() -> null
+        val errorCode = when {
+            text.isBlank() -> getString(R.string.empty_password_message)
+            text.includeSpecialCharacters() -> null
 
-                else -> getString(R.string.password_error_message)
-            }
-            return errorCode
-        } else return null
+            else -> getString(R.string.password_error_message)
+        }
+        return errorCode
     }
 
     private fun getMessageValidPasswordConfirm(): String? {
         val text = etPasswordConfirmation.text.toString()
-            val errorCode = when {
-                text.isBlank() -> SignUpErrorMessage.EMPTY_PASSWORD
-                (text.isNotBlank() && Pattern.matches(
-                    "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$",
-                    text
-                )) -> null
+        val errorCode = when {
+            text.isBlank() -> SignUpErrorMessage.EMPTY_PASSWORD
+            (text.isNotBlank() && Pattern.matches(
+                "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$",
+                text
+            )) -> null
 
-                (text != etPassword.text.toString()) -> SignUpErrorMessage.PASSWORD_MISMATCH
+            (text != etPassword.text.toString()) -> SignUpErrorMessage.PASSWORD_MISMATCH
 
-                else -> SignUpErrorMessage.INVALID_PASSWORD
-            }
-            return errorCode?.let { getString(it.message) }
+            else -> SignUpErrorMessage.INVALID_PASSWORD
+        }
+        return errorCode?.let { getString(it.message) }
 
     }
 
