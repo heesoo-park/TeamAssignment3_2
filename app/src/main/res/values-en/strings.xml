@@ -4,6 +4,7 @@
     <string name="app_name">PetTalk</string>
     <string name="hello_word">Hello, %s  </string>
     <string name="detail_activity_edit">Edit</string>
+    <string name="detail_activity_login">Log In</string>
     <string name="detail_activity_logout">Log Out</string>
     <string name="edit_name">Name</string>
     <string name="edit_name_empty">Enter your name</string>

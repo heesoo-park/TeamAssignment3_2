@@ -85,7 +85,7 @@ object UserDatabase {
     fun addPost(userId: String, post: Post) {
         val user = getUser(userId)
         if (user != null) {
-            user.userPosts?.add(post)
+            user.userPosts.add(post)
         }
     }
 
