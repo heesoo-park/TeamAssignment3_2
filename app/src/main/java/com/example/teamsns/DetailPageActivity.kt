@@ -31,7 +31,7 @@ class DetailPageActivity : AppCompatActivity() {
         intent.getStringExtra("id")
     }
 
-    private lateinit var userData:User
+    private lateinit var userData: User
 
     private lateinit var name: String
 
@@ -209,7 +209,7 @@ class DetailPageActivity : AppCompatActivity() {
             val intent = Intent(this, SignInActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-            overridePendingTransition(R.anim.none, R.anim.fade_out)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
     }
 
