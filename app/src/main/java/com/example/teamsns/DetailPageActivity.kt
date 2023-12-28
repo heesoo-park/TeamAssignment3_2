@@ -133,9 +133,9 @@ class DetailPageActivity : AppCompatActivity() {
 
             tvDetailPostListContents.text = post.postContent
             ivDetailPostListImg.setImageResource(post.postImage)
-            ivDetailPostCommentIcon.setImageResource(post.commentIcon)
             tvDetailPostComment.text = post.comment
             tvDetailPostLikeCount.text = post.like.toString()
+            if (post.commentIcon != null) ivDetailPostCommentIcon.setImageResource(post.commentIcon!!)
 
             detailPostLayout.addView(postView)
 

@@ -73,7 +73,7 @@
                 android:id="@+id/iv_user_stroke"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/selector_profile_image_background"/>
+                android:background="@drawable/shape_profile_image_stroke"/>
 
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
