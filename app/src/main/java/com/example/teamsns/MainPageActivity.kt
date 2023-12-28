@@ -14,10 +14,10 @@ class MainPageActivity : AppCompatActivity() {
     private val tvMainHelloWord: TextView by lazy { findViewById(R.id.tv_main_hello_word) }
 
     private val ivMainMyProfile: ImageView by lazy { findViewById(R.id.iv_main_profile_btn) }
-    private val ivMainUser1: ImageView by lazy { findViewById(R.id.iv_main_user1) }
-    private val ivMainUser2: ImageView by lazy { findViewById(R.id.iv_main_user2) }
-    private val ivMainUser3: ImageView by lazy { findViewById(R.id.iv_main_user3) }
-    private val ivMainUser4: ImageView by lazy { findViewById(R.id.iv_main_user4) }
+    private val ivMainUser1: ImageView by lazy { findViewById(R.id.iv_main_user1_btn) }
+    private val ivMainUser2: ImageView by lazy { findViewById(R.id.iv_main_user2_btn) }
+    private val ivMainUser3: ImageView by lazy { findViewById(R.id.iv_main_user3_btn) }
+    private val ivMainUser4: ImageView by lazy { findViewById(R.id.iv_main_user4_btn) }
 
     lateinit var detailImage: ImageView
     lateinit var detailContent: TextView
@@ -122,7 +122,7 @@ class MainPageActivity : AppCompatActivity() {
                 mainPostLayout.addView(postView)
 
                 if (post.likeSelectedUser.any { it == loginUserID }) {
-                    likeButton.setImageResource(R.drawable.heart) //check:likeButton->tempLikeButton
+                    tempLikeButton.setImageResource(R.drawable.heart)
                 }
 
                 tempLikeCount.text = post.like.toString()
