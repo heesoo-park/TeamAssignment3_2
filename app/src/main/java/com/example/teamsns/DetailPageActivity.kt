@@ -13,8 +13,8 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isVisible
-import com.example.teamsns.R.drawable.empty_heart
-import com.example.teamsns.R.drawable.heart
+import com.example.teamsns.R.drawable.img_empty_heart
+import com.example.teamsns.R.drawable.img_heart
 
 class DetailPageActivity : AppCompatActivity() {
 
@@ -150,7 +150,7 @@ class DetailPageActivity : AppCompatActivity() {
             detailPostLayout.addView(postView)
 
             if (post.likeSelectedUser.any { it == myId }) {
-                ivDetailPostLikeBtn.setImageResource(heart)
+                ivDetailPostLikeBtn.setImageResource(img_heart)
             }
 
             tvDetailPostLikeCount.text = post.like.toString()
@@ -166,11 +166,11 @@ class DetailPageActivity : AppCompatActivity() {
             Log.e("user", post.likeSelectedUser.toString())
             if (post.likeSelectedUser.any { it == myId }) {
                 post.like -= 1
-                likeButton.setImageResource(empty_heart)
+                likeButton.setImageResource(img_empty_heart)
                 post.likeSelectedUser.remove(myId)
             } else {
                 post.like += 1
-                likeButton.setImageResource(heart)
+                likeButton.setImageResource(img_heart)
                 post.likeSelectedUser.add(myId!!)
             }
 
@@ -203,6 +203,7 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
+    // 로그아웃 버튼 기능 세팅하는 함수
     private fun setLogOutButton() {
         tvDetailLogoutBtn.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
@@ -212,6 +213,7 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
+    // 편집 버튼 기능 세팅하는 함수
     private fun setEditButton() {
         tvDetailEditBtn.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
