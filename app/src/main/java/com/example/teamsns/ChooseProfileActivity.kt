@@ -96,16 +96,6 @@ class ChooseProfileActivity : AppCompatActivity() {
     private lateinit var editId: String
     private lateinit var userData: User
 
-    // 편집페이지로 사용하는지 체크하는 함수
-    private fun setEditCheck() {
-        if (intent.getStringExtra("editId") != null) {
-            editId = intent.getStringExtra("editId")!!
-            userData = UserDatabase.getUser(editId)!!
-            btnSignUp.setText(R.string.edit_do)
-            ivSelectedProfile.setImageResource(userData.profileImage)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_profile)
@@ -116,6 +106,16 @@ class ChooseProfileActivity : AppCompatActivity() {
 
         setEditCheck()
         setOnClickListener()
+    }
+
+    // 편집페이지로 사용하는지 체크하는 함수
+    private fun setEditCheck() {
+        if (intent.getStringExtra("editId") != null) {
+            editId = intent.getStringExtra("editId")!!
+            userData = UserDatabase.getUser(editId)!!
+            btnSignUp.setText(R.string.edit_do)
+            ivSelectedProfile.setImageResource(userData.profileImage)
+        }
     }
 
     // 클릭 리스너를 모아둔 함수
