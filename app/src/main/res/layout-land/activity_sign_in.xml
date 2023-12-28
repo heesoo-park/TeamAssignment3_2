@@ -51,6 +51,7 @@
                 android:backgroundTint="@color/component_color"
                 android:hint="@string/empty_id_message"
                 android:inputType="text"
+                android:textColor="@color/text_color"
                 android:textColorHint="@color/gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +90,7 @@
                 android:backgroundTint="@color/component_color"
                 android:hint="@string/empty_password_message"
                 android:inputType="textPassword"
+                android:textColor="@color/text_color"
                 android:textColorHint="@color/gray"
                 app:layout_constraintTop_toBottomOf="@+id/tv_signin_password" />
 
