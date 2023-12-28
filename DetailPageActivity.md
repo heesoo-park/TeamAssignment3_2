@@ -1,6 +1,6 @@
 DetailPageActivity
 =
-## 레이아웃 구성
+# 레이아웃 구성
 
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/2c965d4c-2b81-40f1-803b-b77f61ca70a2)
 
@@ -48,7 +48,7 @@ Cardview를 둥글게 만들고 그 안에 이미지를 넣어 만들었다.
 
 
 
-### post_item.xml
+## post_item.xml
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/fb719b03-6041-4ab5-b933-fb3e4a18b6de)
 
 리니어 레이아웃 안의 포스트를 지우고
@@ -101,7 +101,10 @@ editText의 길이를 정해주고 그 옆에 더보기 버튼을 추가
     <item android:drawable="@drawable/img_empty_heart"/>
 </selector>
 ```
+### 가로모드
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/03008233-d5db-4cd9-ab6b-2ad226544acb)
 
+land에선 editText의 길이를 늘려 더 길게 출력가능하게 만들었다
 
 # Activity
 
@@ -207,10 +210,6 @@ false로 attachToRoot를 설정해 호출자가 나중에 View를 추가할 수 
 좋아요 버튼은 이미 자신이 좋아요를 눌렀다면 다음에 눌렀을땐 취소가 되면서 좋아요 수가 줄어들게 만들었는데
 
 사용자가 자신이 좋아요을 누른 포스트인지 구별하기 좋게 빈하트가 아닌 채워진하트로 나오게 했다
-
-![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/03008233-d5db-4cd9-ab6b-2ad226544acb)
-
-land에선 editText의 길이를 늘려 더 길게 출력가능하게 만들었다
 
 #### setLikeButton 좋아요 버튼 구현
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/7c87fe7e-91da-47c8-8b40-f5079a253dab)
