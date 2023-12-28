@@ -45,10 +45,20 @@ class MainPageActivity : AppCompatActivity() {
         tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
         ivMainMyProfile.setImageResource(userData.profileImage!!)
 
+        init()
+    }
+
+    private fun init(){
         setUserProfileList()
+        setTopbar()
         setPostList()
     }
 
+    private fun setTopbar() {
+        ivMainMyProfile.setImageResource(userData.profileImage)
+
+        setOnProflieClickListener(userData,ivMainMyProfile)
+        }
     // 사용자 프로필 세팅
     private fun setUserProfileList() {
         for (user in UserDatabase.totalUserData) {
