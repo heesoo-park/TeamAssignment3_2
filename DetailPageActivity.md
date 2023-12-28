@@ -267,7 +267,7 @@ lineCount를 이용해 maxLines과 비교하고 더크면 ..더보기 버튼을 
 
 visibility가 visible이 된다면 버튼을 활성화한다.
 
-#### setSHowMoreButton
+#### 게시물 내용 더보기
 ```kotlin
     private fun setShowMoreButton(post: Post, detailContent: TextView, showMore: TextView) {
         showMore.setOnClickListener {
