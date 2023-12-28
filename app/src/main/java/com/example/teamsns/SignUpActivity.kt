@@ -107,14 +107,16 @@ class SignUpActivity : AppCompatActivity() {
                 Log.e("USER DATA BEFORE", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
                 UserDatabase.editUserData(user)
                 Log.e("USER DATA AFTER", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
-
             }
+
             val intent = Intent(this, ChooseProfileActivity::class.java).apply {
                 putExtra("name", etSignUpName.text.toString())
                 putExtra("id", etSignUpId.text.toString())
                 putExtra("password", etSignUpPassword.text.toString())
+
                 if (myBoolean == true) putExtra("editId", id)
             }
+
             setResult(RESULT_OK, intent)
             resultLauncher.launch(intent)
             overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
@@ -158,15 +160,15 @@ class SignUpActivity : AppCompatActivity() {
     // 이름에 대한 에러 메세지 반환하는 함수
     private fun getMessageValidName(): String? {
         val text = etSignUpName.text.toString()
-        if (etSignUpName.isVisible) {
+        return if (etSignUpName.isVisible) {
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_NAME
                 text.includeKorean() -> null
 
                 else -> SignUpErrorMessage.INVIALID_NAME
             }
-            return errorCode?.let { getString(it.message) }
-        } else return null
+            errorCode?.let { getString(it.message) }
+        } else null
     }
 
     // 아이디에 대한 에러 메세지 반환하는 함수
@@ -190,9 +192,9 @@ class SignUpActivity : AppCompatActivity() {
         val errorCode = when {
             text.isBlank() -> getString(R.string.empty_password_message)
             text.includeSpecialCharacters() -> null
-
             else -> getString(R.string.password_error_message)
         }
+
         return errorCode
     }
 
@@ -205,12 +207,12 @@ class SignUpActivity : AppCompatActivity() {
                     "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$",
                     text
                 )) -> null
-
                 (text != etSignUpPassword.text.toString()) -> SignUpErrorMessage.PASSWORD_MISMATCH
-
                 else -> SignUpErrorMessage.INVALID_PASSWORD
             }
-            return errorCode?.let { getString(it.message) }
+
+
+        return errorCode?.let { getString(it.message) }
     }
 
     // 다음 버튼 활성화 함수
