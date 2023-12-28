@@ -89,7 +89,6 @@
                 app:civ_border_color="@color/sky_blue"
                 app:civ_border_overlay="false"
                 />
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_main_user2_btn"
                 android:clipToOutline="true"
