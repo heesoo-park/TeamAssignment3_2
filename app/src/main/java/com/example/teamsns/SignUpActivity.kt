@@ -51,6 +51,20 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var user: User
     var myBoolean: Boolean? = false
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sign_up)
+        initView()
+    }
+
+    private fun initView() {
+        setEditCheck()
+        setTextChangedListener()
+        setOnFocusChangedListener()
+        btnNext()
+    }
+
+    // 편집 페이지로 사용해야하는지 판별하는 함수
     private fun setEditCheck() {
         if (intent.getStringExtra("editId") != null) {
             tvSignUpId.setText(R.string.edit_status)
@@ -62,26 +76,15 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    // 편집할 사용자 정보를 저장하는 함수
     private fun setEditUserData() {
         userData = UserDatabase.getUser(id)!!
         name = userData.name
         status = userData.statusMessage.toString()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
-        initView()
-    }
-
-    private fun initView() {
-        setEditCheck()
-        setTextChangedListener()
-        setOnFocusChangedListener()
-        btnSignup()
-    }
-
-    private fun btnSignup() {
+    // 다음 버튼을 눌렀을 때 실행되는 함수
+    private fun btnNext() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
@@ -118,6 +121,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    // EditText의 값 변경 리스너 함수
     private fun setTextChangedListener() {
         editTextArray.forEach { editText ->
             editText.addTextChangedListener {
@@ -127,6 +131,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    // EditText의 포커스 변경 리스너 함수
     private fun setOnFocusChangedListener() {
         editTextArray.forEach { editText ->
             editText.setOnFocusChangeListener { _, hasFocus ->
@@ -138,6 +143,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    // EditText에서 에러 메세지를 출력하기 위해 만든 확장함수
     private fun EditText.setErrorMessage() {
         when (this) {
             etSignUpName -> error = getMessageValidName()
@@ -149,6 +155,7 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    // 이름에 대한 에러 메세지 반환하는 함수
     private fun getMessageValidName(): String? {
         val text = etSignUpName.text.toString()
         if (etSignUpName.isVisible) {
@@ -162,6 +169,7 @@ class SignUpActivity : AppCompatActivity() {
         } else return null
     }
 
+    // 아이디에 대한 에러 메세지 반환하는 함수
     private fun getMessageValidId(): String? {
         val text = etSignUpId.text.toString()
         val userData = UserDatabase.getUser(etSignUpId.text.toString())
@@ -174,7 +182,7 @@ class SignUpActivity : AppCompatActivity() {
             return errorCode?.let { getString(it.message) }
     }
 
-
+    // 비밀번호에 대한 에러 메세지 반환하는 함수
     private fun getMessageValidPassword(): String? {
         val text = etSignUpPassword.text.toString()
         val errorCode = when {
@@ -186,6 +194,7 @@ class SignUpActivity : AppCompatActivity() {
         return errorCode
     }
 
+    // 비밀번호 확인에 대한 에러 메세지 반환하는 함수
     private fun getMessageValidPasswordConfirm(): String? {
         val text = etSignUpPassword2.text.toString()
             val errorCode = when {
@@ -202,6 +211,7 @@ class SignUpActivity : AppCompatActivity() {
             return errorCode?.let { getString(it.message) }
     }
 
+    // 다음 버튼 활성화 함수
     private fun setConfirmButtonEnable() {
         btnSignUpNext.isEnabled = getMessageValidName() == null
                 && getMessageValidId() == null

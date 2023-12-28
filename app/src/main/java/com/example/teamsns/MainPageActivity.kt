@@ -69,6 +69,7 @@ class MainPageActivity : AppCompatActivity() {
         setPostList()
     }
 
+    // 사용자 프로필 세팅
     private fun setUserProfileList() {
         for (user in UserDatabase.totalUserData) {
             val profileView: View =
@@ -81,6 +82,7 @@ class MainPageActivity : AppCompatActivity() {
         }
     }
 
+    // 사용자 프로필 이미지 클릭 리스너 함수
     private fun setOnProflieClickListener(user: User, button: ImageView) {
         button.setOnClickListener {
             val intent = Intent(this@MainPageActivity, DetailPageActivity::class.java)
@@ -91,6 +93,7 @@ class MainPageActivity : AppCompatActivity() {
         }
     }
 
+    // 게시물 목록을 세팅하는 함수
     private fun setPostList() {
         for (user in UserDatabase.getTotalUser()) {
             for (post in user.userPosts.reversed()) {
@@ -119,19 +122,20 @@ class MainPageActivity : AppCompatActivity() {
                 mainPostList.addView(postView)
 
                 if (post.likeSelectedUser.any { it == loginUserId }) {
-                    ivMainPostLikeBtn.setImageResource(R.drawable.heart)
+                    ivMainPostLikeBtn.setImageResource(R.drawable.img_heart)
                 }
 
                 tvMainPostLikeCount.text = post.like.toString()
 
                 setLikeButton(post, ivMainPostLikeBtn, tvMainPostLikeCount, ivMainPost)
                 setShowMoreVisible(post, tvMainPostContent, tvMainPostShowMore)
-                setOnProfileIconClickListener(user, ivMainPostUserProfile)
+                setOnProfileImageClickListener(user, ivMainPostUserProfile)
             }
         }
     }
 
-    private fun setOnProfileIconClickListener(user: User, detailUserProfileIcon: ImageView) {
+    // 게시물 내 프로필 이미지 클릭 리스너 함수
+    private fun setOnProfileImageClickListener(user: User, detailUserProfileIcon: ImageView) {
         detailUserProfileIcon.setOnClickListener {
             val intent = Intent(this@MainPageActivity, DetailPageActivity::class.java)
             intent.putExtra("myId", loginUserId)
@@ -141,34 +145,32 @@ class MainPageActivity : AppCompatActivity() {
         }
     }
 
-    private fun setLikeButton(
-        post: Post,
-        likeButton: ImageView,
-        likeCount: TextView,
-        detailImage: ImageView
-    ) {
+    // 게시물 내 좋아요 버튼 클릭 리스너 함수
+    private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView, detailImage:ImageView) {
         likeButton.setOnClickListener {
             likeShow(post, likeButton, likeCount)
         }
         detailImage.setOnLongClickListener {
-            likeShow(post, likeButton, likeCount)
+            likeShow(post,likeButton, likeCount)
             true
         }
     }
 
-    private fun likeShow(post: Post, click: ImageView, likeCount: TextView) {
+    // 게시물 내 좋아요 숫자 세팅하는 함수
+    private fun likeShow(post: Post, click: ImageView, likeCount: TextView){
         if (post.likeSelectedUser.any { it == loginUserId }) {
             post.like -= 1
-            click.setImageResource(R.drawable.empty_heart)
+            click.setImageResource(R.drawable.img_empty_heart)
             post.likeSelectedUser.remove(loginUserId)
         } else {
             post.like += 1
-            click.setImageResource(R.drawable.heart)
+            click.setImageResource(R.drawable.img_heart)
             post.likeSelectedUser.add(loginUserId)
         }
         likeCount.text = post.like.toString()
     }
 
+    // 게시물 내 더보기 버튼 활성화 함수
     private fun setShowMoreVisible(post: Post, detailContent: TextView, showMore: TextView) {
         detailContent.post {
             if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
@@ -178,6 +180,7 @@ class MainPageActivity : AppCompatActivity() {
         setShowMoreButton(post, detailContent, showMore)
     }
 
+    // 게시물 내 더보기 버튼 기능 세팅 함수
     private fun setShowMoreButton(post: Post, detailContent: TextView, showMore: TextView) {
         showMore.setOnClickListener {
             if (detailContent.maxLines == Integer.MAX_VALUE) {

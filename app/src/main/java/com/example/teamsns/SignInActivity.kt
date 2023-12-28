@@ -31,15 +31,16 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        initView()
+        init()
     }
 
-    private fun initView() {
+    private fun init() {
         activityResultLauncher()
         btnLogin()
         btnSignup()
     }
 
+    // registerForActivityResult 세팅하는 함수
     private fun activityResultLauncher() {
         activityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -52,6 +53,7 @@ class SignInActivity : AppCompatActivity() {
             }
     }
 
+    // 로그인 버튼 클릭 리스너 함수
     private fun btnLogin() {
         btnSignInLogIn.setOnClickListener{
             val userData = getUser(etSignInId.text.toString())
@@ -77,6 +79,7 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
+    // 회원가입 버튼 클릭 리스너 함수
     private fun btnSignup() {
         btnSignInSignUp.setOnClickListener{
             val intent = Intent(this, SignUpActivity::class.java)
