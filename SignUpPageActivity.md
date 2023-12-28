@@ -27,36 +27,41 @@ EditText에 Hint 텍스트 값을 부여해줌으로써 텍스트가 비어있�
 ### 객체
 
 [activity_sign_up.xml](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/app/src/main/res/layout/activity_sign_up.xml) & [activity_sign_up.xml-(land)](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/app/src/main/res/layout-land/activity_sign_up.xml) 의 EditText와 Button을 모두 지연 초기화를 시켜주었습니다.
-
+````
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
-
+````
 회원가입 페이지에서 입력된 값을 로그인 페이지로 넘겨 줄 수 있도록 resultLauncher 또한 지연 초기화 해 주었습니다.
-
+````
     lateinit var userData: User
     lateinit var id: String
     lateinit var name: String
     lateinit var status: String
     lateinit var user: User
     var myBoolean: Boolean? = false
+````
 
-사용자의 정보를 각각 저장하고 그 값을 user 데이터 클래스에 넘길 수 있도록 지연초기화 해주었습니다.
+편집 페이지로 이 회원가입 페이지를 재활용하는 경우에 사용자의 정보를 각각 저장하고 그 값을 user 데이터 클래스에 넘길 수 있도록 지연초기화 해주었습니다. 
+
+myBoolean 값이 이 페이지가 편집 페이지인지 회원가입페이지인지 분별해주는 기준이 됩니다.
 
 ### 메소드
 
 #### initView()
-
+````
     private fun initView() {
         setEditCheck()
         setTextChangedListener()
         setOnFocusChangedListener()
         btnNext()
     }
-
+````
 코드의 가독성을 높이기 위해 onCreate에서 실행되는 초기화면 함수들을 따로 모아두었습니다.
 
-#### setEditCheck()
 
+
+#### setEditCheck()
+````
 private fun setEditCheck() {
         if (intent.getStringExtra("editId") != null) {
             tvSignUpId.setText(R.string.edit_status)
@@ -67,17 +72,32 @@ private fun setEditCheck() {
             setEditUserData()
         }
     }
+````
+
+편집 페이지로 사용해야하는지 판별하는 함수입니다.
+
+회원가입 페이지로 사용되는 경우에는 이전 페이지에서 아무 값도 넘겨 받지 않습니다. 반면에 편집 페이지로 사용된다면 이미 로그인이 되어 있는 상태이기 때문에 userId에 대한 정보를 이미 알고 있습니다. 따라서 이 사용자 정보를 SignUpPageActivity에 넘겨줌으로써 편집 페이지로 이용하는 경우인지 확인할 수 있습니다.
+
+이전 페이지에서 editId를 넘겨 받았다면 editPage로 사용되고 넘겨 받지 못했다면 회원가입 페이지로 사용됩니다.
+
+
 
 #### setEditUserData()
-
+````
     private fun setEditUserData() {
         userData = UserDatabase.getUser(id)!!
         name = userData.name
         status = userData.statusMessage.toString()
     }
+````
+편집페이지로 판별이 되었을 때에만 실행되는 함수입니다. 
+
+편집할 사용자 정보를 저장하는 함수입니다. 앞서 지연초기화해준 사용자 정보 객체들이 이 함수에서 초기화 됩니다.
+
+
 
 #### btnNext() 
-
+````
 private fun btnNext() {
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -114,9 +134,17 @@ private fun btnNext() {
             overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
     }
+````
+다음 버튼을 눌렀을 때 실행되는 함수입니다. 
+
+registerForActivityResult를 사용해줌으로써 putExtra한 값들을 넘겨줍니다.
+
+그리고 ChooseProfileActivity()로 화면이 전환됩니다.
+
+
 
 #### setTextChangedListener()
-
+````
     private fun setTextChangedListener() {
         editTextArray.forEach { editText ->
             editText.addTextChangedListener {
@@ -125,9 +153,11 @@ private fun btnNext() {
             }
         }
     }
+````
+EditText의 값 변경 리스너 함수: EditText의 값이 변경될때마다 실행되는 함수입니다.
 
 #### setOnFocusChangedListener()
-
+````
     private fun setOnFocusChangedListener() {
         editTextArray.forEach { editText ->
             editText.setOnFocusChangeListener { _, hasFocus ->
@@ -138,10 +168,15 @@ private fun btnNext() {
             }
         }
     }
+````
+EditText의 포커스 변경 리스너 함수 : EditText의 focus가 변경될때마다 실행되는 함수입니다.
+
+
 
 #### EditText.setErrorMessage()
 
-    private fun EditText.setErrorMessage() {
+ ````
+private fun EditText.setErrorMessage() {
         when (this) {
             etSignUpName -> error = getMessageValidName()
             etSignUpId -> error = getMessageValidId()
@@ -151,9 +186,25 @@ private fun btnNext() {
             else -> Unit
         }
     }
+````
+EditText에서 에러 메세지를 출력하기 위해 만든 확장함수입니다. 
 
-#### getMessageValidName()
+error = 문자열 메세지 이름 을 사용해주면 TextView 오른쪽에 빨간 동그라미와 함께 에러 메세지가 표시됩니다.
 
+
+
+#### getMessageValidName() & getMessageValidId() & getMessageValidPassword() & getMessageValidPasswordConfirm()
+
+이름 / 아이디 / 비밀번호 / 비밀번호 확인 의 입력값이 옳지 않거나 비어있을 경우 해당되는 에러 메세지를 각각 반환하는 함수입니다.
+
+이름 : 한글만 입력 가능
+
+아이디 : 영문 소문자 또는 숫자
+
+비밀번호 : 8~16자, 영대소문자 및 특수문자 최소 1개 이상 포함
+
+> getMessageValidName()
+````
     private fun getMessageValidName(): String? {
         val text = etSignUpName.text.toString()
         if (etSignUpName.isVisible) {
@@ -166,53 +217,29 @@ private fun btnNext() {
             return errorCode?.let { getString(it.message) }
         } else return null
     }
+````
 
-#### getMessageValidId()
+에러메세지를 모두 enum class 에 저장하여 에러 메세지를 모두 한 파일에서 관리할 수 있도록 했습니다.
 
-    private fun getMessageValidId(): String? {
-        if (myBoolean == false) {
-            val text = etSignUpId.text.toString()
-            val userData = UserDatabase.getUser(etSignUpId.text.toString())
-            val errorCode = when {
-                text.isBlank() -> SignUpErrorMessage.EMPTY_ID
-                text.includeAlphabetAndNumber() -> null
-                (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
-                else -> SignUpErrorMessage.INVALID_PASSWORD
-            }
-            return errorCode?.let { getString(it.message) }
-        }else return null
-    }
+> enum class
 
-#### getMessageValidPassword()
+````
+enum class SignUpErrorMessage(
+    @StringRes val message: Int,
+) {
+    EMPTY_NAME(R.string.empty_name_message),
+    EMPTY_ID(R.string.empty_id_message),
+    EMPTY_PASSWORD(R.string.empty_password_message),
 
-    private fun getMessageValidPassword(): String? {
-        val text = etSignUpPassword.text.toString()
-        val errorCode = when {
-            text.isBlank() -> getString(R.string.empty_password_message)
-            text.includeSpecialCharacters() -> null
+    INVIALID_NAME(R.string.name_error_message),
+    INVALID_ID(R.string.id_error_message),
+    INVALID_PASSWORD(R.string.password_error_message),
 
-            else -> getString(R.string.password_error_message)
-        }
-        return errorCode
-    }
+    PASSWORD_MISMATCH(R.string.password_check_error_message),
+    OVERLAPPING_ID(R.string.overlapping_id),
+}
+````
 
-#### getMessageValidPasswordConfirm()
-
-    private fun getMessageValidPasswordConfirm(): String? {
-        val text = etSignUpPassword2.text.toString()
-            val errorCode = when {
-                text.isBlank() -> SignUpErrorMessage.EMPTY_PASSWORD
-                (text.isNotBlank() && Pattern.matches(
-                    "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&.])[A-Za-z[0-9]$@$!%*#?&.]{8,20}$",
-                    text
-                )) -> null
-
-                (text != etSignUpPassword.text.toString()) -> SignUpErrorMessage.PASSWORD_MISMATCH
-
-                else -> SignUpErrorMessage.INVALID_PASSWORD
-            }
-            return errorCode?.let { getString(it.message) }
-    }
 
 #### setConfirmButtonEnable()
 
@@ -222,3 +249,4 @@ private fun btnNext() {
                 && getMessageValidPassword() == null
                 && getMessageValidPasswordConfirm() == null
     }
+위 모든 에러 메세지가 표시되지 않는경우에는 다음 버튼이 활성화됩니다.
