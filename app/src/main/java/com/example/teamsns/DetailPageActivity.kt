@@ -157,7 +157,6 @@ class DetailPageActivity : AppCompatActivity() {
     // 좋아요 버튼 기능 세팅하는 함수
     private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
         likeButton.setOnClickListener {
-            Log.e("user", post.likeSelectedUser.toString())
             if (post.likeSelectedUser.any { it == myId }) {
                 post.like -= 1
                 likeButton.setImageResource(img_empty_heart)
@@ -231,7 +230,6 @@ class DetailPageActivity : AppCompatActivity() {
                 setShowPostArrow(post,leftArrow,rightArrow,imageView,index)
             }
         }
-        imageView.setImageResource(post.postImage[index])
     }
 
     // 로그아웃 버튼 기능 세팅하는 함수
