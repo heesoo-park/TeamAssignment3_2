@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_signup_id" />
 
     <TextView
-        android:id="@+id/tv_signup_password"
+        android:id="@+id/tv_signin_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/password"
@@ -90,9 +90,9 @@
         android:hint="@string/empty_password_message"
         android:textColorHint="@color/gray"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/tv_signup_password"
-        app:layout_constraintStart_toStartOf="@+id/tv_signup_password"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup_password" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_signin_password"
+        app:layout_constraintStart_toStartOf="@+id/tv_signin_password"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_password" />
 
     <TextView
         android:id="@+id/tv_signup_password_error"
