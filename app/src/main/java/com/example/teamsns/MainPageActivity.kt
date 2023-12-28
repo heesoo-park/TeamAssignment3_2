@@ -54,9 +54,9 @@ class MainPageActivity : AppCompatActivity() {
     private fun init(){
         tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
         ivMainMyProfile.setImageResource(userData.profileImage!!)
+        mainUserProfileList.removeAllViews()
         setUserProfileList()
         setTopbar()
-        setPostList()
     }
 
     private fun setTopbar() {
@@ -79,6 +79,8 @@ class MainPageActivity : AppCompatActivity() {
             }
             mainUserProfileList.addView(profileView)
             setOnProflieClickListener(user, profileImg)
+            mainPostList.removeAllViews()
+            setPostList()
         }
     }
 
