@@ -34,10 +34,10 @@ class MainPageActivity : AppCompatActivity() {
     private lateinit var userData: User
 
     private val mainPostList: LinearLayout by lazy {
-        findViewById(R.id.layout_main_postlist)
+        findViewById(R.id.layout_main_post_list)
     }
     private val mainUserProfileList: LinearLayout by lazy {
-        findViewById(R.id.main_user_profile_list)
+        findViewById(R.id.layout_main_user_profile_list)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +70,7 @@ class MainPageActivity : AppCompatActivity() {
             val profileView: View =
                 inflater.inflate(R.layout.profile_item, mainUserProfileList, false)
             val profileImg: ImageView = profileView.findViewById(R.id.iv_main_user_profile)
-            val profileStroke: ImageView = profileView.findViewById(R.id.iv_user_stroke)
+            val profileStroke: ImageView = profileView.findViewById(R.id.iv_main_user_stroke)
             profileImg.setImageResource(user.profileImage)
             if (loginUserId != user.id) {
                 profileStroke.setImageResource(R.drawable.shape_profile_image_stroke2)
@@ -103,8 +103,8 @@ class MainPageActivity : AppCompatActivity() {
                 val ivMainPost: ImageView = postView.findViewById(R.id.iv_main_post)
                 val tvMainPostContent: TextView = postView.findViewById(R.id.tv_main_post_content)
                 val ivMainPostUserProfile: ImageView =
-                    postView.findViewById(R.id.iv_main_post_userprofile)
-                val tvMainPostUserName: TextView = postView.findViewById(R.id.tv_main_post_username)
+                    postView.findViewById(R.id.iv_main_post_user_profile)
+                val tvMainPostUserName: TextView = postView.findViewById(R.id.tv_main_post_user_name)
                 val ivMainPostLikeBtn: ImageView = postView.findViewById(R.id.iv_main_post_like_btn)
                 val tvMainPostLikeCount: TextView =
                     postView.findViewById(R.id.tv_main_post_like_count)

@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_signin_app_name"
+            android:id="@+id/tv_main_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -48,12 +48,12 @@
             android:text=""
             android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/card_view2"
-            app:layout_constraintEnd_toStartOf="@+id/card_view2"
-            app:layout_constraintTop_toTopOf="@+id/card_view2" />
+            app:layout_constraintBottom_toBottomOf="@+id/cv_main_login_user"
+            app:layout_constraintEnd_toStartOf="@+id/cv_main_login_user"
+            app:layout_constraintTop_toTopOf="@+id/cv_main_login_user" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_view2"
+            android:id="@+id/cv_main_login_user"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:cardCornerRadius="100dp"
@@ -70,7 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
             <ImageView
-                android:id="@+id/iv_user_stroke"
+                android:id="@+id/iv_main_user_stroke"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/shape_profile_image_stroke"/>
@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_main_top">
 
             <LinearLayout
-                android:id="@+id/main_user_profile_list"
+                android:id="@+id/layout_main_user_profile_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity= "center_vertical"
@@ -109,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollview_main_userlist">
 
         <LinearLayout
-            android:id="@+id/layout_main_postlist"
+            android:id="@+id/layout_main_post_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

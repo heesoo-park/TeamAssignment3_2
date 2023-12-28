@@ -113,7 +113,6 @@
                 android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
         </androidx.cardview.widget.CardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -121,15 +120,10 @@
         android:layout_height="match_parent"
         android:background="@color/background_color">
 
-
         <LinearLayout
             android:id="@+id/layout_detail_post_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
+            android:orientation="vertical"/>
     </ScrollView>
-
-
 </LinearLayout>
