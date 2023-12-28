@@ -73,6 +73,8 @@ class SignInActivity : AppCompatActivity() {
             intent.putExtra("pw", etPw.text.toString())
 
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_top)
+
         }
     }
 
@@ -80,6 +82,7 @@ class SignInActivity : AppCompatActivity() {
         btnSignup.setOnClickListener{
             val intent = Intent(this, SignUpActivity::class.java)
             activityResultLauncher.launch(intent)
+            overridePendingTransition(R.anim.slide_in_from_bottom, R.anim.slide_out_to_top)
         }
     }
 

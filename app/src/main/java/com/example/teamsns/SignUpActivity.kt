@@ -128,6 +128,7 @@ class SignUpActivity : AppCompatActivity() {
             }
             setResult(RESULT_OK, intent)
             resultLauncher.launch(intent)
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
     }
 

@@ -113,6 +113,7 @@ class ChooseProfileActivity : AppCompatActivity() {
             }
             setResult(RESULT_OK, intent)
             finish()
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
     }
 }
