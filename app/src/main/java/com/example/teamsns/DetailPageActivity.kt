@@ -31,7 +31,7 @@ class DetailPageActivity : AppCompatActivity() {
         intent.getStringExtra("id")
     }
 
-    private lateinit var userData:User
+    private lateinit var userData: User
 
     private lateinit var name: String
 
@@ -40,44 +40,34 @@ class DetailPageActivity : AppCompatActivity() {
     private val ivDetailBackBtn: ImageView by lazy {
         findViewById(R.id.iv_detail_back_btn)
     }
-
     private val tvDetailEditBtn: TextView by lazy {
         findViewById(R.id.tv_detail_edit_btn)
     }
-
     private val tvDetailId: TextView by lazy {
         findViewById(R.id.tv_detail_id)
     }
-
     private val tvDetailName: TextView by lazy {
         findViewById(R.id.tv_detail_name)
     }
-
     private val tvDetailStatusMessage: TextView by lazy {
         findViewById(R.id.tv_detail_status_message)
     }
-
     private val tvDetailLogoutBtn: TextView by lazy {
         findViewById(R.id.tv_detail_logout_btn)
     }
-
     private val ivDetailProfile: AppCompatImageView by lazy {
         findViewById(R.id.iv_detail_profile)
     }
-
     private val tvDetailMyPageOrDetail: TextView by lazy {
         findViewById(R.id.tv_detail_my_page_or_detail)
     }
 
-
     private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
     }
-
     private val detailPostLayout: LinearLayout by lazy {
         findViewById(R.id.layout_detail_post_layout)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,8 +87,10 @@ class DetailPageActivity : AppCompatActivity() {
         userData = UserDatabase.getUser(id!!)!!
         if (myId == id) tvDetailMyPageOrDetail.setText(DetailPageMessage.MYPAGE.message)
         else tvDetailMyPageOrDetail.setText(DetailPageMessage.DETAIL.message)
+
         name = userData.name
         statusMessage = userData.statusMessage.toString()
+
         ivDetailProfile.setImageResource(userData.profileImage)
         tvDetailId.setText(id)
         tvDetailName.setText(name)
@@ -121,6 +113,7 @@ class DetailPageActivity : AppCompatActivity() {
     // 뒤로가기 버튼 동작 함수
     private fun setBackButton() {
         ivDetailBackBtn.setOnClickListener {
+            setResult(RESULT_OK, intent)
             finish()
             overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right)
         }
@@ -140,20 +133,16 @@ class DetailPageActivity : AppCompatActivity() {
             val tvDetailPostShowMore: TextView = postView.findViewById(R.id.tv_detail_post_show_more)
 
             tvDetailPostListContents.text = post.postContent
-
             ivDetailPostListImg.setImageResource(post.postImage)
-
-            ivDetailPostCommentIcon.setImageResource(post.commentIcon)
-
             tvDetailPostComment.text = post.comment
+            tvDetailPostLikeCount.text = post.like.toString()
+            if (post.commentIcon != null) ivDetailPostCommentIcon.setImageResource(post.commentIcon!!)
 
             detailPostLayout.addView(postView)
 
             if (post.likeSelectedUser.any { it == myId }) {
                 ivDetailPostLikeBtn.setImageResource(img_heart)
             }
-
-            tvDetailPostLikeCount.text = post.like.toString()
 
             setLikeButton(post, ivDetailPostLikeBtn, tvDetailPostLikeCount)
             setShowMoreVisible(post, tvDetailPostListContents, tvDetailPostShowMore)
@@ -175,7 +164,6 @@ class DetailPageActivity : AppCompatActivity() {
             }
 
             likeCount.text = post.like.toString()
-
             setPersonalButton()
         }
     }
@@ -209,7 +197,7 @@ class DetailPageActivity : AppCompatActivity() {
             val intent = Intent(this, SignInActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-            overridePendingTransition(R.anim.none, R.anim.fade_out)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
     }
 

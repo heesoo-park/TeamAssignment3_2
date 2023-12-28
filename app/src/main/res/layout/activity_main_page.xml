@@ -22,14 +22,14 @@
             android:id="@+id/iv_main_logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_cat6"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_signin_app_name"
+            android:id="@+id/tv_main_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -45,13 +45,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:text="안녕하세요"
+            android:text=""
             android:textSize="13sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_main_profile_btn"
-            app:layout_constraintEnd_toStartOf="@+id/iv_main_profile_btn"
-            app:layout_constraintTop_toTopOf="@+id/iv_main_profile_btn" />
+            app:layout_constraintBottom_toBottomOf="@+id/cv_main_login_user"
+            app:layout_constraintEnd_toStartOf="@+id/cv_main_login_user"
+            app:layout_constraintTop_toTopOf="@+id/cv_main_login_user" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_main_login_user"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
         <ImageView
             android:id="@+id/iv_main_profile_btn"
             android:layout_width="50dp"
@@ -61,6 +69,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/iv_main_user_stroke"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/shape_profile_image_stroke"/>
+
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- 상단바 영역 끝 -->
 
@@ -74,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_main_top">
 
             <LinearLayout
-                android:id="@+id/main_user_profile_list"
+                android:id="@+id/layout_main_user_profile_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity= "center_vertical"
@@ -94,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollview_main_userlist">
 
         <LinearLayout
-            android:id="@+id/layout_main_postlist"
+            android:id="@+id/layout_main_post_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

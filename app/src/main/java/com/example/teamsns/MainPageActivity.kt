@@ -1,21 +1,26 @@
 package com.example.teamsns
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 
 class MainPageActivity : AppCompatActivity() {
+
+    private val profileRefresh =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) init()
+        }
 
     private val tvMainHelloWord: TextView by lazy {
         findViewById(R.id.tv_main_hello_word)
     }
-
     private val ivMainMyProfile: ImageView by lazy {
         findViewById(R.id.iv_main_profile_btn)
     }
@@ -29,10 +34,10 @@ class MainPageActivity : AppCompatActivity() {
     private lateinit var userData: User
 
     private val mainPostList: LinearLayout by lazy {
-        findViewById(R.id.layout_main_postlist)
+        findViewById(R.id.layout_main_post_list)
     }
     private val mainUserProfileList: LinearLayout by lazy {
-        findViewById(R.id.main_user_profile_list)
+        findViewById(R.id.layout_main_user_profile_list)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,25 +47,35 @@ class MainPageActivity : AppCompatActivity() {
         loginUserId = intent.getStringExtra("id")!!
         userData = UserDatabase.getUser(loginUserId)!!
 
+
+        init()
+    }
+
+    private fun init(){
         tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
         ivMainMyProfile.setImageResource(userData.profileImage!!)
-
         setUserProfileList()
+        setTopbar()
         setPostList()
     }
 
+    private fun setTopbar() {
+        ivMainMyProfile.setImageResource(userData.profileImage)
+
+        setOnProflieClickListener(userData,ivMainMyProfile)
+        }
     // 사용자 프로필 세팅
     private fun setUserProfileList() {
         for (user in UserDatabase.totalUserData) {
             val profileView: View =
                 inflater.inflate(R.layout.profile_item, mainUserProfileList, false)
             val profileImg: ImageView = profileView.findViewById(R.id.iv_main_user_profile)
-            val profileStroke: ImageView = profileView.findViewById(R.id.iv_user_stroke)
+            val profileStroke: ImageView = profileView.findViewById(R.id.iv_main_user_stroke)
             profileImg.setImageResource(user.profileImage)
             if (loginUserId != user.id) {
-                profileStroke.setImageResource(R.drawable.selector_profile_image_background2)
+                profileStroke.setImageResource(R.drawable.shape_profile_image_stroke2)
             }else {
-                profileStroke.setImageResource(R.drawable.selector_profile_image_background)
+                profileStroke.setImageResource(R.drawable.shape_profile_image_stroke)
             }
             mainUserProfileList.addView(profileView)
             setOnProflieClickListener(user, profileImg)
@@ -73,7 +88,7 @@ class MainPageActivity : AppCompatActivity() {
             val intent = Intent(this@MainPageActivity, DetailPageActivity::class.java)
             intent.putExtra("myId", loginUserId)
             intent.putExtra("id", user.id)
-            startActivity(intent)
+            profileRefresh.launch(intent)
             overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
     }
@@ -88,8 +103,8 @@ class MainPageActivity : AppCompatActivity() {
                 val ivMainPost: ImageView = postView.findViewById(R.id.iv_main_post)
                 val tvMainPostContent: TextView = postView.findViewById(R.id.tv_main_post_content)
                 val ivMainPostUserProfile: ImageView =
-                    postView.findViewById(R.id.iv_main_post_userprofile)
-                val tvMainPostUserName: TextView = postView.findViewById(R.id.tv_main_post_username)
+                    postView.findViewById(R.id.iv_main_post_user_profile)
+                val tvMainPostUserName: TextView = postView.findViewById(R.id.tv_main_post_user_name)
                 val ivMainPostLikeBtn: ImageView = postView.findViewById(R.id.iv_main_post_like_btn)
                 val tvMainPostLikeCount: TextView =
                     postView.findViewById(R.id.tv_main_post_like_count)
@@ -97,12 +112,10 @@ class MainPageActivity : AppCompatActivity() {
                     postView.findViewById(R.id.tv_main_post_show_more)
 
                 tvMainPostContent.text = post.postContent
-
                 ivMainPost.setImageResource(post.postImage)
-
                 ivMainPostUserProfile.setImageResource(post.userProfileImage)
-
                 tvMainPostUserName.text = user.name
+                tvMainPostLikeCount.text = post.like.toString()
 
                 mainPostList.addView(postView)
 

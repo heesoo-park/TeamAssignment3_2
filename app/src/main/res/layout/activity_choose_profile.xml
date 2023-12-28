@@ -7,13 +7,12 @@
     android:background="@color/background_color"
     tools:context=".ChooseProfileActivity">
 
-
     <TextView
         android:id="@+id/tv_choose_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="프로필을 골라주세요!!"
+        android:text="@string/choose_profile_img"
         android:textColor="@color/text_color"
         android:textSize="34sp"
         android:textStyle="bold"
