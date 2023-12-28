@@ -14,5 +14,4 @@ enum class SignUpErrorMessage(
     INVALID_PASSWORD(R.string.password_error_message),
 
     PASSWORD_MISMATCH(R.string.password_check_error_message),
-
 }
