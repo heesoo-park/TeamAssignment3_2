@@ -70,13 +70,13 @@ class DetailPageActivity : AppCompatActivity() {
         findViewById(R.id.tv_detail_my_page_or_detail)
     }
 
-    private lateinit var detailImage: ImageView
-    private lateinit var detailContent: TextView
-    private lateinit var detailCommentIcon: ImageView
-    private lateinit var detailComment: TextView
-    private lateinit var likeButton: ImageView
-    private lateinit var likeCount: TextView
-    private lateinit var showMore: TextView
+//    private lateinit var detailImage: ImageView
+//    private lateinit var detailContent: TextView
+//    private lateinit var detailCommentIcon: ImageView
+//    private lateinit var detailComment: TextView
+//    private lateinit var likeButton: ImageView
+//    private lateinit var likeCount: TextView
+//    private lateinit var showMore: TextView
 
     private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
@@ -137,13 +137,13 @@ class DetailPageActivity : AppCompatActivity() {
         for (post in userDate.userPosts.reversed()) {
             val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
 
-            detailImage = postView.findViewById(R.id.iv_detail_post_list_img)
-            detailContent = postView.findViewById(R.id.tv_detail_post_list_contents)
-            detailCommentIcon = postView.findViewById(R.id.iv_detail_post_comment_icon)
-            detailComment = postView.findViewById(R.id.tv_detail_post_comment)
-            likeButton = postView.findViewById(R.id.iv_detail_post_like_btn)
-            likeCount = postView.findViewById(R.id.tv_detail_post_like_count)
-            showMore = postView.findViewById(R.id.tv_detail_post_show_more)
+            val detailImage: ImageView = postView.findViewById(R.id.iv_detail_post_list_img)
+            val detailContent: TextView = postView.findViewById(R.id.tv_detail_post_list_contents)
+            val detailCommentIcon: ImageView = postView.findViewById(R.id.iv_detail_post_comment_icon)
+            val detailComment: TextView = postView.findViewById(R.id.tv_detail_post_comment)
+            val likeButton: ImageView = postView.findViewById(R.id.iv_detail_post_like_btn)
+            val likeCount: TextView = postView.findViewById(R.id.tv_detail_post_like_count)
+            val showMore: TextView = postView.findViewById(R.id.tv_detail_post_show_more)
 
             detailContent.text = post.postContent
 
@@ -161,12 +161,12 @@ class DetailPageActivity : AppCompatActivity() {
 
             likeCount.text = post.like.toString()
 
-            setLikeButton(post)
-            setShowMoreVisible(post)
+            setLikeButton(post, likeButton, likeCount)
+            setShowMoreVisible(post, detailContent, showMore)
         }
     }
 
-    private fun setLikeButton(post: Post) {
+    private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
         likeButton.setOnClickListener {
             Log.e("user", post.likeSelectedUser.toString())
             if (post.likeSelectedUser.any { it == myId }) {
@@ -185,20 +185,19 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
-    private fun setShowMoreVisible(post: Post) {
-        detailContent.text = post.postContent
+    private fun setShowMoreVisible(post: Post, detailContent: TextView, showMore: TextView) {
+        detailContent.post {
+            if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
+            else showMore.visibility = View.INVISIBLE
+        }
 
-        if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
-        else showMore.visibility = View.INVISIBLE
-
-        setShowMoreButton(post)
+        setShowMoreButton(post, detailContent, showMore)
     }
 
-    private fun setShowMoreButton(post: Post) {
-        detailContent.text = post.postContent
+    private fun setShowMoreButton(post: Post, detailContent: TextView, showMore: TextView) {
         showMore.setOnClickListener {
             if (detailContent.maxLines == Integer.MAX_VALUE) {
-                detailContent.maxLines = 2
+                detailContent.maxLines = 1
                 showMore.setText(DetailPageMessage.SHOWMORE.message)
             } else {
                 detailContent.maxLines = Integer.MAX_VALUE

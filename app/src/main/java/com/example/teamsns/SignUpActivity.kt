@@ -64,6 +64,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
+
     private fun setEditUserData() {
         userData = UserDatabase.getUser(id)!!
         name = userData.name
@@ -101,27 +102,21 @@ class SignUpActivity : AppCompatActivity() {
         btnNext.setOnClickListener {
             if (myBoolean == true) {
                 user = User(
-                    name = etName.text.toString(),
+                    name = etName.toString(),
                     id = id,
-                    statusMessage = etId.text.toString(),
-                    password = etPassword.text.toString()
+                    statusMessage = etId.toString(),
+                    password = etPassword.toString()
                 )
 
-                Log.e(
-                    "USER DATA BEFORE",
-                    "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}"
-                )
+                Log.e("USER DATA BEFORE", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
                 UserDatabase.editUserData(user)
-                Log.e(
-                    "USER DATA AFTER",
-                    "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}"
-                )
+                Log.e("USER DATA AFTER", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
 
             } else {
                 user = User(
-                    name = etName.text.toString(),
-                    id = etId.text.toString(),
-                    password = etPassword.text.toString(),
+                    name = etName.toString(),
+                    id = etId.toString(),
+                    password = etPassword.toString(),
                     statusMessage = ""
                 )
                 UserDatabase.addUser(user)
@@ -181,12 +176,13 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun getMessageValidId(): String? {
+        val userDataCheck = UserDatabase.getUser(etId.text.toString())
         if (intent.getStringExtra("editId") == null) {
             val text = etId.text.toString()
             val errorCode = when {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_ID
                 text.includeAlphabetAndNumber() -> null
-
+                (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
                 else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }
