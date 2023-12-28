@@ -85,7 +85,7 @@ class MainPageActivity : AppCompatActivity() {
                     }
                 }
                 startActivity(intent)
-                overridePendingTransition(R.anim.none, R.anim.horizon_enter)
+                overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
             }
         }
     }
@@ -133,6 +133,7 @@ class MainPageActivity : AppCompatActivity() {
             intent.putExtra("myId", loginUserId)
             intent.putExtra("id", user.id)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
         }
     }
 
