@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -33,60 +32,58 @@ class DetailPageActivity : AppCompatActivity() {
         intent.getStringExtra("id")
     }
 
-    private val userDate: User by lazy {
-        UserDatabase.getUser(id!!)!!
-    }
+    lateinit var userDate:User
 
     lateinit var name: String
 
     lateinit var statusMessage: String
 
     private val back: ImageView by lazy {
-        findViewById(R.id.back)
+        findViewById(R.id.iv_detail_back_btn)
     }
 
     private val edit: TextView by lazy {
-        findViewById(R.id.edit)
+        findViewById(R.id.tv_detail_edit_btn)
     }
 
     private val idTextView: TextView by lazy {
-        findViewById(R.id.detail_activity_id)
+        findViewById(R.id.tv_detail_id)
     }
 
     private val nameTextView: TextView by lazy {
-        findViewById(R.id.detail_activity_name)
+        findViewById(R.id.tv_detail_name)
     }
 
     private val statusMessageTextView: TextView by lazy {
-        findViewById(R.id.detail_activity_status_message)
+        findViewById(R.id.tv_detail_status_message)
     }
 
     private val logOut: TextView by lazy {
-        findViewById(R.id.logout)
+        findViewById(R.id.tv_detail_logout_btn)
     }
 
     private val profileImageView: AppCompatImageView by lazy {
-        findViewById(R.id.profile_img)
+        findViewById(R.id.iv_detail_profile)
     }
 
     private val myPageDetail: TextView by lazy {
-        findViewById(R.id.my_page_or_detail)
+        findViewById(R.id.tv_detail_my_page_or_detail)
     }
 
-    private lateinit var detailImage: ImageView
-    private lateinit var detailContent: TextView
-    private lateinit var detailCommentIcon: ImageView
-    private lateinit var detailComment: TextView
-    private lateinit var likeButton: ImageView
-    private lateinit var likeCount: TextView
-    private lateinit var showMore: TextView
+//    private lateinit var detailImage: ImageView
+//    private lateinit var detailContent: TextView
+//    private lateinit var detailCommentIcon: ImageView
+//    private lateinit var detailComment: TextView
+//    private lateinit var likeButton: ImageView
+//    private lateinit var likeCount: TextView
+//    private lateinit var showMore: TextView
 
     private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
     }
 
     private val postLayout: LinearLayout by lazy {
-        findViewById(R.id.post_layout)
+        findViewById(R.id.layout_detail_post_layout)
     }
 
 
@@ -106,11 +103,12 @@ class DetailPageActivity : AppCompatActivity() {
     }
 
     private fun setProfile() {
+        userDate = UserDatabase.getUser(id!!)!!
         if (myId == id) myPageDetail.setText(DetailPageMessage.MYPAGE.message)
         else myPageDetail.setText(DetailPageMessage.DETAIL.message)
         name = userDate.name
         statusMessage = userDate.statusMessage.toString()
-        profileImageView.setImageResource(userDate.profileImage!!)
+        profileImageView.setImageResource(userDate.profileImage)
         idTextView.setText(id)
         nameTextView.setText(name)
         statusMessageTextView.setText(statusMessage)
@@ -131,7 +129,7 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setBackButton() {
         back.setOnClickListener {
             finish()
-            overridePendingTransition(R.anim.none, R.anim.horizon_enter)
+            overridePendingTransition(R.anim.none, R.anim.horizon_out)
         }
     }
 
@@ -139,13 +137,13 @@ class DetailPageActivity : AppCompatActivity() {
         for (post in userDate.userPosts.reversed()) {
             val postView: View = inflater.inflate(R.layout.post_item, postLayout, false)
 
-            detailImage = postView.findViewById(R.id.detail_activity_list_img)
-            detailContent = postView.findViewById(R.id.detail_activity_list_contents)
-            detailCommentIcon = postView.findViewById(R.id.detail_activity_comment_icon)
-            detailComment = postView.findViewById(R.id.detail_activity_comment)
-            likeButton = postView.findViewById(R.id.like_button)
-            likeCount = postView.findViewById(R.id.like_count)
-            showMore = postView.findViewById(R.id.show_more)
+            val detailImage: ImageView = postView.findViewById(R.id.iv_detail_post_list_img)
+            val detailContent: TextView = postView.findViewById(R.id.tv_detail_post_list_contents)
+            val detailCommentIcon: ImageView = postView.findViewById(R.id.iv_detail_post_comment_icon)
+            val detailComment: TextView = postView.findViewById(R.id.tv_detail_post_comment)
+            val likeButton: ImageView = postView.findViewById(R.id.iv_detail_post_like_btn)
+            val likeCount: TextView = postView.findViewById(R.id.tv_detail_post_like_count)
+            val showMore: TextView = postView.findViewById(R.id.tv_detail_post_show_more)
 
             detailContent.text = post.postContent
 
@@ -163,12 +161,12 @@ class DetailPageActivity : AppCompatActivity() {
 
             likeCount.text = post.like.toString()
 
-            setLikeButton(post)
-            setShowMoreVisible(post)
+            setLikeButton(post, likeButton, likeCount)
+            setShowMoreVisible(post, detailContent, showMore)
         }
     }
 
-    private fun setLikeButton(post: Post) {
+    private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
         likeButton.setOnClickListener {
             Log.e("user", post.likeSelectedUser.toString())
             if (post.likeSelectedUser.any { it == myId }) {
@@ -187,20 +185,19 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
-    private fun setShowMoreVisible(post: Post) {
-        detailContent.text = post.postContent
+    private fun setShowMoreVisible(post: Post, detailContent: TextView, showMore: TextView) {
+        detailContent.post {
+            if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
+            else showMore.visibility = View.INVISIBLE
+        }
 
-        if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
-        else showMore.visibility = View.INVISIBLE
-
-        setShowMoreButton(post)
+        setShowMoreButton(post, detailContent, showMore)
     }
 
-    private fun setShowMoreButton(post: Post) {
-        detailContent.text = post.postContent
+    private fun setShowMoreButton(post: Post, detailContent: TextView, showMore: TextView) {
         showMore.setOnClickListener {
             if (detailContent.maxLines == Integer.MAX_VALUE) {
-                detailContent.maxLines = 2
+                detailContent.maxLines = 1
                 showMore.setText(DetailPageMessage.SHOWMORE.message)
             } else {
                 detailContent.maxLines = Integer.MAX_VALUE

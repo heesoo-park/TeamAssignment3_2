@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainPageActivity"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    tools:context=".MainPageActivity">
 
     <!-- 상단바 영역 시작 -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout_top"
+        android:id="@+id/layout_main_top"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/component_color"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_signin_app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:text="안녕하세요"
-            android:textSize="18sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/iv_main_profile_btn"
             app:layout_constraintEnd_toStartOf="@+id/iv_main_profile_btn"
@@ -66,19 +66,19 @@
 
     <!-- 사용자 목록 시작 -->
     <HorizontalScrollView
-        android:id="@+id/horizontalScrollView_userlist"
+        android:id="@+id/scrollview_main_userlist"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_top">
+        app:layout_constraintTop_toBottomOf="@+id/layout_main_top">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/iv_main_user1"
+                android:id="@+id/iv_main_user1_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
@@ -89,36 +89,36 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_main_user2"
+                android:id="@+id/iv_main_user2_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_cat2"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_main_user1"
+                app:layout_constraintStart_toEndOf="@+id/iv_main_user1_btn"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_main_user3"
+                android:id="@+id/iv_main_user3_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_cat3"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_main_user2"
+                app:layout_constraintStart_toEndOf="@+id/iv_main_user2_btn"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_main_user4"
+                android:id="@+id/iv_main_user4_btn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_cat4"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_main_user3"
+                app:layout_constraintStart_toEndOf="@+id/iv_main_user3_btn"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>
@@ -128,13 +128,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView_userlist"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/scrollview_main_userlist">
 
         <LinearLayout
-            android:id="@+id/main_post_layout"
+            android:id="@+id/layout_main_postlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

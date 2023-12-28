@@ -3,7 +3,6 @@ package com.example.teamsns
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -15,18 +14,10 @@ class MainPageActivity : AppCompatActivity() {
     private val tvMainHelloWord: TextView by lazy { findViewById(R.id.tv_main_hello_word) }
 
     private val ivMainMyProfile: ImageView by lazy { findViewById(R.id.iv_main_profile_btn) }
-    private val ivMainUser1: ImageView by lazy { findViewById(R.id.iv_main_user1) }
-    private val ivMainUser2: ImageView by lazy { findViewById(R.id.iv_main_user2) }
-    private val ivMainUser3: ImageView by lazy { findViewById(R.id.iv_main_user3) }
-    private val ivMainUser4: ImageView by lazy { findViewById(R.id.iv_main_user4) }
-
-    lateinit var detailImage: ImageView
-    lateinit var detailContent: TextView
-    lateinit var detailUserProfileIcon: ImageView
-    lateinit var detailPostName: TextView
-    lateinit var likeButton: ImageView
-    lateinit var likeCount: TextView
-    lateinit var showMore: TextView
+    private val ivMainUser1: ImageView by lazy { findViewById(R.id.iv_main_user1_btn) }
+    private val ivMainUser2: ImageView by lazy { findViewById(R.id.iv_main_user2_btn) }
+    private val ivMainUser3: ImageView by lazy { findViewById(R.id.iv_main_user3_btn) }
+    private val ivMainUser4: ImageView by lazy { findViewById(R.id.iv_main_user4_btn) }
 
     private val profileList
         get() = listOf(
@@ -46,7 +37,7 @@ class MainPageActivity : AppCompatActivity() {
     private lateinit var userData: User
 
     private val mainPostLayout: LinearLayout by lazy {
-        findViewById(R.id.main_post_layout)
+        findViewById(R.id.layout_main_postlist)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,27 +64,28 @@ class MainPageActivity : AppCompatActivity() {
                         intent.putExtra("id", loginUserID)
                     }
 
-                    R.id.iv_main_user1 -> {
+                    R.id.iv_main_user1_btn -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[0].id)
                     }
 
-                    R.id.iv_main_user2 -> {
+                    R.id.iv_main_user2_btn -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[1].id)
                     }
 
-                    R.id.iv_main_user3 -> {
+                    R.id.iv_main_user3_btn -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[2].id)
                     }
 
-                    R.id.iv_main_user4 -> {
+                    R.id.iv_main_user4_btn -> {
                         intent.putExtra("myId", loginUserID)
                         intent.putExtra("id", UserDatabase.totalUserData[3].id)
                     }
                 }
                 startActivity(intent)
+                overridePendingTransition(R.anim.none, R.anim.horizon_enter)
             }
         }
     }
@@ -104,13 +96,13 @@ class MainPageActivity : AppCompatActivity() {
                 val postView: View =
                     inflater.inflate(R.layout.main_post_item, mainPostLayout, false)
 
-                detailImage = postView.findViewById(R.id.main_activity_list_img)
-                detailContent = postView.findViewById(R.id.main_activity_list_contents)
-                detailUserProfileIcon = postView.findViewById(R.id.main_activity_user_profile)
-                detailPostName = postView.findViewById(R.id.main_activity_user_name)
-                likeButton = postView.findViewById(R.id.main_like_button)
-                likeCount = postView.findViewById(R.id.main_like_count)
-                showMore = postView.findViewById(R.id.main_show_more)
+                val detailImage: ImageView = postView.findViewById(R.id.iv_main_post)
+                val detailContent: TextView = postView.findViewById(R.id.tv_main_post_content)
+                val detailUserProfileIcon: ImageView = postView.findViewById(R.id.iv_main_post_userprofile)
+                val detailPostName: TextView = postView.findViewById(R.id.tv_main_post_username)
+                val likeButton: ImageView = postView.findViewById(R.id.iv_main_post_like_btn)
+                val likeCount: TextView = postView.findViewById(R.id.tv_main_post_like_count)
+                val showMore: TextView = postView.findViewById(R.id.tv_main_post_show_more)
 
                 detailContent.text = post.postContent
 
@@ -128,14 +120,14 @@ class MainPageActivity : AppCompatActivity() {
 
                 likeCount.text = post.like.toString()
 
-                setLikeButton(post)
-                setShowMoreVisible(post)
-                setOnNameLayoutClickListener(user)
+                setLikeButton(post, likeButton, likeCount, detailImage)
+                setShowMoreVisible(post, detailContent, showMore)
+                setOnProfileIconClickListener(user, detailUserProfileIcon)
             }
         }
     }
 
-    private fun setOnNameLayoutClickListener(user: User) {
+    private fun setOnProfileIconClickListener(user: User, detailUserProfileIcon: ImageView) {
         detailUserProfileIcon.setOnClickListener {
             val intent = Intent(this@MainPageActivity, DetailPageActivity::class.java)
             intent.putExtra("myId", loginUserID)
@@ -144,38 +136,41 @@ class MainPageActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun setLikeButton(post: Post) {
+    private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView, detailImage:ImageView) {
         likeButton.setOnClickListener {
-            if (post.likeSelectedUser.any { it == loginUserID }) {
-                post.like -= 1
-                likeButton.setImageResource(R.drawable.empty_heart)
-                post.likeSelectedUser.remove(loginUserID)
-            } else {
-                post.like += 1
-                likeButton.setImageResource(R.drawable.heart)
-                post.likeSelectedUser.add(loginUserID)
-            }
-            Log.e("user", post.likeSelectedUser.toString())
-            Log.e("user", post.like.toString())
-            likeCount.text = post.like.toString()
+            likeShow(post, likeButton, likeCount)
+        }
+        detailImage.setOnLongClickListener {
+            likeShow(post,likeButton, likeCount)
+            true
         }
     }
-
-    private fun setShowMoreVisible(post: Post) {
-        detailContent.text = post.postContent
-
-        if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
-        else showMore.visibility = View.INVISIBLE
-
-        setShowMoreButton(post)
+    private fun likeShow(post: Post, click: ImageView, likeCount: TextView){
+        if (post.likeSelectedUser.any { it == loginUserID }) {
+            post.like -= 1
+            click.setImageResource(R.drawable.empty_heart)
+            post.likeSelectedUser.remove(loginUserID)
+        } else {
+            post.like += 1
+            click.setImageResource(R.drawable.heart)
+            post.likeSelectedUser.add(loginUserID)
+        }
+        likeCount.text = post.like.toString()
     }
 
-    private fun setShowMoreButton(post: Post) {
-        detailContent.text = post.postContent
+    private fun setShowMoreVisible(post: Post, detailContent: TextView, showMore: TextView) {
+        detailContent.post {
+            if (detailContent.lineCount > detailContent.maxLines) showMore.visibility = View.VISIBLE
+            else showMore.visibility = View.INVISIBLE
+        }
+
+        setShowMoreButton(post, detailContent, showMore)
+    }
+
+    private fun setShowMoreButton(post: Post, detailContent: TextView, showMore: TextView) {
         showMore.setOnClickListener {
             if (detailContent.maxLines == Integer.MAX_VALUE) {
-                detailContent.maxLines = 2
+                detailContent.maxLines = 1
                 showMore.setText(DetailPageMessage.SHOWMORE.message)
             } else {
                 detailContent.maxLines = Integer.MAX_VALUE
