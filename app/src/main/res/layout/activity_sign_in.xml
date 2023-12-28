@@ -12,22 +12,22 @@
         android:id="@+id/tv_signin_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:text="별개냥"
         android:textColor="@color/text_color"
         android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="80dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_sigup_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="@color/component_color"
         android:text="아이디"
         android:textSize="24sp"
@@ -39,14 +39,14 @@
         android:id="@+id/et_signin_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/component_color"
         android:hint="아이디를 입력하세요."
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sigup_id"
-        android:backgroundTint="@color/component_color"
-        android:layout_marginStart="40dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_sigup_id" />
 
     <TextView
         android:id="@+id/tv_signin_id_error"
@@ -56,9 +56,9 @@
         android:layout_marginEnd="40dp"
         android:text=""
         android:textColor="@color/red"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/et_signin_id"
-        app:layout_constraintTop_toBottomOf="@+id/et_signin_id"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_signin_id" />
 
     <TextView
         android:id="@+id/tv_signup_password"
@@ -76,55 +76,55 @@
         android:id="@+id/et_signin_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:inputType="textPassword"
-        android:hint="비밀번호를 입력하세요."
         android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:hint="비밀번호를 입력하세요."
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@+id/tv_signup_password" />
 
     <TextView
         android:id="@+id/tv_signin_password_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="@color/red"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
+        android:text=""
+        android:textColor="@color/red"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/et_signin_password"
-        app:layout_constraintTop_toBottomOf="@+id/et_signin_password"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toBottomOf="@+id/et_signin_password" />
 
     <Button
         android:id="@+id/btn_signin_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/component_color"
         android:clickable="false"
         android:focusable="false"
         android:text="로그인"
         android:textColor="@color/text_color"
-        android:backgroundTint="@color/component_color"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         app:layout_constraintTop_toBottomOf="@+id/tv_signin_password_error" />
 
     <Button
         android:id="@+id/btn_signin_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/component_color"
         android:focusable="false"
         android:text="회원가입"
         android:textColor="@color/text_color"
         android:textSize="24sp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/btn_signin_login"
-        android:layout_marginTop="40dp" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin_login" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
