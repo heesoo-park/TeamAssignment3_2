@@ -24,3 +24,4 @@ DetailPageActivity
 - 함수 주석 추가
 - 다크 모드일 때 EditText 내의 text 색상 변경
 - SA 수정
+- README.md 채우기

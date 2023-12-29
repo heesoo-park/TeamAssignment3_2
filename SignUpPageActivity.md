@@ -1,9 +1,10 @@
+[readme](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/README.md)
+
 # SignUpPageActivity.md
 
 1. 회원가입 페이지
 2. 편집 페이지 ->  (로그인 후 사용자 아이디 및 상태메세지 수정 시에 재활용 됩니다.)
 
-![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/148201041/9746921e-dfd4-429e-a4bd-d8bd24e3f03b)
 
 
 ## (1) Layout : [activity_sign_up.xml](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/app/src/main/res/layout/activity_sign_up.xml) & [activity_sign_up.xml-(land)](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/app/src/main/res/layout-land/activity_sign_up.xml)
@@ -47,7 +48,7 @@ myBoolean 값이 이 페이지가 편집 페이지인지 회원가입페이지�
 
 ### 메소드
 
-#### initView()
+> initView()
 ````
     private fun initView() {
         setEditCheck()
@@ -60,7 +61,7 @@ myBoolean 값이 이 페이지가 편집 페이지인지 회원가입페이지�
 
 
 
-#### setEditCheck()
+> setEditCheck()
 ````
 private fun setEditCheck() {
         if (intent.getStringExtra("editId") != null) {
@@ -82,7 +83,7 @@ private fun setEditCheck() {
 
 
 
-#### setEditUserData()
+> setEditUserData()
 ````
     private fun setEditUserData() {
         userData = UserDatabase.getUser(id)!!
@@ -96,7 +97,7 @@ private fun setEditCheck() {
 
 
 
-#### btnNext() 
+> btnNext() 
 ````
 private fun btnNext() {
         resultLauncher =
@@ -143,7 +144,7 @@ registerForActivityResult를 사용해줌으로써 putExtra한 값들을 넘겨�
 
 
 
-#### setTextChangedListener()
+> setTextChangedListener()
 ````
     private fun setTextChangedListener() {
         editTextArray.forEach { editText ->
@@ -156,7 +157,9 @@ registerForActivityResult를 사용해줌으로써 putExtra한 값들을 넘겨�
 ````
 EditText의 값 변경 리스너 함수: EditText의 값이 변경될때마다 실행되는 함수입니다.
 
-#### setOnFocusChangedListener()
+
+
+> setOnFocusChangedListener()
 ````
     private fun setOnFocusChangedListener() {
         editTextArray.forEach { editText ->
@@ -171,9 +174,17 @@ EditText의 값 변경 리스너 함수: EditText의 값이 변경될때마다 �
 ````
 EditText의 포커스 변경 리스너 함수 : EditText의 focus가 변경될때마다 실행되는 함수입니다.
 
+EditText가 수정이 될 떄마다 EditText에 입력된 값이 유효한지 확인해 줍니다.
+
+이 확인 작업은 editText.setErrorMessage() 에서 실행됩니다.
+
+유효한 경우에는 다음 버튼이 활성화되어야 하기 때문에 setConfirmButtonEnable() 메소드 또한 실행됩니다.
 
 
-#### EditText.setErrorMessage()
+
+
+
+> EditText.setErrorMessage()
 
  ````
 private fun EditText.setErrorMessage() {
@@ -191,6 +202,10 @@ EditText에서 에러 메세지를 출력하기 위해 만든 확장함수입니
 
 error = 문자열 메세지 이름 을 사용해주면 TextView 오른쪽에 빨간 동그라미와 함께 에러 메세지가 표시됩니다.
 
+각각의 EditText에 해당되는 유효성체크를 getMessageValidName() & getMessageValidId() & getMessageValidPassword() & getMessageValidPasswordConfirm() 에서 해주고 
+유효하지 않은 경우에는 error에 문자열을 넘기고 유효한 값이라면 error에 null을 전달하여줍니다.
+
+
 
 
 #### getMessageValidName() & getMessageValidId() & getMessageValidPassword() & getMessageValidPasswordConfirm()
@@ -199,27 +214,32 @@ error = 문자열 메세지 이름 을 사용해주면 TextView 오른쪽에 빨
 
 이름 : 한글만 입력 가능
 
-아이디 : 영문 소문자 또는 숫자
+아이디 : 영문 소문자 또는 숫자 (기존 등록된 아이디와 중복될 수 없음)
 
 비밀번호 : 8~16자, 영대소문자 및 특수문자 최소 1개 이상 포함
 
-> getMessageValidName()
-````
-    private fun getMessageValidName(): String? {
-        val text = etSignUpName.text.toString()
-        if (etSignUpName.isVisible) {
-            val errorCode = when {
-                text.isBlank() -> SignUpErrorMessage.EMPTY_NAME
-                text.includeKorean() -> null
 
-                else -> SignUpErrorMessage.INVIALID_NAME
+
+> getMessageValidId()
+````
+    private fun getMessageValidId(): String? {
+        if (myBoolean == false) {
+            val text = etSignUpId.text.toString()
+            val userData = UserDatabase.getUser(etSignUpId.text.toString())
+            val errorCode = when {
+                text.isBlank() -> SignUpErrorMessage.EMPTY_ID
+                text.includeAlphabetAndNumber() -> null
+                (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
+                else -> SignUpErrorMessage.INVALID_PASSWORD
             }
             return errorCode?.let { getString(it.message) }
-        } else return null
+        }else return null
     }
 ````
 
 에러메세지를 모두 enum class 에 저장하여 에러 메세지를 모두 한 파일에서 관리할 수 있도록 했습니다.
+
+
 
 > enum class
 
@@ -241,7 +261,9 @@ enum class SignUpErrorMessage(
 ````
 
 
-#### setConfirmButtonEnable()
+
+
+> setConfirmButtonEnable()
 
     private fun setConfirmButtonEnable() {
         btnSignUpNext.isEnabled = getMessageValidName() == null
