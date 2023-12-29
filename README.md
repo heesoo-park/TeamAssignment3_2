@@ -123,7 +123,7 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 
 가로모드에선 사진을 오른쪽에서 보여주게 구현
 
-## 메인 페이지
+## [메인 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/MainlPageActivity.md)
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/9d6b470c-fe88-4b2e-a8c8-3ca419e290b2) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/d9dae805-c79c-4e45-a66c-55bd81f8b832)
 
 화면 상단에는 왼쪽에 로고 오른쪽에 사용자 프로필이 있다
