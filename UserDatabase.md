@@ -6,18 +6,30 @@ object class로 UserDatabase를 구현했다.
 
 ## 더미 데이터
 ```kotlin
-    private val user1 = User(
-        "사용자1",
-        "test1",
-        "a",
-        (R.drawable.img_cat1),
-        "오늘 하루는 피곤하네요",
-        arrayListOf(Post(userProfileImage = (R.drawable.img_cat1),postImage = (R.drawable.img_cat1), postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", comment = "아주 즐거워요", like =  0))
+private val user1 = User(
+    "사용자1",
+    "test1",
+    "a",
+    (R.drawable.img_cat1),
+    "오늘 하루는 피곤하네요",
+    arrayListOf(
+        Post(
+            userProfileImage = (R.drawable.img_cat1),
+            postImage = arrayListOf(R.drawable.img_cat1, R.drawable.img_cat2,R.drawable.img_cat3,R.drawable.img_cat4),
+            postContent = "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요",
+            commentUser = arrayListOf(CommentUser("사용자3","아주 즐거워요",(R.drawable.img_cat2))),
+            like =  0),
+        Post(userProfileImage = (R.drawable.img_cat1),
+            postImage = arrayListOf(R.drawable.img_toon,R.drawable.img_toon2,R.drawable.img_toon3,R.drawable.img_toon4,R.drawable.img_toon5),
+            postContent = "하.. 옛날 생각나네",
+            commentUser = arrayListOf(CommentUser("사용자3","너무 슬프다",(R.drawable.img_cat2))),
+            like =  0)
     )
+)
 ```
 더미 데이터는 User 데이터 클래스에 맞춰 직접 입력하여 추가했다.
-각각 사용자에게 게시물을 하나씩 넣어놨다.
 총 4명의 사용자를 미리 추가해놨다.
+각각 사용자에게 게시물을 넣어놨다.
 
 ## 사용자 정보 저장소
 ```kotlin
