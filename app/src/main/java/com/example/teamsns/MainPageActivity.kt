@@ -115,8 +115,6 @@ class MainPageActivity : AppCompatActivity() {
                 val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
                 val currentImageIndex = 0
 
-
-                Log.e("213","${user.name}")
                 tvMainPostContent.text = post.postContent
                 ivMainPost.setImageResource(post.postImage[0])
                 ivMainPostUserProfile.setImageResource(post.userProfileImage)
