@@ -82,8 +82,8 @@ class MainPageActivity : AppCompatActivity() {
             mainUserProfileList.addView(profileView)
             setOnProflieClickListener(user, profileImg)
             mainPostList.removeAllViews()
-            setPostList()
         }
+        setPostList()
     }
 
     // 사용자 프로필 이미지 클릭 리스너 함수
@@ -115,6 +115,8 @@ class MainPageActivity : AppCompatActivity() {
                 val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
                 val currentImageIndex = 0
 
+
+                Log.e("213","${user.name}")
                 tvMainPostContent.text = post.postContent
                 ivMainPost.setImageResource(post.postImage[0])
                 ivMainPostUserProfile.setImageResource(post.userProfileImage)
