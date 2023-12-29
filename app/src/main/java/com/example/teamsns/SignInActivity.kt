@@ -47,6 +47,7 @@ class SignInActivity : AppCompatActivity() {
                 if (it.resultCode == RESULT_OK) {
                     val userId = it.data?.getStringExtra("id") ?: ""
                     val userPw = it.data?.getStringExtra("pw") ?: ""
+                    val editRecycle = it.data?.getStringExtra("edit") ?: ""
                     etSignInId.setText(userId)
                     etSignInPw.setText(userPw)
                 }
