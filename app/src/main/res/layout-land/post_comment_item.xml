@@ -35,7 +35,7 @@
             android:maxLines="2"
             android:layout_marginStart="5dp"
             android:text=" Lorem Ipsum."
-            android:textSize="16sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/cv_detail_post_comment_ic"
             app:layout_constraintStart_toEndOf="@id/cv_detail_post_comment_ic"
             app:layout_constraintTop_toTopOf="@id/cv_detail_post_comment_ic" />
@@ -44,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:textSize="12sp"
         android:text="@string/show_more"
         app:layout_constraintBottom_toBottomOf="@id/tv_post_comment"
         app:layout_constraintStart_toEndOf="@id/tv_post_comment"
