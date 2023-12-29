@@ -180,7 +180,7 @@ class SignUpActivity : AppCompatActivity() {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_ID
                 text.includeAlphabetAndNumber() -> null
                 (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
-                else -> SignUpErrorMessage.INVALID_PASSWORD
+                else -> SignUpErrorMessage.INVALID_ID
             }
             return errorCode?.let { getString(it.message) }
         }else return null
