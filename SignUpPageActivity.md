@@ -1,9 +1,10 @@
+[readme](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/README.md)
+
 # SignUpPageActivity.md
 
 1. 회원가입 페이지
 2. 편집 페이지 ->  (로그인 후 사용자 아이디 및 상태메세지 수정 시에 재활용 됩니다.)
 
-![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/148201041/9746921e-dfd4-429e-a4bd-d8bd24e3f03b)
 
 
 ## (1) Layout : [activity_sign_up.xml](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/app/src/main/res/layout/activity_sign_up.xml) & [activity_sign_up.xml-(land)](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/app/src/main/res/layout-land/activity_sign_up.xml)

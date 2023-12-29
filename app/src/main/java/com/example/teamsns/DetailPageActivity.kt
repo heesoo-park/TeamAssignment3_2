@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.autofill.UserData
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.teamsns.R.drawable.img_empty_heart
 import com.example.teamsns.R.drawable.img_heart
@@ -68,7 +70,6 @@ class DetailPageActivity : AppCompatActivity() {
     private val detailPostLayout: LinearLayout by lazy {
         findViewById(R.id.layout_detail_post_layout)
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_page)
@@ -131,12 +132,17 @@ class DetailPageActivity : AppCompatActivity() {
             val ivDetailPostLikeBtn: ImageView = postView.findViewById(R.id.iv_detail_post_like_btn)
             val tvDetailPostLikeCount: TextView = postView.findViewById(R.id.tv_detail_post_like_count)
             val tvDetailPostShowMore: TextView = postView.findViewById(R.id.tv_detail_post_show_more)
+            val ivDetailPostLeftArrow: ImageView = postView.findViewById(R.id.iv_left_arrow_button)
+            val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
+            val openPopUpButton: ConstraintLayout = postView.findViewById(R.id.open_pop_up_activity)
+            val currentImageIndex = 0
 
             tvDetailPostListContents.text = post.postContent
-            ivDetailPostListImg.setImageResource(post.postImage)
-            tvDetailPostComment.text = post.comment
+            ivDetailPostListImg.setImageResource(post.postImage[0])
+            tvDetailPostComment.text = post.commentUser?.get(0)?.comment
             tvDetailPostLikeCount.text = post.like.toString()
-            if (post.commentIcon != null) ivDetailPostCommentIcon.setImageResource(post.commentIcon!!)
+            if (post.commentUser?.get(0)?.commentIcon != null) ivDetailPostCommentIcon.setImageResource(
+                post.commentUser[0].commentIcon)
 
             detailPostLayout.addView(postView)
 
@@ -146,13 +152,26 @@ class DetailPageActivity : AppCompatActivity() {
 
             setLikeButton(post, ivDetailPostLikeBtn, tvDetailPostLikeCount)
             setShowMoreVisible(post, tvDetailPostListContents, tvDetailPostShowMore)
+            setShowPostArrow(post, ivDetailPostLeftArrow, ivDetailPostRightArrow,ivDetailPostListImg,currentImageIndex)
+            setOpenPopUpButton(post,openPopUpButton)
+        }
+    }
+
+    //댓글창 클릭시 팝업창을 띄우는 함수
+    private fun setOpenPopUpButton(post:Post, popUpButton: ConstraintLayout){
+        popUpButton.setOnClickListener {
+            intent = Intent(this, PostPopUpActivity::class.java)
+            intent.putExtra("myId",myId)
+            intent.putExtra("editUser",userData.id)
+            intent.putExtra("postKey", post.key)
+
+            startActivity(intent)
         }
     }
 
     // 좋아요 버튼 기능 세팅하는 함수
     private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
         likeButton.setOnClickListener {
-            Log.e("user", post.likeSelectedUser.toString())
             if (post.likeSelectedUser.any { it == myId }) {
                 post.like -= 1
                 likeButton.setImageResource(img_empty_heart)
@@ -187,6 +206,43 @@ class DetailPageActivity : AppCompatActivity() {
             } else {
                 detailContent.maxLines = Integer.MAX_VALUE
                 showMore.setText(DetailPageMessage.SHOWCLOSE.message)
+            }
+        }
+    }
+
+    // 포스트 이미지가 여러개일시 화살표 표시
+    private fun setShowPostArrow(post: Post, leftArrow: ImageView, rightArrow: ImageView, imageView: ImageView,currentImageIndex: Int) {
+        val postSize = post.postImage.size
+        when {
+            postSize == 1 -> {
+                leftArrow.visibility = View.INVISIBLE
+                rightArrow.visibility = View.INVISIBLE
+            }
+            currentImageIndex == postSize - 1 -> rightArrow.visibility = View.INVISIBLE
+            currentImageIndex == 0 -> leftArrow.visibility = View.INVISIBLE
+            else -> {
+                leftArrow.visibility = View.VISIBLE
+                rightArrow.visibility = View.VISIBLE
+            }
+        }
+        setSideArrowButton(post, leftArrow, rightArrow, imageView, currentImageIndex)
+    }
+
+    // side화살표 버튼 클릭시 이미지 변화
+    private fun setSideArrowButton(post: Post,leftArrow: ImageView,rightArrow: ImageView,imageView: ImageView,currentImageIndex: Int){
+        var index = currentImageIndex
+        leftArrow.setOnClickListener {
+            if(index > 0) {
+                index -= 1
+                imageView.setImageResource(post.postImage[index])
+                setShowPostArrow(post,leftArrow,rightArrow,imageView,index)
+            }
+        }
+        rightArrow.setOnClickListener {
+            if(index < post.postImage.size - 1) {
+                index += 1
+                imageView.setImageResource(post.postImage[index])
+                setShowPostArrow(post,leftArrow,rightArrow,imageView,index)
             }
         }
     }

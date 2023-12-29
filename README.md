@@ -1,5 +1,6 @@
 별개냥
 =
+
 ## 프로젝트 개요
 
 ### 프로젝트 팀원
@@ -71,11 +72,6 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 
 **Readme.md**를 이용해서 개발 기록 작성
 
-[SignInActivity](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignInPageActivity.md)
-
-[SignUpActivity](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignUpPageActivity.md)
-
-[DetailActivity](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/DetailPageActivity.md)
 
 [UserDatabase](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/UserDatabase.md)
 
@@ -83,4 +79,105 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 
 [Post](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/Post.md)
 
-[ChooseProfileActivity](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/ChooseProfileActivity.md)
+
+## [로그인 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignUpPageActivity.md)
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/b6906e7f-3cba-42c7-989f-489c7e59ca54) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/fc333dbe-21de-4f68-a509-18d6a8dbed9c)
+
+사용자의 정보를 DB에서 찾아 가입된 사용자인지 확인 하는 액티비티
+
+가입 되지 않은 사용자는 회원가입 링크로 이동가능하다
+
+
+![Honeycam 2023-12-28 21-02-03](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/f91dcc1d-bb90-4da1-8d7b-ce66d1bce24c)
+
+가로 모드에선 양옆의 여백을 좀 더 줬고
+
+상하 여백을 줄였습니다
+
+한 화면에 전부 띄우지 못해 스크롤 뷰를 추가해서 사용자가 스크롤 할 수 있게끔 구현했다
+
+## [회원가입 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignUpPageActivity.md)
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/9d7a6710-e9dd-42d2-964a-92cf67e14217) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/cce9bf58-d3cd-4074-9d40-0d34b78ae313)
+
+데이터베이스에 유저의 정보를 입력하는 페이지
+
+유효성검사로 중복된 아이디를 체크하고
+
+비밀번호등 조건에 맞으면 회원의 정보를 저장한다
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/84c0cd18-6ce1-48ad-b6e5-0338dbce5fe4)
+
+가로 모드에서 로그인페이지와 같이 양옆 여백을 좀 더 줬고
+
+스크롤 뷰로 스크롤 가능하게 구현했다
+
+### [프로필 사진 선택 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/ChooseProfileActivity.md)
+![Honeycam 2023-12-28 21-13-09](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/050885db-2a1c-4a39-b432-95d19e451a74)
+
+
+계정 생성시 프로필 사진을 생성하는 페이지
+
+목록에서 사진을 선택하면 크게 보여주고 수정하기를 선택시 생성되는 계정의 프로필사진으로 저장
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/4ccbc03f-ef97-4bc4-a6a4-63540701fe50)
+
+가로모드에선 사진을 오른쪽에서 보여주게 구현
+
+## 메인 페이지
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/9d6b470c-fe88-4b2e-a8c8-3ca419e290b2) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/d9dae805-c79c-4e45-a66c-55bd81f8b832)
+
+화면 상단에는 왼쪽에 로고 오른쪽에 사용자 프로필이 있다
+
+그 밑에는 다른 유저들의 프로필이 있는데 본인의 프로필의 테두리는 파란색으로 구별이 되게 했다
+![Honeycam 2023-12-28 21-38-04](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/7fddc7b5-97ac-4b38-be90-90c39ba18776)
+
+스크롤 기능도 넣었는데
+
+프로필은 가로로 게시물들은 세로로 스크롤해서 볼수 있다
+
+![Honeycam 2023-12-28 21-40-54](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/b7fc1748-c0b9-430e-b7e0-276f1e1a72c1)
+
+좋아요 버튼과 더보기 버튼도 구현했는데
+
+좋아요를 누르지 않은 게시물에 좋아요를 누르면 숫자가 추가되고 이미지가 변한다
+
+게시물의 글이 길다면 더보기 버튼이 활성화되면서
+
+클릭시 게시물을 늘려서 볼 수 있게 된다
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/d35823e0-8e2f-4890-9012-383f558a0b74)
+
+가로모드는 이런식으로 구현했는데
+
+게시물의 내용을 좀더 길게 볼수 있게 했다.
+
+## [디테일 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/DetailPageActivity.md)
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/ee367f08-6fa9-4a3f-8061-d33b0a4bfbef) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/2978b9c5-ebff-4464-8fed-58e29e7f1692)
+
+
+메인 페이지에서 사용자들의 프로필을 누르면 이동하게 된다
+
+입력받은 사용자 정보를 바탕으로 구성되어 있으며
+
+사용자의 아이디 이름 상태메세지가 화면 상단에 출력되고
+
+아래엔 사용자가 게시한 게시물들이 출력된다
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/05131199-6562-4902-9a8c-e27a1cb62a99)
+
+로그인한 사용자가 본인이라면 편집 버튼과 로그아웃 버튼이 나타나게 된다
+
+편집버튼으로 이동하는 편집 페이지는 회원가입할때 사용한 페이지를 재사용해서 만들었다
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/23fc9189-94c0-4ecc-8bd4-f62e76332dfd)
+
+가로모드의 구성은 메인페이지와 유사하다
+
+### 편집 페이지
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/4201dbb1-4034-4286-ad74-d80a8926a8f7)
+
+회원가입 페이지를 재사용 했는데
+
+ID입력칸을 상태메세지 입력창으로 바꿧다
+
+사용자의 이름 상태 비밀번호 그리고 프로필 이미지를 수정할 수 있다.
