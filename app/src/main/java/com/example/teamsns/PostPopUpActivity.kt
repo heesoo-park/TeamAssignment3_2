@@ -1,10 +1,12 @@
 package com.example.teamsns
 
+import android.app.assist.AssistContent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -29,16 +31,19 @@ class PostPopUpActivity : AppCompatActivity() {
         findViewById(R.id.iv_right_arrow_button)
     }
     private val tvPostContents: TextView by lazy {
-        findViewById(R.id.tv_detail_post_list_contents)
-    }
-    private val tvShowMore: TextView by lazy {
-        findViewById(R.id.tv_detail_post_show_more)
+        findViewById(R.id.tv_post_list_contents)
     }
     private val ivLike: ImageView by lazy {
         findViewById(R.id.iv_post_like_btn)
     }
     private val tvLikeCount: TextView by lazy {
         findViewById(R.id.tv_post_like_count)
+    }
+    private val etComment: EditText by lazy {
+        findViewById(R.id.post_input_comment)
+    }
+    private val ivCommentButton: ImageView by lazy {
+        findViewById(R.id.post_comment_btn)
     }
     private val inflater: LayoutInflater by lazy {
         LayoutInflater.from(this)
@@ -66,23 +71,26 @@ class PostPopUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_pop_up)
 
+        editUserData
         init()
     }
-
     private fun init(){
         setPost()
 
         setBackButton()
+
+        setAddComment()
     }
     // 프로필 기본 세팅
     private fun setPost(){
         ivUserProfile.setImageResource(editUserData!!.profileImage)
         tvUserName.text = editUserData!!.name
         ivPostImage.setImageResource(postData!!.postImage[0])
-        tvPostContents.text = postData!!.postContent
-        if (postData!!.likeSelectedUser.any { it == myId }) {
+        tvPostContents.setText(postData!!.postContent)
+        if (postData?.likeSelectedUser?.any { it == myId } == true) {
             ivLike.setImageResource(R.drawable.img_heart)
         }
+        tvLikeCount.text = postData!!.like.toString()
         setLikeButton()
         setShowPostArrow()
         setCommentList()
@@ -143,6 +151,7 @@ class PostPopUpActivity : AppCompatActivity() {
 
     // 댓글 리스트 세팅 하는 함수
     private fun setCommentList() {
+        commentLayout.removeAllViews()
         val commentUser = postData?.commentUser ?: listOf()
         for (comment in commentUser) {
             val commentView = inflater.inflate(R.layout.post_comment_item, commentLayout, false)
@@ -153,6 +162,7 @@ class PostPopUpActivity : AppCompatActivity() {
             ivCommentProfile.setImageResource(comment.commentIcon)
             tvComment.text = comment.id + " : " + comment.comment
 
+            commentLayout.addView(commentView)
             setShowMoreVisible(tvComment, tvShowMore)
         }
     }
@@ -176,6 +186,22 @@ class PostPopUpActivity : AppCompatActivity() {
                 comment.maxLines = Integer.MAX_VALUE
                 showMore.setText(DetailPageMessage.SHOWCLOSE.message)
             }
+        }
+    }
+
+    //댓글 추가
+    private fun setAddComment(){
+        ivCommentButton.setOnClickListener {
+            if (!etComment.text.isEmpty()) {
+                val commentData = CommentUser(
+                    myId!!,
+                    etComment.text.toString(),
+                    UserDatabase.totalUserData.find { it.id == myId }!!.profileImage
+                )
+                etComment.setText("")
+                postData!!.commentUser!!.add(commentData)
+            }else etComment.error.get(R.string.post_empty_comment)
+            setCommentList()
         }
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.autofill.UserData
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.teamsns.R.drawable.img_empty_heart
 import com.example.teamsns.R.drawable.img_heart
@@ -132,6 +134,7 @@ class DetailPageActivity : AppCompatActivity() {
             val tvDetailPostShowMore: TextView = postView.findViewById(R.id.tv_detail_post_show_more)
             val ivDetailPostLeftArrow: ImageView = postView.findViewById(R.id.iv_left_arrow_button)
             val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
+            val openPopUpButton: ConstraintLayout = postView.findViewById(R.id.open_pop_up_activity)
             val currentImageIndex = 0
 
             tvDetailPostListContents.text = post.postContent
@@ -150,9 +153,21 @@ class DetailPageActivity : AppCompatActivity() {
             setLikeButton(post, ivDetailPostLikeBtn, tvDetailPostLikeCount)
             setShowMoreVisible(post, tvDetailPostListContents, tvDetailPostShowMore)
             setShowPostArrow(post, ivDetailPostLeftArrow, ivDetailPostRightArrow,ivDetailPostListImg,currentImageIndex)
+            setOpenPopUpButton(post,openPopUpButton)
         }
     }
 
+    //댓글창 클릭시 팝업창을 띄우는 함수
+    private fun setOpenPopUpButton(post:Post, popUpButton: ConstraintLayout){
+        popUpButton.setOnClickListener {
+            intent = Intent(this, PostPopUpActivity::class.java)
+            intent.putExtra("myId",myId)
+            intent.putExtra("editUser",userData.id)
+            intent.putExtra("postKey", post.key)
+
+            startActivity(intent)
+        }
+    }
 
     // 좋아요 버튼 기능 세팅하는 함수
     private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {

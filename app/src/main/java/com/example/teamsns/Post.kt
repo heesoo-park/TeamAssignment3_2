@@ -8,6 +8,6 @@ data class Post(
     var postImage: ArrayList<Int>,
     val commentUser: ArrayList<CommentUser>?,
     var like: Int = 0,
-    var postContent: String? = null,
+    var postContent: String = "",
     var likeSelectedUser: ArrayList<String> = ArrayList()
 )
