@@ -132,8 +132,6 @@ password = intent.getStringExtra("password") ?: ""
 ```
 가장 먼저 onCreate에서 인텐트로 넘어온 값들을 받는다.
 
-회원가입 페이지에서 넘어왔다면 모두 다 값이 있지만 편집 페이지에서 넘어온다면 
-
 ## setEditCheck
 ```kotlin
 private fun setEditCheck() {
@@ -146,6 +144,7 @@ private fun setEditCheck() {
 }
 ```
 ChooseProfileActivity가 편집 페이지로부터 왔는지 확인하는 함수다.
+(편집 페이지는 회원가입 페이지를 재활용하여 만들었기 때문에 따로 구별할 필요가 있다.)
 
 편집 페이지로부터 왔다면 수정할 사용자의 아이디를 받고 사용자 정보를 가져온다.
 
