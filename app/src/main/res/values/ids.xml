@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tv_choose_title" type="id" />
+    <item name="ib_choose_profile_sample1" type="id" />
+    <item name="ib_choose_profile_sample2" type="id" />
+    <item name="ib_choose_profile_sample3" type="id" />
+    <item name="ib_choose_profile_sample4" type="id" />
+    <item name="ib_choose_profile_sample5" type="id" />
+    <item name="ib_choose_profile_sample6" type="id" />
+    <item name="ib_choose_profile_sample7" type="id" />
+    <item name="ib_choose_profile_sample8" type="id" />
+    <item name="ib_choose_profile_sample9" type="id" />
+    <item name="ib_choose_profile_sample10" type="id" />
+    <item name="ib_choose_profile_sample11" type="id" />
+    <item name="ib_choose_profile_sample12" type="id" />
+    <item name="iv_choose_selected_profile" type="id" />
+    <item name="btn_choose_signup" type="id" />
+</resources>

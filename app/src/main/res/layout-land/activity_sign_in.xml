@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".SignInActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="50sp"
+                android:layout_height="70sp"
+                android:src="@drawable/logo"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_signin_app_name"
+                app:layout_constraintEnd_toStartOf="@+id/tv_signin_app_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_signin_app_name" />
+
+            <TextView
+                android:id="@+id/tv_signin_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="25dp"
+                android:text="@string/app_name"
+                android:textColor="@color/text_color"
+                android:textSize="50sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_signin_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="80dp"
+                android:backgroundTint="@color/component_color"
+                android:text="@string/id"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signin_app_name" />
+
+            <EditText
+                android:id="@+id/et_signin_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:backgroundTint="@color/component_color"
+                android:hint="@string/empty_id_message"
+                android:inputType="text"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signin_id" />
+
+            <TextView
+                android:id="@+id/tv_signin_id_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:text=""
+                android:textColor="@color/red"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/et_signin_id"
+                app:layout_constraintTop_toBottomOf="@+id/et_signin_id" />
+
+            <TextView
+                android:id="@+id/tv_signin_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:text="@string/password"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_signin_id_error"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signin_id_error" />
+
+            <EditText
+                android:id="@+id/et_signin_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:backgroundTint="@color/component_color"
+                android:hint="@string/empty_password_message"
+                android:inputType="textPassword"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/gray"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signin_password" />
+
+            <TextView
+                android:id="@+id/tv_signin_password_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:text=""
+                android:textColor="@color/red"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/et_signin_password"
+                app:layout_constraintTop_toBottomOf="@+id/et_signin_password" />
+
+            <Button
+                android:id="@+id/btn_signin_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="80dp"
+                android:backgroundTint="@color/component_color"
+                android:clickable="false"
+                android:focusable="false"
+                android:text="@string/detail_activity_login"
+                android:textColor="@color/text_color"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signin_password_error" />
+
+            <Button
+                android:id="@+id/btn_signin_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="80dp"
+                android:backgroundTint="@color/component_color"
+                android:focusable="false"
+                android:text="@string/signin_activity_signin"
+                android:textColor="@color/text_color"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/btn_signin_login"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
