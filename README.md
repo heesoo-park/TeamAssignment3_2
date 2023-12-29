@@ -181,3 +181,64 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 ID입력칸을 상태메세지 입력창으로 바꿧다
 
 사용자의 이름 상태 비밀번호 그리고 프로필 이미지를 수정할 수 있다.
+
+## TroubleShooting
+- 사용자 정보를 수정할 때 프로필 이미지를 변경했는데 게시물의 프로필 이미지는 변경되지 않는 문제
+   
+-> ChooseProfileActivity에서 수정하기 버튼을 누를 때 사용자 프로필 이미지 뿐 아니라 사용자의 게시물을 순회하며 프로필 이미지를 변경
+
+-> 해결
+
+- 댓글창에서 사용자의 아이디가 출력되는 문제
+   
+-> CommentUser의 id 변수 이름을 name으로 변경
+
+-> DetailPageActivity에서 PostPopUpActivity로 인텐트 넘겨줄 때 로그인한 사용자의 이름도 넘겨줌
+
+-> PostPopUpActivity의 댓글 리스트 세팅하는 함수에서 텍스트를 comment.id에서 comment.name으로 변경
+
+-> 해결
+
+- 좋아요를 댓글 페이지에서 눌렀을 때 이전 디테일 페이지에서 반영되지 않는 문제
+   
+-> DetailPageActivity에서 PostPopUpActivity로 넘어갈 때 profileRefresh.launch(intent)를 사용
+
+-> PostPopUpActivity에서 뒤로가기 버튼을 누를 때 setResult(RESULT_OK, intent)를 보냄
+
+-> 해결
+
+- 좋아요를 댓글 페이지에서 누르고 하단의 뒤로가기 버튼을 눌렀을 때 이전 페이지에서 반영되지 않는 문제 &
+좋아요를 디테일 페이지에서 누르고 하단의 뒤로가기 버튼을 눌렀을 때 이전 페이지에서 반영되지 않는 문제
+
+-> 댓글 페이지와 디테일 페이지에 OnBackPressedCallback 함수를 만들어서 추가
+
+-> 함수 내에서는 기존 뒤로가기 버튼이 하던 역할을 그대로 적용
+
+-> 해결
+
+- 디테일 페이지와 댓글 페이지에서 게시물 이미지를 길게 눌렀을 때 좋아요 기능 작동하지 않는 문제
+    
+-> 메인 페이지에서 사용하던 관련 코드를 가져와 디테일 페이지에 복사 후 페이지에 맞게 수정
+   
+-> 메인 페이지에서 사용하던 관련 코드를 가져와 댓글 페이지에 복사 후 페이지에 맞게 수정
+
+- 디테일 페이지에서 로그아웃 버튼을 눌렀을 때 로그인 페이지에 아이디와 비밀번호가 남아있는 문제
+    
+-> 인텐트 플래그를 활용(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+-> 해결
+
+- 회원가입에서 아이디 칸에 한글을 입력하는 경우 잘못된 에러 출력가 출력되는 문제
+    
+-> SignUpErrorMessage에서 INVALID_ID를 가져와 수정
+
+-> 해결
+
+- 메인 페이지에서 setPostList 함수가 생각했던 것보다 더 많이 실행되는 문제
+    
+-> 함수를 호출하는 영역이 반복문 안이었기 때문에 생긴 문제
+
+-> 반복문 밖으로 꺼냄
+
+-> 해결
+
