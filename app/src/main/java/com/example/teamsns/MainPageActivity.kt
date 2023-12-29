@@ -53,16 +53,14 @@ class MainPageActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
-        ivMainMyProfile.setImageResource(userData.profileImage!!)
         mainUserProfileList.removeAllViews()
         setUserProfileList()
         setTopbar()
     }
 
     private fun setTopbar() {
+        tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
         ivMainMyProfile.setImageResource(userData.profileImage)
-
         setOnProflieClickListener(userData,ivMainMyProfile)
     }
 
