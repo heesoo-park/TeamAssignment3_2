@@ -1,7 +1,7 @@
 package com.example.teamsns
 
 data class CommentUser(
-    val id: String,
+    val name: String,
     val comment: String,
     var commentIcon: Int
 )

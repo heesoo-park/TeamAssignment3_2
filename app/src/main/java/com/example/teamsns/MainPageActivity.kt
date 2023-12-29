@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -63,7 +64,8 @@ class MainPageActivity : AppCompatActivity() {
         ivMainMyProfile.setImageResource(userData.profileImage)
 
         setOnProflieClickListener(userData,ivMainMyProfile)
-        }
+    }
+
     // 사용자 프로필 세팅
     private fun setUserProfileList() {
         for (user in UserDatabase.totalUserData) {
@@ -146,7 +148,7 @@ class MainPageActivity : AppCompatActivity() {
         }
     }
 
-    // 게시물 내 좋아요 버튼 클릭 리스너 함수
+    // 게시물 내 좋아요 기능을 담당하는 클릭 리스너 함수
     private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView, detailImage:ImageView) {
         likeButton.setOnClickListener {
             likeShow(post, likeButton, likeCount)

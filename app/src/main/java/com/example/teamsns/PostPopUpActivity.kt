@@ -10,8 +10,17 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 
 class PostPopUpActivity : AppCompatActivity() {
+
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            setResult(RESULT_OK, intent)
+            finish()
+        }
+    }
+
     private val ivUserProfile: ImageView by lazy {
         findViewById(R.id.iv_post_userprofile)
     }
@@ -51,6 +60,9 @@ class PostPopUpActivity : AppCompatActivity() {
     private val commentLayout: LinearLayout by lazy {
         findViewById(R.id.post_comment_layout)
     }
+    private val myName: String? by lazy {
+        intent.getStringExtra("myName")
+    }
     private val myId: String? by lazy {
         intent.getStringExtra("myId")
     }
@@ -67,11 +79,13 @@ class PostPopUpActivity : AppCompatActivity() {
         editUserData!!.userPosts.find { it.key == postKey }
     }
     private var currentImageIndex: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_pop_up)
 
         editUserData
+        this.onBackPressedDispatcher.addCallback(this, callback)
         init()
     }
     private fun init(){
@@ -96,21 +110,29 @@ class PostPopUpActivity : AppCompatActivity() {
         setCommentList()
     }
 
-    // 좋아요 버튼 기능 세팅하는 함수
+    // 게시물 내 좋아요 기능을 담당하는 클릭 리스너 함수
     private fun setLikeButton() {
         ivLike.setOnClickListener {
-            if (postData!!.likeSelectedUser.any { it == myId }) {
-                postData!!.like -= 1
-                ivLike.setImageResource(R.drawable.img_empty_heart)
-                postData!!.likeSelectedUser.remove(myId)
-            } else {
-                postData!!.like += 1
-                ivLike.setImageResource(R.drawable.img_heart)
-                postData!!.likeSelectedUser.add(myId!!)
-            }
-
-            tvLikeCount.text = postData!!.like.toString()
+            likeShow(postData!!, ivLike, tvLikeCount)
         }
+        ivPostImage.setOnLongClickListener {
+            likeShow(postData!!, ivLike, tvLikeCount)
+            true
+        }
+    }
+
+    // 게시물 내 좋아요 숫자 세팅하는 함수
+    private fun likeShow(post: Post, click: ImageView, likeCount: TextView){
+        if (post.likeSelectedUser.any { it == myId }) {
+            post.like -= 1
+            click.setImageResource(R.drawable.img_empty_heart)
+            post.likeSelectedUser.remove(myId)
+        } else {
+            post.like += 1
+            click.setImageResource(R.drawable.img_heart)
+            post.likeSelectedUser.add(myId!!)
+        }
+        likeCount.text = post.like.toString()
     }
 
     // 포스트 이미지가 여러개일시 화살표 표시
@@ -160,7 +182,7 @@ class PostPopUpActivity : AppCompatActivity() {
             val tvShowMore:TextView = commentView.findViewById(R.id.tv_post_show_more)
 
             ivCommentProfile.setImageResource(comment.commentIcon)
-            tvComment.text = comment.id + " : " + comment.comment
+            tvComment.text = comment.name + " : " + comment.comment
 
             commentLayout.addView(commentView)
             setShowMoreVisible(tvComment, tvShowMore)
@@ -194,13 +216,15 @@ class PostPopUpActivity : AppCompatActivity() {
         ivCommentButton.setOnClickListener {
             if (!etComment.text.isEmpty()) {
                 val commentData = CommentUser(
-                    myId!!,
+                    myName!!,
                     etComment.text.toString(),
                     UserDatabase.totalUserData.find { it.id == myId }!!.profileImage
                 )
                 etComment.setText("")
                 postData!!.commentUser!!.add(commentData)
-            }else etComment.error.get(R.string.post_empty_comment)
+            } else {
+                etComment.error.get(R.string.post_empty_comment)
+            }
             setCommentList()
         }
     }
@@ -208,6 +232,7 @@ class PostPopUpActivity : AppCompatActivity() {
     //뒤로가기
     private fun setBackButton(){
         ivBackArrow.setOnClickListener {
+            setResult(RESULT_OK, intent)
             finish()
         }
     }
