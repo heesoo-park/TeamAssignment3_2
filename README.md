@@ -123,7 +123,7 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 
 가로모드에선 사진을 오른쪽에서 보여주게 구현
 
-## 메인 페이지
+## [메인 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/MainlPageActivity.md)
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/9d6b470c-fe88-4b2e-a8c8-3ca419e290b2) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/d9dae805-c79c-4e45-a66c-55bd81f8b832)
 
 화면 상단에는 왼쪽에 로고 오른쪽에 사용자 프로필이 있다
@@ -181,3 +181,108 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 ID입력칸을 상태메세지 입력창으로 바꿧다
 
 사용자의 이름 상태 비밀번호 그리고 프로필 이미지를 수정할 수 있다.
+
+## TroubleShooting
+- 브랜치에서 풀 했을시 충돌 문제
+
+  깃에서 개발하고 있는 dev브랜치가 업데이트가 되면 본인이 작업하고 있는 파일에 pull 해야 하는데 내가 작업한 부분과
+
+  깃에서 불러온 부분이 겹쳤을 때 충돌이 일어나게 된다
+
+  ![](https://xacdo.net/wp/wp-content/uploads/2021/02/idea-idea_2016_3_vcs_magic_resolve.png)
+
+  그랬을때 이런 이미지가 나타나게 되는대
+
+  이미지의 >>> 버튼을 누르면 가운데 파일로 옮겨지게 된다
+
+  서로의 코드를 비교하고 필요한 코드와 그렇지 않은 코드를 구분한지 머지하게해서 해결했다.
+  
+- ImageButton 클릭시 stroke를 주는 selector를 작성해서 적용해도 아무런 변화가 없는 문제
+
+-> stroke가 객체의 안쪽으로 생겨서 생기는 문제
+
+-> ImageButton에 padding을 줘 stroke가 보이게 함
+
+-> 해결
+
+- layout_height가 wrap_content인 ConstraintLayout 안에 있는 TextView의 marginBottom이 적용되지 않는 문제
+
+-> Bottom에 대한 제약조건이 없어서 생긴 문제
+  
+-> app:layout_constraintBottom_toBottomOf="parent" 추가
+  
+-> 해결
+
+- 애니메이션이 부자연스럽게 진행되었던 문제
+
+-> animation 을 할 때에 overridePendingTransition() 함수를 이용.
+
+이 함수에는 두 인자가 들어가는데 첫번째 인자는 새로 들어오는 화면 그리고 두번째 인자는 사라지는 화면의 animation.xml 파일을 추가해 주어야한다.
+
+애니메이션 화면이 부자연스럽게 넘어갔던 이유는 새로 나타나는 화면에 대한 애니메이션 파일을 비워두고 사라지는 화면에 대한 애니메이션만 추가해주었기 때문이다.
+
+만약 두 화면이 둘 다 한 방향으로 밀리는 슬라이드 애니메이션 구현을 원한다면 첫번째와 두번째 인자에 둘다 slide 애니메이션을 넣어주면된다.
+
+만약 새로운 화면이 오른쪽에서 들어오고 뒤에 있던 창이 그대로 있어주기를 바란다면 새로 들어오는 파일은 슬라이드 애니메이션을 사용해주고 원래 있었던 화면은 천천히 fade out 애니메이션을 지정해주었다.
+
+원래 있었던 화면이 완전히 사라지기 전에 앞에 새로운 창으로 가려지게 만들기 위해서 fade out의 시간 설정을 slide 애니메이션보다 훨씬 길게 설정하였다.
+
+- 사용자 정보를 수정할 때 프로필 이미지를 변경했는데 게시물의 프로필 이미지는 변경되지 않는 문제
+   
+-> ChooseProfileActivity에서 수정하기 버튼을 누를 때 사용자 프로필 이미지 뿐 아니라 사용자의 게시물을 순회하며 프로필 이미지를 변경
+
+-> 해결
+
+- 댓글창에서 사용자의 아이디가 출력되는 문제
+   
+-> CommentUser의 id 변수 이름을 name으로 변경
+
+-> DetailPageActivity에서 PostPopUpActivity로 인텐트 넘겨줄 때 로그인한 사용자의 이름도 넘겨줌
+
+-> PostPopUpActivity의 댓글 리스트 세팅하는 함수에서 텍스트를 comment.id에서 comment.name으로 변경
+
+-> 해결
+
+- 좋아요를 댓글 페이지에서 눌렀을 때 이전 디테일 페이지에서 반영되지 않는 문제
+   
+-> DetailPageActivity에서 PostPopUpActivity로 넘어갈 때 profileRefresh.launch(intent)를 사용
+
+-> PostPopUpActivity에서 뒤로가기 버튼을 누를 때 setResult(RESULT_OK, intent)를 보냄
+
+-> 해결
+
+- 좋아요를 댓글 페이지에서 누르고 하단의 뒤로가기 버튼을 눌렀을 때 이전 페이지에서 반영되지 않는 문제 &
+좋아요를 디테일 페이지에서 누르고 하단의 뒤로가기 버튼을 눌렀을 때 이전 페이지에서 반영되지 않는 문제
+
+-> 댓글 페이지와 디테일 페이지에 OnBackPressedCallback 함수를 만들어서 추가
+
+-> 함수 내에서는 기존 뒤로가기 버튼이 하던 역할을 그대로 적용
+
+-> 해결
+
+- 디테일 페이지와 댓글 페이지에서 게시물 이미지를 길게 눌렀을 때 좋아요 기능 작동하지 않는 문제
+    
+-> 메인 페이지에서 사용하던 관련 코드를 가져와 디테일 페이지에 복사 후 페이지에 맞게 수정
+   
+-> 메인 페이지에서 사용하던 관련 코드를 가져와 댓글 페이지에 복사 후 페이지에 맞게 수정
+
+- 디테일 페이지에서 로그아웃 버튼을 눌렀을 때 로그인 페이지에 아이디와 비밀번호가 남아있는 문제
+    
+-> 인텐트 플래그를 활용(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+-> 해결
+
+- 회원가입에서 아이디 칸에 한글을 입력하는 경우 잘못된 에러 출력가 출력되는 문제
+    
+-> SignUpErrorMessage에서 INVALID_ID를 가져와 수정
+
+-> 해결
+
+- 메인 페이지에서 setPostList 함수가 생각했던 것보다 더 많이 실행되는 문제
+    
+-> 함수를 호출하는 영역이 반복문 안이었기 때문에 생긴 문제
+
+-> 반복문 밖으로 꺼냄
+
+-> 해결
+

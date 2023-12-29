@@ -53,16 +53,14 @@ class MainPageActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
-        ivMainMyProfile.setImageResource(userData.profileImage!!)
         mainUserProfileList.removeAllViews()
         setUserProfileList()
         setTopbar()
     }
 
     private fun setTopbar() {
+        tvMainHelloWord.text = getString(R.string.hello_word, userData.name)
         ivMainMyProfile.setImageResource(userData.profileImage)
-
         setOnProflieClickListener(userData,ivMainMyProfile)
     }
 
@@ -115,8 +113,6 @@ class MainPageActivity : AppCompatActivity() {
                 val ivDetailPostRightArrow: ImageView = postView.findViewById(R.id.iv_right_arrow_button)
                 val currentImageIndex = 0
 
-
-                Log.e("213","${user.name}")
                 tvMainPostContent.text = post.postContent
                 ivMainPost.setImageResource(post.postImage[0])
                 ivMainPostUserProfile.setImageResource(post.userProfileImage)
