@@ -13,7 +13,7 @@
 
 요즘 Constraint Layout을 사용하는게 대세라고 튜터님께서 말씀해주셨어서 Constraint Layout을 사용하였습니다.
 
-Landscape View에서는 위젯들이 다 안들어가기 때문에 ScrollView를 사용하여 스크롤하여 모든 위젯들에 접근 가능하도록 했습니다.
+위젯이랑 이미지가 한 페이지에 다 안들어가기 때문에 ScrollView를 사용하여 스크롤하여 모든 사진 및 위젯들에 접근 가능하도록 했습니다.
 
 ### - EditText
 
