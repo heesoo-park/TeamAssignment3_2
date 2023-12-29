@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/component_color"
     tools:context=".PostPopUpActivity"
     >
 
@@ -47,6 +48,7 @@
                     android:layout_marginStart="5dp"
                     android:text=""
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/cv_main_user"
                     app:layout_constraintStart_toEndOf="@id/cv_main_user"
                     app:layout_constraintTop_toTopOf="@id/cv_main_user" />
@@ -123,7 +125,7 @@
                         android:layout_marginEnd="50dp"
                         android:layout_marginBottom="5dp"
                         android:text=" Lorem Ipsum."
-                        android:textSize="18sp"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +149,8 @@
                         android:layout_marginEnd="15dp"
                         android:layout_marginBottom="5dp"
                         android:text="a"
-                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@id/iv_post_like_btn"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/iv_post_like_btn" />
