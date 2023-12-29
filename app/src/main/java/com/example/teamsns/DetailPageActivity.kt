@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +20,14 @@ import com.example.teamsns.R.drawable.img_empty_heart
 import com.example.teamsns.R.drawable.img_heart
 
 class DetailPageActivity : AppCompatActivity() {
+
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            setResult(RESULT_OK, intent)
+            finish()
+            overridePendingTransition(R.anim.slide_in_from_left, R.anim.slide_out_to_right)
+        }
+    }
 
     private val profileRefresh =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -74,6 +83,7 @@ class DetailPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_page)
 
+        this.onBackPressedDispatcher.addCallback(this, callback)
         init()
     }
 
@@ -143,14 +153,13 @@ class DetailPageActivity : AppCompatActivity() {
             tvDetailPostLikeCount.text = post.like.toString()
             if (post.commentUser?.get(0)?.commentIcon != null) ivDetailPostCommentIcon.setImageResource(
                 post.commentUser[0].commentIcon)
-
             detailPostLayout.addView(postView)
 
             if (post.likeSelectedUser.any { it == myId }) {
                 ivDetailPostLikeBtn.setImageResource(img_heart)
             }
 
-            setLikeButton(post, ivDetailPostLikeBtn, tvDetailPostLikeCount)
+            setLikeButton(post, ivDetailPostLikeBtn, tvDetailPostLikeCount, ivDetailPostListImg)
             setShowMoreVisible(post, tvDetailPostListContents, tvDetailPostShowMore)
             setShowPostArrow(post, ivDetailPostLeftArrow, ivDetailPostRightArrow,ivDetailPostListImg,currentImageIndex)
             setOpenPopUpButton(post,openPopUpButton)
@@ -161,30 +170,38 @@ class DetailPageActivity : AppCompatActivity() {
     private fun setOpenPopUpButton(post:Post, popUpButton: ConstraintLayout){
         popUpButton.setOnClickListener {
             intent = Intent(this, PostPopUpActivity::class.java)
+            intent.putExtra("myName", UserDatabase.getUser(myId!!)?.name)
             intent.putExtra("myId",myId)
             intent.putExtra("editUser",userData.id)
             intent.putExtra("postKey", post.key)
-
-            startActivity(intent)
+            profileRefresh.launch(intent)
+            // startActivity(intent)
         }
     }
 
-    // 좋아요 버튼 기능 세팅하는 함수
-    private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
+    // 게시물 내 좋아요 기능을 담당하는 클릭 리스너 함수
+    private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView, detailImage:ImageView) {
         likeButton.setOnClickListener {
-            if (post.likeSelectedUser.any { it == myId }) {
-                post.like -= 1
-                likeButton.setImageResource(img_empty_heart)
-                post.likeSelectedUser.remove(myId)
-            } else {
-                post.like += 1
-                likeButton.setImageResource(img_heart)
-                post.likeSelectedUser.add(myId!!)
-            }
-
-            likeCount.text = post.like.toString()
-            setPersonalButton()
+            likeShow(post, likeButton, likeCount)
         }
+        detailImage.setOnLongClickListener {
+            likeShow(post,likeButton, likeCount)
+            true
+        }
+    }
+
+    // 게시물 내 좋아요 숫자 세팅하는 함수
+    private fun likeShow(post: Post, click: ImageView, likeCount: TextView){
+        if (post.likeSelectedUser.any { it == myId }) {
+            post.like -= 1
+            click.setImageResource(R.drawable.img_empty_heart)
+            post.likeSelectedUser.remove(myId)
+        } else {
+            post.like += 1
+            click.setImageResource(R.drawable.img_heart)
+            post.likeSelectedUser.add(myId!!)
+        }
+        likeCount.text = post.like.toString()
     }
 
     // 더보기 버튼 활성화 함수

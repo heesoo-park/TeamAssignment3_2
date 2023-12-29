@@ -103,10 +103,7 @@ class SignUpActivity : AppCompatActivity() {
                     statusMessage = etSignUpId.text.toString(),
                     password = etSignUpPassword.text.toString()
                 )
-
-                Log.e("USER DATA BEFORE", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
                 UserDatabase.editUserData(user)
-                Log.e("USER DATA AFTER", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
             }
 
             val intent = Intent(this, ChooseProfileActivity::class.java).apply {
@@ -180,7 +177,7 @@ class SignUpActivity : AppCompatActivity() {
                 text.isBlank() -> SignUpErrorMessage.EMPTY_ID
                 text.includeAlphabetAndNumber() -> null
                 (userData != null) -> SignUpErrorMessage.OVERLAPPING_ID
-                else -> SignUpErrorMessage.INVALID_PASSWORD
+                else -> SignUpErrorMessage.INVALID_ID
             }
             return errorCode?.let { getString(it.message) }
         }else return null

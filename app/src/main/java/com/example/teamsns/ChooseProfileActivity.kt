@@ -96,7 +96,12 @@ class ChooseProfileActivity : AppCompatActivity() {
         btnSignUp.setOnClickListener {
             if (intent.getStringExtra("editId") != null) {
                 UserDatabase.totalUserData.find { it.id == editId }
-                    .let { it!!.profileImage = profileImageList[selectedImageIdx] }
+                    .let { user ->
+                        user!!.profileImage = profileImageList[selectedImageIdx]
+                        user.userPosts.forEach {
+                            it.userProfileImage = profileImageList[selectedImageIdx]
+                        }
+                    }
             }else {
                 UserDatabase.addUser(
                     User(

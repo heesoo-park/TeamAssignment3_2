@@ -397,3 +397,19 @@ private fun setBackButton() {
 오른쪽에서 왼쪽으로 슬라이드되면서 사라지고 
 
 그 에 맞춰서 메인페이지가 나오게 한다
+
+# [게시물 자세히 보기 / 댓글 쓰기](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/PostPopUpActivity.md)
+![Honeycam 2023-12-29 10-40-35](https://github.com/Guri999/codekata/assets/116724657/e93b533c-5bef-4dec-9348-7d578708827f)
+```kotlin
+private fun setOpenPopUpButton(post:Post, popUpButton: ConstraintLayout){
+        popUpButton.setOnClickListener {
+            intent = Intent(this, PostPopUpActivity::class.java)
+            intent.putExtra("myId",myId)
+            intent.putExtra("editUser",userData.id)
+            intent.putExtra("postKey", post.key)
+
+            startActivity(intent)
+        }
+    }
+```
+내정보와 작성자 정보 post의 key를 가지고 간다
