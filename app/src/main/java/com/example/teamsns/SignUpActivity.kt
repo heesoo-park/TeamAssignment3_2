@@ -103,10 +103,7 @@ class SignUpActivity : AppCompatActivity() {
                     statusMessage = etSignUpId.text.toString(),
                     password = etSignUpPassword.text.toString()
                 )
-
-                Log.e("USER DATA BEFORE", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
                 UserDatabase.editUserData(user)
-                Log.e("USER DATA AFTER", "Name: ${user.name}, ID: ${user.id}, Status: ${user.statusMessage}, Password: ${user.password}")
             }
 
             val intent = Intent(this, ChooseProfileActivity::class.java).apply {
