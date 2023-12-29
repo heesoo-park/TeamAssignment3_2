@@ -179,24 +179,6 @@ class DetailPageActivity : AppCompatActivity() {
         }
     }
 
-//    // 좋아요 버튼 기능 세팅하는 함수
-//    private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView) {
-//        likeButton.setOnClickListener {
-//            if (post.likeSelectedUser.any { it == myId }) {
-//                post.like -= 1
-//                likeButton.setImageResource(img_empty_heart)
-//                post.likeSelectedUser.remove(myId)
-//            } else {
-//                post.like += 1
-//                likeButton.setImageResource(img_heart)
-//                post.likeSelectedUser.add(myId!!)
-//            }
-//
-//            likeCount.text = post.like.toString()
-//            setPersonalButton()
-//        }
-//    }
-
     // 게시물 내 좋아요 기능을 담당하는 클릭 리스너 함수
     private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView, detailImage:ImageView) {
         likeButton.setOnClickListener {
