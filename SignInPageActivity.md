@@ -1,4 +1,4 @@
-# SignUpPageActivity.md
+# SignInPageActivity.md
 
 1. 로그인 페이지
 
