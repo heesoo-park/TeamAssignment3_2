@@ -1,22 +1,25 @@
 <h1 align="center">
 <img width="80px" src="https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/df645cf6-0b18-4655-9106-97fa405174c3" align="center" alt="" />
-<span style="font-size:250%"> 별개냥⭐ </span>
+ 별개냥⭐
 </h1>
  <p align="center">
    <a>강아지🐶와 고양이😺 반려동물이 되서 동물들과 대화해보세요!</a>
    <br />
    <br />
     <a href="https://github.com/heesoo-park/TeamAssignment3_2/actions/new">
-      <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
+      <img alt="Tests Passing" src="https://github.com/heesoo-park/TeamAssignment3_2/workflows/Test/badge.svg" />
+    </a>
+    <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
+      <img alt="Tests Coverage" src="https://codecov.io/gh/heesoo-park/TeamAssignment3_2/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/heesoo-park/TeamAssignment3_2/graphs/contributors">
-      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/heesoo-park/TeamAssignment3_2" />
     </a>
     <a href="https://github.com/heesoo-park/TeamAssignment3_2/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
+      <img alt="Issues" src="https://img.shields.io/github/issues/heesoo-park/TeamAssignment3_2?color=0088ff" />
     </a>
     <a href="https://github.com/heesoo-park/TeamAssignment3_2/pulls">
-      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/heesoo-park/TeamAssignment3_2?color=0088ff" />
     </a>
     <br />
     <br />
@@ -46,6 +49,18 @@
     <a href="/ReadMeFiles/PostPopUpActivity.md">게시물 페이지</a>
   </p>
 </p>
+ <h3 align = "center">PreView</h3>
+
+ <p align ="center">
+ <img alt="" src ="https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/efce75ed-a574-4119-a16f-6df2149f6f9e" width="110" heigth="50" />
+ <img alt="" src ="https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/1aa3f389-2590-431d-9f0b-675086a504f4" width="110" heigth="50" />
+ <img alt="" src ="https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/5d367d25-60de-4e17-8adb-9246739d64b1" width="110" heigth="50" />
+ <img alt="" src ="https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/efac7713-dba6-4b61-a18a-0e4233a4ebcd" width="110" heigth="50" />
+ <img alt="" src ="https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/701f8037-f202-49e2-97c3-196710c8748f" width="110" heigth="50" />
+</p>
+
+
+
 
 ## 프로젝트 개요
 
@@ -71,8 +86,11 @@
 
 <Figma 링크>
 
-https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?type=design&mode=design&t=WLSCOLn5fvtgA33U-1
-
+<p align="center">
+ <a href="https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?type=design&mode=design&t=WLSCOLn5fvtgA33U-1">
+  <img alt="와이어프레임" src="https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/901448b8-cb81-49bb-a4bb-ef29a7fa5121"
+</p>
+  
 ### 역할 분담
 박희수 : 사용자 정보 저장소 구현 & 메인 페이지 구현 & 프로필 이미지 선택 페이지 구현 & 발표 & 가로모드 구현
 
