@@ -79,6 +79,8 @@ https://www.figma.com/file/W77t6eKPMSJsTW6WhqeqCJ/%EB%B3%84%EA%B0%9C%EB%83%A5?ty
 
 [Post](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/Post.md)
 
+[CommentUser](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/CommentUser.md)
+
 
 ## [로그인 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignUpPageActivity.md)
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/b6906e7f-3cba-42c7-989f-489c7e59ca54) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/fc333dbe-21de-4f68-a509-18d6a8dbed9c)
