@@ -1,5 +1,51 @@
-별개냥
-=
+<h1 align="center">
+<img width="80px" src="https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/df645cf6-0b18-4655-9106-97fa405174c3" align="center" alt="" />
+<span style="font-size:250%"> 별개냥⭐ </span>
+</h1>
+ <p align="center">
+   <a>강아지🐶와 고양이😺 반려동물이 되서 동물들과 대화해보세요!</a>
+   <br />
+   <br />
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/actions/new">
+      <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
+    </a>
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/pulls">
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <br />
+    <br />
+  </p>
+  <p align="center">
+    <a> 프로젝트 팀원</a>
+    <br />
+    <a href="https://github.com/heesoo-park">박희수</a>
+    ·
+    <a href="https://github.com/Guri999">심규상</a>
+    ·
+    <a href="https://github.com/eun-24k">김은이</a>
+    ·
+    <a href="https://github.com/csh-tiger/sparta.git">최성현</a>
+  </p>
+  <p align="center">
+    <a>페이지 상세 설명</a>
+    <br />
+    <a href="/ReadMeFiles/SignUpPageActivity.md">로그인·회원가입</a>
+    ·
+    <a href="/ReadMeFiles/ChooseProfileActivity.md">프로필 선택</a>
+    ·
+    <a href="/ReadMeFiles/MainlPageActivity.md">메인 페이지</a>
+    ·
+    <a href="/ReadMeFiles/DetailPageActivity.md">디테일 페이지</a>
+    ·
+    <a href="/ReadMeFiles/PostPopUpActivity.md">게시물 페이지</a>
+  </p>
+</p>
 
 ## 프로젝트 개요
 
