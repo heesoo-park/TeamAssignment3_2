@@ -147,7 +147,7 @@ private fun setCommentList() {
             val tvShowMore:TextView = commentView.findViewById(R.id.tv_post_show_more)
 
             ivCommentProfile.setImageResource(comment.commentIcon)
-            tvComment.text = comment.id + " : " + comment.comment
+            tvComment.text = comment.name + " : " + comment.comment
 
             commentLayout.addView(commentView)
             setShowMoreVisible(tvComment, tvShowMore)
