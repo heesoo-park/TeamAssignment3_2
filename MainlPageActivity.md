@@ -85,11 +85,11 @@ private fun init(){
     setTopbar()
 }
 ```
-사용자프로필 생성 중복방지를 위한 초기화 함수이다.
+사용자 프로필 생성 중복방지를 위한 초기화 함수이다.
 
-init함수가 실행되면ㅅ 사용자 프로필 영역(HorizontalScrollView)의 모든 뷰는 삭제가 된다.
+init함수가 실행되면 사용자 프로필 영역(HorizontalScrollView)의 모든 뷰는 삭제가 된다.
 
-이후 사용자프로필 세팅을 위한 setUserProfileList() 함수와 상단바 구성을 위한 setTopbar() 함수를 호출한다.
+이후 사용자 프로필 세팅을 위한 setUserProfileList() 함수와 상단바 구성을 위한 setTopbar() 함수를 호출한다.
 
 ## 상단바 구성
 ```kotlin
@@ -103,7 +103,7 @@ private fun setTopbar() {
 
 "안녕하세요 ____님"과 본인의 프로필이미지를 나타내고
 
-사용자프로필을 보여주기 위한 setUserProfileList() 함수를 호출한다.
+사용자 프로필을 보여주기 위한 setUserProfileList() 함수를 호출한다.
 
 
 ## 사용자 프로필
@@ -133,7 +133,7 @@ private fun setUserProfileList() {
 
 프로필은 원형모양의 테두리를 표시해기위해 사진을 올릴 이미지뷰(profileImg)와 테두리를 씌울 이미지뷰(profileStroke)를 불러왔고,
 
-현재 사용자를 구분하기 위해 로그인한 아이디와 프로필아이디가 같으면 stroke(하늘색테두리)가 다으면 strkoe2(분홍색테두리)를 불러와 표시해줬다.
+현재 사용자를 구분하기 위해 로그인한 아이디와 프로필아이디가 같으면 stroke(하늘색테두리)를, 다르면 strkoe2(분홍색테두리)를 불러와 표시해줬다.
 
 프로필 이미지 클릭시 발생하는 이벤트는 setOnProfileClickListener() 함수 호출을 통해 실행이 되고
 
