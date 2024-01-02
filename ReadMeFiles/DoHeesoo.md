@@ -25,3 +25,10 @@ DetailPageActivity
 - 다크 모드일 때 EditText 내의 text 색상 변경
 - SA 수정
 - README.md 채우기
+
+## 4일차
+- 가로 모드 구현 지원
+- UI 예외 처리
+- 기능 예외 처리
+- 발표 준비
+- 발표 회의

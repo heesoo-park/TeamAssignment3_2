@@ -15,7 +15,6 @@ MainPageActivity
 
 
 
-
 ConstraintLayout을 기본으로
 
 {ConstraintLayout 상단바}
@@ -125,7 +124,6 @@ LinearLayout을 기본으로
 ```
 리소스 파일을 만들어서 눌렀을때 화살표 이미지의 색이 변하도록 만들었다.
 
-
 # Activity
 
 ## 초기화
@@ -136,11 +134,13 @@ private fun init(){
     setTopbar()
 }
 ```
+
 사용자프로필 생성 중복방지를 위한 초기화 함수이다.
 
 init함수가 실행되면ㅅ 사용자 프로필 영역(HorizontalScrollView)의 모든 뷰는 삭제가 된다.
 
 이후 사용자프로필 세팅을 위한 setUserProfileList() 함수와 상단바 구성을 위한 setTopbar() 함수를 호출한다.
+
 
 ## 상단바 구성
 ```kotlin
