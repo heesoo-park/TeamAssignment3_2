@@ -2,7 +2,17 @@ MainPageActivity
 =
 ## 레이아웃 구성
 
-[//]: # (![image]&#40;https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/f0ad9d78-554f-4a69-b686-904dde3b1baf&#41;)
+### [세로모드]
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/94032024/663172b5-e50f-4385-a4d3-69ff29799add)
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/94032024/dea9e621-4121-44ad-9f76-39b155b9fa66)
+
+
+
+### [가로모드]
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/94032024/598d1b67-5b2c-48a8-a0d4-01136e2ae223)
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/94032024/f47c6e00-3c58-403b-bb4e-1d5bf6c53026)
+
 
 
 ConstraintLayout을 기본으로
@@ -20,38 +30,45 @@ ConstraintLayout을 기본으로
 프로필사진 클릭시 마이페이지로 넘어간다.
 
 
-사용자목록은 좌우로 스크롤이 가능하게 되어었고, 사용자 프로필 이미지를 클릭시 각자의 디테일액티비티로 넘어간다.
+사용자목록은 HorizontalScrollView로 좌우로 스크롤이 가능하게 되어었고, main_profile_item.xml파일을 통해 불러오고 있다.
 
-각각의 사용자 이미지뷰는 원형모양으로 만들었고
-
-초기에는 외부 라이브러리인 CircleImageView를 사용했으나 협업과정에서 라이브러리를 불러오지 못하는 경우가 발생해 CardView를 변경했다.
-
-
-사용자목록 아래 게시물 목록은 남아있는 영역을 ScrollView로 잡아두고 사진과 게시글은 main_post_item.xml파일을 통해 동적으로 불러오게 하고 있다.
-
-main_post_item의 레이아웃은 다음과 같다.
-
-main_post_item
+main_profile_item
 =
 ## 레이아웃 구성
 
-리니어레이아웃을 기본으로
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/94032024/cfd8f1bb-cd43-4393-8e21-37f84d19ca1b)
 
-{ConstraintLayout 상단바(프로필, 사용자명)}
 
-{ConstraintLayout 게시물사진, 좌우 화살표}
-
-{ConstraintLayout 게시물 텍스트, 좋아요이미지, 좋아요수}
-
-로 구성되어 있다.
-
+ConstraintLayout을 기본으로
 
 ```xml
-    <item android:drawable="@drawable/back_arrow2" android:state_pressed="true"/>
-    <item android:drawable="@drawable/back_arrow"/>
-```
-리소스 파일을 만들어서 눌렀을때 화살표 이미지의 색이 변하도록 만들었다.
+<androidx.cardview.widget.CardView
+    android:id="@+id/cv_main_user_profile"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginStart="10dp"
+    app:cardCornerRadius="100dp"
+    app:cardElevation="3dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
 
+    <ImageView
+        android:id="@+id/iv_main_user_profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_cat2"/>
+    <ImageView
+        android:id="@+id/iv_main_user_stroke"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_profile_image_stroke"/>
+</androidx.cardview.widget.CardView>
+```
+
+으로 구성했다.
 
 프로필 이미지의 둥근 모양은 CardView를 사용했다
 
@@ -75,6 +92,38 @@ main_post_item
 ```
 Cardview를 둥글게 만들고 그 안에 이미지를 넣어 만들었다.
 
+초기에는 외부 라이브러리인 CircleImageView를 사용했으나 협업과정에서 라이브러리를 불러오지 못하는 경우가 발생해 CardView로 변경했다.
+
+main_post_item
+=
+## 레이아웃 구성
+
+사용자목록 아래 게시물 목록은 남아있는 영역을 ScrollView로 잡아두고 사진과 게시글은 main_post_item.xml파일을 통해 동적으로 불러오게 하고 있다.
+
+main_post_item의 레이아웃은 다음과 같다.
+
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/94032024/1ad28ad4-d905-4b12-ad14-27c21626cacc)
+![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/94032024/88a76642-a15b-42e6-8539-72acd9327fc9)
+
+
+
+LinearLayout을 기본으로
+
+{ConstraintLayout 상단바(프로필, 사용자명)}
+
+{ConstraintLayout 게시물사진, 좌우 화살표}
+
+{ConstraintLayout 게시물 텍스트, 좋아요이미지, 좋아요수}
+
+로 구성되어 있다.
+
+
+```xml
+    <item android:drawable="@drawable/back_arrow2" android:state_pressed="true"/>
+    <item android:drawable="@drawable/back_arrow"/>
+```
+리소스 파일을 만들어서 눌렀을때 화살표 이미지의 색이 변하도록 만들었다.
+
 # Activity
 
 ## 초기화
@@ -85,11 +134,13 @@ private fun init(){
     setTopbar()
 }
 ```
-사용자 프로필 생성 중복방지를 위한 초기화 함수이다.
 
-init함수가 실행되면 사용자 프로필 영역(HorizontalScrollView)의 모든 뷰는 삭제가 된다.
+사용자프로필 생성 중복방지를 위한 초기화 함수이다.
 
-이후 사용자 프로필 세팅을 위한 setUserProfileList() 함수와 상단바 구성을 위한 setTopbar() 함수를 호출한다.
+init함수가 실행되면ㅅ 사용자 프로필 영역(HorizontalScrollView)의 모든 뷰는 삭제가 된다.
+
+이후 사용자프로필 세팅을 위한 setUserProfileList() 함수와 상단바 구성을 위한 setTopbar() 함수를 호출한다.
+
 
 ## 상단바 구성
 ```kotlin
@@ -103,7 +154,7 @@ private fun setTopbar() {
 
 "안녕하세요 ____님"과 본인의 프로필이미지를 나타내고
 
-사용자 프로필을 보여주기 위한 setUserProfileList() 함수를 호출한다.
+사용자프로필을 보여주기 위한 setUserProfileList() 함수를 호출한다.
 
 
 ## 사용자 프로필
@@ -133,7 +184,7 @@ private fun setUserProfileList() {
 
 프로필은 원형모양의 테두리를 표시해기위해 사진을 올릴 이미지뷰(profileImg)와 테두리를 씌울 이미지뷰(profileStroke)를 불러왔고,
 
-현재 사용자를 구분하기 위해 로그인한 아이디와 프로필아이디가 같으면 stroke(하늘색테두리)를, 다르면 strkoe2(분홍색테두리)를 불러와 표시해줬다.
+현재 사용자를 구분하기 위해 로그인한 아이디와 프로필아이디가 같으면 stroke(하늘색테두리)가 다으면 strkoe2(분홍색테두리)를 불러와 표시해줬다.
 
 프로필 이미지 클릭시 발생하는 이벤트는 setOnProfileClickListener() 함수 호출을 통해 실행이 되고
 
@@ -239,7 +290,7 @@ private fun setLikeButton(post: Post, likeButton: ImageView, likeCount: TextView
 
 좋아요버튼은 클릭으로, 게시글은 길게 클릭시 반영된다.
 
-## 좋아요 수 && 하트 변화
+## 좋아요 수 & 하트 변화
 ```kotlin
 private fun likeShow(post: Post, click: ImageView, likeCount: TextView){
     if (post.likeSelectedUser.any { it == loginUserId }) { //좋아요선택한 사용자중 아무나의 아이디와 로그인 아이디가 같으면(==로그인한 현재 사용자가 이미 좋아요를 눌렀다면)
