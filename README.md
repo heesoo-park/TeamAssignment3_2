@@ -179,7 +179,7 @@
 
 스크롤 뷰로 스크롤 가능하게 구현했다
 
-### [프로필 사진 선택 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/ChooseProfileActivity.md)
+### [프로필 사진 선택 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/ChooseProfileActivity.md)
 ![Honeycam 2023-12-28 21-13-09](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/050885db-2a1c-4a39-b432-95d19e451a74)
 
 
@@ -191,7 +191,7 @@
 
 가로모드에선 사진을 오른쪽에서 보여주게 구현
 
-## [메인 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/MainlPageActivity.md)
+## [메인 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/MainlPageActivity.md)
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/9d6b470c-fe88-4b2e-a8c8-3ca419e290b2) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/d9dae805-c79c-4e45-a66c-55bd81f8b832)
 
 화면 상단에는 왼쪽에 로고 오른쪽에 사용자 프로필이 있다
@@ -219,7 +219,7 @@
 
 게시물의 내용을 좀더 길게 볼수 있게 했다.
 
-## [디테일 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/DetailPageActivity.md)
+## [디테일 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/DetailPageActivity.md)
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/ee367f08-6fa9-4a3f-8061-d33b0a4bfbef) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/2978b9c5-ebff-4464-8fed-58e29e7f1692)
 
 
