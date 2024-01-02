@@ -38,15 +38,15 @@
   <p align="center">
     <a>페이지 상세 설명</a>
     <br />
-    <a href="/ReadMeFiles/SignUpPageActivity.md">로그인·회원가입</a>
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/SignUpPageActivity.md">로그인·회원가입</a>
     ·
-    <a href="/ReadMeFiles/ChooseProfileActivity.md">프로필 선택</a>
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/ChooseProfileActivity.md">프로필 선택</a>
     ·
-    <a href="/ReadMeFiles/MainlPageActivity.md">메인 페이지</a>
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/MainlPageActivity.md">메인 페이지</a>
     ·
-    <a href="/ReadMeFiles/DetailPageActivity.md">디테일 페이지</a>
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/DetailPageActivity.md">디테일 페이지</a>
     ·
-    <a href="/ReadMeFiles/PostPopUpActivity.md">게시물 페이지</a>
+    <a href="https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/PostPopUpActivity.md">게시물 페이지</a>
   </p>
 </p>
  <h3 align = "center">PreView</h3>
