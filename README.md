@@ -38,7 +38,7 @@
   <p align="center">
     <a>페이지 상세 설명</a>
     <br />
-    <a href="https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/SignUpPageActivity.md">로그인·회원가입</a>
+    <a href="/ReadMeFiles/SignUpPageActivity.md">로그인·회원가입</a>
     ·
     <a href="https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/ChooseProfileActivity.md">프로필 선택</a>
     ·
