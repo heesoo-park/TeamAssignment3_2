@@ -137,16 +137,18 @@
 **Readme.md**를 이용해서 개발 기록 작성
 
 
-[UserDatabase](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/UserDatabase.md)
+[UserDatabase](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/UserDatabase.md)
 
-[User](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/User.md)
+[User](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/User.md)
 
-[Post](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/Post.md)
+[Post](https://github.com/heesoo-park/TeamAssignment3_2/blob/1095754842470daf81b60dadbd2711e4c874cd71/ReadMeFiles/Post.md)
 
-[CommentUser](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/CommentUser.md)
+[CommentUser](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/CommentUser.md)
+
+[theme](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/theme.md)
 
 
-## [로그인 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignUpPageActivity.md)
+## [로그인 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/SignInPageActivity.md)
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/b6906e7f-3cba-42c7-989f-489c7e59ca54) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/fc333dbe-21de-4f68-a509-18d6a8dbed9c)
 
 사용자의 정보를 DB에서 찾아 가입된 사용자인지 확인 하는 액티비티
@@ -162,7 +164,7 @@
 
 한 화면에 전부 띄우지 못해 스크롤 뷰를 추가해서 사용자가 스크롤 할 수 있게끔 구현했다
 
-## [회원가입 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/dev/SignUpPageActivity.md)
+## [회원가입 페이지](https://github.com/heesoo-park/TeamAssignment3_2/blob/main/ReadMeFiles/SignUpPageActivity.md)
 ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/9d7a6710-e9dd-42d2-964a-92cf67e14217) ![image](https://github.com/heesoo-park/TeamAssignment3_2/assets/116724657/cce9bf58-d3cd-4074-9d40-0d34b78ae313)
 
 데이터베이스에 유저의 정보를 입력하는 페이지
